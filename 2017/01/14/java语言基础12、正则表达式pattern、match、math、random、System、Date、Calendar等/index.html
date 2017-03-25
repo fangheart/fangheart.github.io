@@ -1,0 +1,1460 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/personnal/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="01_常见对象(正则表达式的概述和简单使用)
+A:正则表达式
+是指一个用来描述或者匹配一系列符合某个语法规则的字符串的单个字符串。其实就是一种规则。有自己特殊的应用。
+作用:比如注册邮箱,邮箱有用户名和密码,一般会对其限制长度,这个限制长度的事情就是正则表达式做的
+
+
+B:案例演示
+
+需求：校验qq号码.
+
+1:要求必须是5-15位数字
+2:0不能开头
+3:必须都是数字
+
+
+a:非正则表达式实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式pattern、match、math、random、System、Date、Calendar等">
+<meta property="og:url" content="http://www.fangheart.top/2017/01/14/java语言基础12、正则表达式pattern、match、math、random、System、Date、Calendar等/index.html">
+<meta property="og:site_name" content="FangHeart's blog">
+<meta property="og:description" content="01_常见对象(正则表达式的概述和简单使用)
+A:正则表达式
+是指一个用来描述或者匹配一系列符合某个语法规则的字符串的单个字符串。其实就是一种规则。有自己特殊的应用。
+作用:比如注册邮箱,邮箱有用户名和密码,一般会对其限制长度,这个限制长度的事情就是正则表达式做的
+
+
+B:案例演示
+
+需求：校验qq号码.
+
+1:要求必须是5-15位数字
+2:0不能开头
+3:必须都是数字
+
+
+a:非正则表达式实现">
+<meta property="og:updated_time" content="2017-01-14T15:09:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则表达式pattern、match、math、random、System、Date、Calendar等">
+<meta name="twitter:description" content="01_常见对象(正则表达式的概述和简单使用)
+A:正则表达式
+是指一个用来描述或者匹配一系列符合某个语法规则的字符串的单个字符串。其实就是一种规则。有自己特殊的应用。
+作用:比如注册邮箱,邮箱有用户名和密码,一般会对其限制长度,这个限制长度的事情就是正则表达式做的
+
+
+B:案例演示
+
+需求：校验qq号码.
+
+1:要求必须是5-15位数字
+2:0不能开头
+3:必须都是数字
+
+
+a:非正则表达式实现">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.fangheart.top/2017/01/14/java语言基础12、正则表达式pattern、match、math、random、System、Date、Calendar等/"/>
+
+
+
+
+
+  <title> 正则表达式pattern、match、math、random、System、Date、Calendar等 | FangHeart's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FangHeart's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">爱生活，爱编码。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.fangheart.top/2017/01/14/java语言基础12、正则表达式pattern、match、math、random、System、Date、Calendar等/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FangHeart">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/personnal/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FangHeart's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                正则表达式pattern、match、math、random、System、Date、Calendar等
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-14T23:08:07+08:00">
+                2017-01-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java基础/" itemprop="url" rel="index">
+                    <span itemprop="name">java基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/01/14/java语言基础12、正则表达式pattern、match、math、random、System、Date、Calendar等/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/01/14/java语言基础12、正则表达式pattern、match、math、random、System、Date、Calendar等/" class="leancloud_visitors" data-flag-title="正则表达式pattern、match、math、random、System、Date、Calendar等">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="01-常见对象-正则表达式的概述和简单使用"><a href="#01-常见对象-正则表达式的概述和简单使用" class="headerlink" title="01_常见对象(正则表达式的概述和简单使用)"></a>01_常见对象(正则表达式的概述和简单使用)</h3><ul>
+<li>A:正则表达式<ul>
+<li>是指一个用来描述或者匹配一系列符合某个语法规则的字符串的单个字符串。其实就是一种规则。有自己特殊的应用。</li>
+<li>作用:比如注册邮箱,邮箱有用户名和密码,一般会对其限制长度,这个限制长度的事情就是正则表达式做的</li>
+</ul>
+</li>
+<li><p>B:案例演示</p>
+<ul>
+<li><p>需求：校验qq号码.</p>
+<ul>
+<li>1:要求必须是5-15位数字</li>
+<li>2:0不能开头</li>
+<li>3:必须都是数字</li>
+</ul>
+</li>
+<li><p>a:非正则表达式实现</p>
+</li>
+<li>b:正则表达式实现</li>
+</ul>
+</li>
+</ul>
+<h3 id="02-常见对象-字符类演示"><a href="#02-常见对象-字符类演示" class="headerlink" title="02_常见对象(字符类演示)"></a>02_常见对象(字符类演示)</h3><ul>
+<li>A:字符类<ul>
+<li>[abc] a、b 或 c（简单类） </li>
+<li>[^abc] 任何字符，除了 a、b 或 c（否定） </li>
+<li>[a-zA-Z] a到 z 或 A到 Z，两头的字母包括在内（范围） </li>
+<li>[0-9] 0到9的字符都包括<h3 id="03-常见对象-预定义字符类演示"><a href="#03-常见对象-预定义字符类演示" class="headerlink" title="03_常见对象(预定义字符类演示)"></a>03_常见对象(预定义字符类演示)</h3></li>
+</ul>
+</li>
+<li>A:预定义字符类<ul>
+<li>. 任何字符。</li>
+<li>\d 数字：[0-9]</li>
+<li>\w 单词字符：[a-zA-Z_0-9]<h3 id="04-常见对象-数量词"><a href="#04-常见对象-数量词" class="headerlink" title="04_常见对象(数量词)"></a>04_常见对象(数量词)</h3></li>
+</ul>
+</li>
+<li>A:Greedy 数量词 <ul>
+<li>X? X，一次或一次也没有</li>
+<li>X* X，零次或多次</li>
+<li>X+ X，一次或多次</li>
+<li>X{n} X，恰好 n 次 </li>
+<li>X{n,} X，至少 n 次 </li>
+<li>X{n,m} X，至少 n 次，但是不超过 m 次 </li>
+</ul>
+</li>
+</ul>
+<h3 id="05-常见对象-正则表达式的分割功能"><a href="#05-常见对象-正则表达式的分割功能" class="headerlink" title="05_常见对象(正则表达式的分割功能)"></a>05_常见对象(正则表达式的分割功能)</h3><ul>
+<li>A:正则表达式的分割功能<ul>
+<li>String类的功能：public String[] split(String regex)</li>
+</ul>
+</li>
+<li>B:案例演示<ul>
+<li>正则表达式的分割功能</li>
+</ul>
+</li>
+</ul>
+<h3 id="06-常见对象-把给定字符串中的数字排序"><a href="#06-常见对象-把给定字符串中的数字排序" class="headerlink" title="06_常见对象(把给定字符串中的数字排序)"></a>06_常见对象(把给定字符串中的数字排序)</h3><ul>
+<li>A:案例演示<ul>
+<li>需求：我有如下一个字符串:”91 27 46 38 50”，请写代码实现最终输出结果是：”27 38 46 50 91”</li>
+</ul>
+</li>
+</ul>
+<h3 id="07-常见对象-正则表达式的替换功能"><a href="#07-常见对象-正则表达式的替换功能" class="headerlink" title="07_常见对象(正则表达式的替换功能)"></a>07_常见对象(正则表达式的替换功能)</h3><ul>
+<li>A:正则表达式的替换功能<ul>
+<li>String类的功能：public String replaceAll(String regex,String replacement)</li>
+</ul>
+</li>
+<li>B:案例演示<ul>
+<li>正则表达式的替换功能</li>
+</ul>
+</li>
+</ul>
+<h3 id="08-常见对象-正则表达式的分组功能"><a href="#08-常见对象-正则表达式的分组功能" class="headerlink" title="08_常见对象(正则表达式的分组功能)"></a>08_常见对象(正则表达式的分组功能)</h3><ul>
+<li>A:正则表达式的分组功能<ul>
+<li>捕获组可以通过从左到右计算其开括号来编号。例如，在表达式 ((A)(B(C))) 中，存在四个这样的组： </li>
+</ul>
+</li>
+<li><pre><code>1     ((A)(B(C))) 
+2     (A 
+3     (B(C)) 
+4     (C) 
+
+组零始终代表整个表达式。
+</code></pre><p>B:案例演示<br>  a:切割</p>
+<pre><code>例如 高高兴兴   regex = &quot;(.)\\1(.)\\2&quot;;  括号内表示为组，\\1表示第一组再出现一次,若为1+代表出现一次或者多次
+高兴高兴 regex = &quot;(..)\\1&quot;;
+需求：请按照叠词切割： &quot;sdqqfgkkkhjppppkl&quot;;
+</code></pre><p>  b:替换</p>
+<pre><code>需求：我我....我...我.要...要要...要学....学学..学.编..编编.编.程.程.程..程
+将字符串还原成:“我要学编程”。
+1. 去除点 s.repalceAll(&quot;\\.+&quot;,&quot;&quot;);
+2. 多个字符替换成一个 s2.replaceAll(&quot;(.)\\1+&quot;,&quot;$1&quot;);
+</code></pre><h3 id="09-常见对象-Pattern和Matcher的概述"><a href="#09-常见对象-Pattern和Matcher的概述" class="headerlink" title="09_常见对象(Pattern和Matcher的概述)"></a>09_常见对象(Pattern和Matcher的概述)</h3></li>
+<li>A:Pattern和Matcher的概述</li>
+<li><p>B:模式和匹配器的典型调用顺序</p>
+<ul>
+<li><p>通过JDK提供的API，查看Pattern类的说明</p>
+</li>
+<li><p>典型的调用顺序是 </p>
+</li>
+<li>Pattern p = Pattern.compile(“a*b”);</li>
+<li>Matcher m = p.matcher(“aaaaab”);</li>
+<li>boolean b = m.matches();</li>
+</ul>
+</li>
+</ul>
+<h3 id="10-常见对象-正则表达式的获取功能"><a href="#10-常见对象-正则表达式的获取功能" class="headerlink" title="10_常见对象(正则表达式的获取功能)"></a>10_常见对象(正则表达式的获取功能)</h3><ul>
+<li>A:正则表达式的获取功能<ul>
+<li>Pattern和Matcher的结合使用</li>
+</ul>
+</li>
+<li><p>B:案例演示</p>
+<ul>
+<li><p>需求：把一个字符串中的手机号码获取出来</p>
+<p>  String s = “我的手机是18988888888,我曾用过18987654321,还用过18812345678”;</p>
+<pre><code>String regex = &quot;1[3578]\\d{9}&quot;;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<pre><code>Pattern p = Pattern.compile(regex);
+Matcher m = p.matcher(s);
+while(m.find())
+    System.out.println(m.group());
+</code></pre><h3 id="11-常见对象-Math类概述和方法使用"><a href="#11-常见对象-Math类概述和方法使用" class="headerlink" title="11_常见对象(Math类概述和方法使用)"></a>11_常见对象(Math类概述和方法使用)</h3><ul>
+<li>A:Math类概述<ul>
+<li>Math 类包含用于执行基本数学运算的方法，如初等指数、对数、平方根和三角函数。 </li>
+</ul>
+</li>
+<li>B:成员方法<ul>
+<li>public static int abs(int a)</li>
+<li>public static double ceil(double a)</li>
+<li>public static double floor(double a)</li>
+<li>public static int max(int a,int b) min自学</li>
+<li>public static double pow(d ouble a,double b)</li>
+<li>public static double random()</li>
+<li>public static int round(float a) 参数为double的自学</li>
+<li>public static double sqrt(double a)</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-常见对象-Random类的概述和方法使用"><a href="#12-常见对象-Random类的概述和方法使用" class="headerlink" title="12_常见对象(Random类的概述和方法使用)"></a>12_常见对象(Random类的概述和方法使用)</h3><ul>
+<li>A:Random类的概述<ul>
+<li>此类用于产生随机数如果用相同的种子创建两个 Random 实例，</li>
+<li>则对每个实例进行相同的方法调用序列，它们将生成并返回相同的数字序列。</li>
+</ul>
+</li>
+<li>B:构造方法<ul>
+<li>public Random()</li>
+<li>public Random(long seed)</li>
+</ul>
+</li>
+<li>C:成员方法<ul>
+<li>public int nextInt()</li>
+<li>public int nextInt(int n)(重点掌握)</li>
+</ul>
+</li>
+</ul>
+<h3 id="13-常见对象-System类的概述和方法使用"><a href="#13-常见对象-System类的概述和方法使用" class="headerlink" title="13_常见对象(System类的概述和方法使用)"></a>13_常见对象(System类的概述和方法使用)</h3><ul>
+<li>A:System类的概述<ul>
+<li>System 类包含一些有用的类字段和方法。它不能被实例化。 </li>
+</ul>
+</li>
+<li>B:成员方法<ul>
+<li>public static void gc()</li>
+<li>public static void exit(int status)</li>
+<li>public static long currentTimeMillis()</li>
+<li>pubiic static void arraycopy(Object src, int srcPos, Object dest, int destPos, int length) </li>
+</ul>
+</li>
+<li>C:案例演示<ul>
+<li>System类的成员方法使用</li>
+</ul>
+</li>
+</ul>
+<h3 id="14-常见对象-BigInteger类的概述和方法使用"><a href="#14-常见对象-BigInteger类的概述和方法使用" class="headerlink" title="14_常见对象(BigInteger类的概述和方法使用)"></a>14_常见对象(BigInteger类的概述和方法使用)</h3><ul>
+<li>A:BigInteger的概述<ul>
+<li>可以让超过Integer范围内的数据进行运算</li>
+</ul>
+</li>
+<li>B:构造方法<ul>
+<li>public BigInteger(String val)</li>
+</ul>
+</li>
+<li>C:成员方法<ul>
+<li>public BigInteger add(BigInteger val)</li>
+<li>public BigInteger subtract(BigInteger val)</li>
+<li>public BigInteger multiply(BigInteger val)</li>
+<li>public BigInteger divide(BigInteger val)</li>
+<li>public BigInteger[] divideAndRemainder(BigInteger val)</li>
+</ul>
+</li>
+</ul>
+<h3 id="15-常见对象-BigDecimal类的概述和方法使用"><a href="#15-常见对象-BigDecimal类的概述和方法使用" class="headerlink" title="15_常见对象(BigDecimal类的概述和方法使用)"></a>15_常见对象(BigDecimal类的概述和方法使用)</h3><ul>
+<li><p>A:BigDecimal的概述</p>
+<ul>
+<li>由于在运算的时候，float类型和double很容易丢失精度，演示案例。</li>
+<li><p>所以，为了能精确的表示、计算浮点数，Java提供了BigDecimal</p>
+</li>
+<li><p>不可变的、任意精度的有符号十进制数。</p>
+</li>
+</ul>
+</li>
+<li>B:构造方法<ul>
+<li>public BigDecimal(String val)</li>
+</ul>
+</li>
+<li>C:成员方法<ul>
+<li>public BigDecimal add(BigDecimal augend)</li>
+<li>public BigDecimal subtract(BigDecimal subtrahend)</li>
+<li>public BigDecimal multiply(BigDecimal multiplicand)</li>
+<li>public BigDecimal divide(BigDecimal divisor)</li>
+</ul>
+</li>
+<li>D:案例演示<ul>
+<li>BigDecimal类的构造方法和成员方法使用</li>
+</ul>
+</li>
+</ul>
+<h3 id="16-常见对象-Date类的概述和方法使用-掌握"><a href="#16-常见对象-Date类的概述和方法使用-掌握" class="headerlink" title="16_常见对象(Date类的概述和方法使用)(掌握)"></a>16_常见对象(Date类的概述和方法使用)(掌握)</h3><ul>
+<li>A:Date类的概述<ul>
+<li>类 Date 表示特定的瞬间，精确到毫秒。 </li>
+</ul>
+</li>
+<li>B:构造方法<ul>
+<li>public Date()</li>
+<li>public Date(long date)</li>
+</ul>
+</li>
+<li>C:成员方法<ul>
+<li>public long getTime()</li>
+<li>public void setTime(long time)</li>
+</ul>
+</li>
+</ul>
+<h3 id="17-常见对象-SimpleDateFormat类实现日期和字符串的相互转换-掌握"><a href="#17-常见对象-SimpleDateFormat类实现日期和字符串的相互转换-掌握" class="headerlink" title="17_常见对象(SimpleDateFormat类实现日期和字符串的相互转换)(掌握)"></a>17_常见对象(SimpleDateFormat类实现日期和字符串的相互转换)(掌握)</h3><ul>
+<li>A:DateFormat类的概述<ul>
+<li>DateFormat 是日期/时间格式化子类的抽象类，它以与语言无关的方式格式化并解析日期或时间。是抽象类，所以使用其子类SimpleDateFormat</li>
+</ul>
+</li>
+<li>B:SimpleDateFormat构造方法<ul>
+<li>public SimpleDateFormat()</li>
+<li>public SimpleDateFormat(String pattern)</li>
+</ul>
+</li>
+<li>C:成员方法<ul>
+<li>public final String format(Date date)</li>
+<li>public Date parse(String source)</li>
+</ul>
+</li>
+</ul>
+<h3 id="18-常见对象-你来到这个世界多少天案例-掌握"><a href="#18-常见对象-你来到这个世界多少天案例-掌握" class="headerlink" title="18_常见对象(你来到这个世界多少天案例)(掌握)"></a>18_常见对象(你来到这个世界多少天案例)(掌握)</h3><ul>
+<li>A:案例演示<ul>
+<li>需求：算一下你来到这个世界多少天?</li>
+</ul>
+</li>
+</ul>
+<h3 id="19-常见对象-Calendar类的概述和获取日期的方法-掌握"><a href="#19-常见对象-Calendar类的概述和获取日期的方法-掌握" class="headerlink" title="19_常见对象(Calendar类的概述和获取日期的方法)(掌握)"></a>19_常见对象(Calendar类的概述和获取日期的方法)(掌握)</h3><ul>
+<li>A:Calendar类的概述<ul>
+<li>Calendar 类是一个抽象类，它为特定瞬间与一组诸如 YEAR、MONTH、DAY_OF_MONTH、HOUR 等日历字段之间的转换提供了一些方法，并为操作日历字段（例如获得下星期的日期）提供了一些方法。</li>
+</ul>
+</li>
+<li>B:成员方法<ul>
+<li>public static Calendar getInstance()</li>
+<li>public int get(int field)</li>
+</ul>
+</li>
+</ul>
+<h3 id="20-常见对象-Calendar类的add-和set-方法-掌握"><a href="#20-常见对象-Calendar类的add-和set-方法-掌握" class="headerlink" title="20_常见对象(Calendar类的add()和set()方法)(掌握)"></a>20_常见对象(Calendar类的add()和set()方法)(掌握)</h3><ul>
+<li>A:成员方法<ul>
+<li>public void add(int field,int amount)</li>
+<li>public final void set(int year,int month,int date)</li>
+</ul>
+</li>
+<li>B:案例演示<ul>
+<li>Calendar类的成员方法使用</li>
+</ul>
+</li>
+</ul>
+<h3 id="21-常见对象-如何获取任意年份是平年还是闰年-掌握"><a href="#21-常见对象-如何获取任意年份是平年还是闰年-掌握" class="headerlink" title="21_常见对象(如何获取任意年份是平年还是闰年)(掌握)"></a>21_常见对象(如何获取任意年份是平年还是闰年)(掌握)</h3><ul>
+<li>A:案例演示<ul>
+<li>需求：键盘录入任意一个年份，判断该年是闰年还是平年</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/personnal/wechat-reward-image.jpg" alt="FangHeart WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/personnal/alipay-reward-image.jpg" alt="FangHeart Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java基础/" rel="tag"># java基础</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/10/YARN之MRAppMaster深入剖析—ContainerAllocator分析/" rel="next" title="YARN之MRAppMaster深入剖析—ContainerAllocator分析">
+                <i class="fa fa-chevron-left"></i> YARN之MRAppMaster深入剖析—ContainerAllocator分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/20/设计模式01、策略模式/" rel="prev" title="设计模式">
+                设计模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/personnal/author.jpg"
+               alt="FangHeart" />
+          <p class="site-author-name" itemprop="name">FangHeart</p>
+           
+              <p class="site-description motion-element" itemprop="description">不忘初心，方得始终。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fangheart" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2013845927/" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/fangheart" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fangheart@fangheart.win" target="_blank" title="邮箱">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  邮箱
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://haroldliu.weebly.com" title="HaroldLiuChi" target="_blank">HaroldLiuChi</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://guangyugao.weebly.com/" title="GaoGuangYu" target="_blank">GaoGuangYu</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wenjiewang.top" title="WenJieWang" target="_blank">WenJieWang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/it_dx" title="DuanXiong" target="_blank">DuanXiong</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dongxicheng.org/recommend/" title="DongXiCheng" target="_blank">DongXiCheng</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#01-常见对象-正则表达式的概述和简单使用"><span class="nav-number">1.</span> <span class="nav-text">01_常见对象(正则表达式的概述和简单使用)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#02-常见对象-字符类演示"><span class="nav-number">2.</span> <span class="nav-text">02_常见对象(字符类演示)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#03-常见对象-预定义字符类演示"><span class="nav-number">3.</span> <span class="nav-text">03_常见对象(预定义字符类演示)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#04-常见对象-数量词"><span class="nav-number">4.</span> <span class="nav-text">04_常见对象(数量词)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#05-常见对象-正则表达式的分割功能"><span class="nav-number">5.</span> <span class="nav-text">05_常见对象(正则表达式的分割功能)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#06-常见对象-把给定字符串中的数字排序"><span class="nav-number">6.</span> <span class="nav-text">06_常见对象(把给定字符串中的数字排序)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#07-常见对象-正则表达式的替换功能"><span class="nav-number">7.</span> <span class="nav-text">07_常见对象(正则表达式的替换功能)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#08-常见对象-正则表达式的分组功能"><span class="nav-number">8.</span> <span class="nav-text">08_常见对象(正则表达式的分组功能)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#09-常见对象-Pattern和Matcher的概述"><span class="nav-number">9.</span> <span class="nav-text">09_常见对象(Pattern和Matcher的概述)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-常见对象-正则表达式的获取功能"><span class="nav-number">10.</span> <span class="nav-text">10_常见对象(正则表达式的获取功能)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-常见对象-Math类概述和方法使用"><span class="nav-number">11.</span> <span class="nav-text">11_常见对象(Math类概述和方法使用)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-常见对象-Random类的概述和方法使用"><span class="nav-number">12.</span> <span class="nav-text">12_常见对象(Random类的概述和方法使用)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-常见对象-System类的概述和方法使用"><span class="nav-number">13.</span> <span class="nav-text">13_常见对象(System类的概述和方法使用)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-常见对象-BigInteger类的概述和方法使用"><span class="nav-number">14.</span> <span class="nav-text">14_常见对象(BigInteger类的概述和方法使用)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-常见对象-BigDecimal类的概述和方法使用"><span class="nav-number">15.</span> <span class="nav-text">15_常见对象(BigDecimal类的概述和方法使用)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-常见对象-Date类的概述和方法使用-掌握"><span class="nav-number">16.</span> <span class="nav-text">16_常见对象(Date类的概述和方法使用)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-常见对象-SimpleDateFormat类实现日期和字符串的相互转换-掌握"><span class="nav-number">17.</span> <span class="nav-text">17_常见对象(SimpleDateFormat类实现日期和字符串的相互转换)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-常见对象-你来到这个世界多少天案例-掌握"><span class="nav-number">18.</span> <span class="nav-text">18_常见对象(你来到这个世界多少天案例)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-常见对象-Calendar类的概述和获取日期的方法-掌握"><span class="nav-number">19.</span> <span class="nav-text">19_常见对象(Calendar类的概述和获取日期的方法)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-常见对象-Calendar类的add-和set-方法-掌握"><span class="nav-number">20.</span> <span class="nav-text">20_常见对象(Calendar类的add()和set()方法)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-常见对象-如何获取任意年份是平年还是闰年-掌握"><span class="nav-number">21.</span> <span class="nav-text">21_常见对象(如何获取任意年份是平年还是闰年)(掌握)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-FangHeart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FangHeart</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      个访问本站的人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "eb7c3e4313a441e99919491234887c0d",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("EFaViLzEeIm1xLj3lRgl6Ktw-gzGzoHsz", "6QrsfTcpIvP6XuQ8mKM70tx9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+
+  
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<!-- 背景动画 -->
+<script type="text/javascript" src="/js/src/particle.js"></script>
+
+</body>
+</html>

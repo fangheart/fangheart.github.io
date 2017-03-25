@@ -1,0 +1,1281 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="算法," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/personnal/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="二叉树的常见概念
+结点的度：节点所拥有的子树个数称为该节点的度。
+
+叶节点：度为0的节点称为叶子节点，或者终端节点（即是树的最下层）
+
+分枝节点：度部位0的结点称为分枝结点。一棵树的结点除叶结点以外，其余的都是分枝结点。
+
+左孩子、右孩子、双亲：树中一个结点的子树的根节点称为这个结点的孩子，这个结点称为孩子结点的双亲，具有同一个双亲的孩子结点互称为兄弟。
+
+祖先、子孙：在树种如果一条路径是从结点M">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树相关算法">
+<meta property="og:url" content="http://www.fangheart.top/2017/03/06/树相关算法/index.html">
+<meta property="og:site_name" content="FangHeart's blog">
+<meta property="og:description" content="二叉树的常见概念
+结点的度：节点所拥有的子树个数称为该节点的度。
+
+叶节点：度为0的节点称为叶子节点，或者终端节点（即是树的最下层）
+
+分枝节点：度部位0的结点称为分枝结点。一棵树的结点除叶结点以外，其余的都是分枝结点。
+
+左孩子、右孩子、双亲：树中一个结点的子树的根节点称为这个结点的孩子，这个结点称为孩子结点的双亲，具有同一个双亲的孩子结点互称为兄弟。
+
+祖先、子孙：在树种如果一条路径是从结点M">
+<meta property="og:image" content="http://pic002.cnblogs.com/images/2012/229056/2012082016003157.jpg">
+<meta property="og:image" content="http://pic002.cnblogs.com/images/2012/229056/2012082016021366.jpg">
+<meta property="og:image" content="http://www.cppblog.com/images/cppblog_com/cxiaojia/avltree35.jpg">
+<meta property="og:image" content="http://pic002.cnblogs.com/images/2012/229056/2012082016534455.jpg">
+<meta property="og:image" content="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/4.JPG">
+<meta property="og:image" content="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/0.JPG">
+<meta property="og:image" content="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/5.JPG">
+<meta property="og:image" content="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/6.JPG">
+<meta property="og:updated_time" content="2017-03-07T02:21:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="树相关算法">
+<meta name="twitter:description" content="二叉树的常见概念
+结点的度：节点所拥有的子树个数称为该节点的度。
+
+叶节点：度为0的节点称为叶子节点，或者终端节点（即是树的最下层）
+
+分枝节点：度部位0的结点称为分枝结点。一棵树的结点除叶结点以外，其余的都是分枝结点。
+
+左孩子、右孩子、双亲：树中一个结点的子树的根节点称为这个结点的孩子，这个结点称为孩子结点的双亲，具有同一个双亲的孩子结点互称为兄弟。
+
+祖先、子孙：在树种如果一条路径是从结点M">
+<meta name="twitter:image" content="http://pic002.cnblogs.com/images/2012/229056/2012082016003157.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.fangheart.top/2017/03/06/树相关算法/"/>
+
+
+
+
+
+  <title> 树相关算法 | FangHeart's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FangHeart's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">爱生活，爱编码。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.fangheart.top/2017/03/06/树相关算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FangHeart">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/personnal/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FangHeart's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                树相关算法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-06T22:16:25+08:00">
+                2017-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/06/树相关算法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/06/树相关算法/" class="leancloud_visitors" data-flag-title="树相关算法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="二叉树的常见概念"><a href="#二叉树的常见概念" class="headerlink" title="二叉树的常见概念"></a>二叉树的常见概念</h2><ol>
+<li><p>结点的度：节点所拥有的子树个数称为该节点的度。</p>
+</li>
+<li><p>叶节点：度为0的节点称为叶子节点，或者终端节点（即是树的最下层）</p>
+</li>
+<li><p>分枝节点：度部位0的结点称为分枝结点。一棵树的结点除叶结点以外，其余的都是分枝结点。</p>
+</li>
+<li><p>左孩子、右孩子、双亲：树中一个结点的子树的根节点称为这个结点的孩子，这个结点称为孩子结点的双亲，具有同一个双亲的孩子结点互称为兄弟。</p>
+</li>
+<li><p>祖先、子孙：在树种如果一条路径是从结点M到结点N，那么M就称为N的祖先。而N是M的子孙。</p>
+</li>
+<li><p>结点的层数：规定树的根节点层数为1，其余结点的层数等于他的双亲结点的层数+1。</p>
+</li>
+<li><p>树的深度：树中所有结点的最大层数称为树的深度。</p>
+</li>
+<li><p>树的度。树中所有节点度的最大值称为树的度，叶子结点的度为0.</p>
+</li>
+<li><p>满二叉树：在一棵树中，如果所有的分枝结点都存在左子树右子树，并且所有叶子结点都在用一层，这样的一棵二叉树称为满二叉树。</p>
+</li>
+<li><p>​</p>
+<h3 id="二叉树的基本性质"><a href="#二叉树的基本性质" class="headerlink" title="二叉树的基本性质"></a>二叉树的基本性质</h3><p>1.性质一：一棵非空的二叉树第i层最多有2的i-1次方个结点(i&gt;&gt;1)</p>
+</li>
+</ol>
+<p>2.性质二：一棵深度为k的二叉树中，最多具有2的k次方然后-1个节点。</p>
+<p>3.性质三：对于一个非空的二叉树。度为0的结点（即叶子结点）总是比度为2的结点多一个，即如果叶子结点为n_0,度为2的结点为n_2，则有n_0=n_2+1。</p>
+<p>​    性质三证明：用n表示二叉树的总结点树，n_0表示度为0的结点数，n_1表示度为1的结点数，n_2表示度为2的结点数。则有n=n_0+n_1+n_2,而根据二叉树的性质可知n=n1+2*n_2+1(所有结点的度数之和+1=总结点个数)，根据两个等式就可以得出n_0=n_2+1。</p>
+<p>性质四：具有n个结点的完全二叉树的深度为log2n+1。</p>
+<p>​    性质四证明：根据性质2，深度为k的二叉树最多有2的k次方减1个结点，且完全二叉树的定义与通深度的满二叉树的前面编号相同，即他的总结点个数位于k层和k-1层的满二叉树容量之间，即2的k-1次方-1&lt;&lt;n&lt;&lt;2的k次方-1,三个同时取对数，于是又k-1&lt;&lt;log2n&lt;&lt;k，又因为k是整数，所以k=log2n+1。</p>
+<p>性质5：如果根结点从1开始编号，左孩子编号2i,右孩子2i+1,如果从0开始编号，左孩子编号2i+1，右孩子2i+2。</p>
+<h2 id="二叉排序树（二叉查找树）-包含先序、后序、中序、层序"><a href="#二叉排序树（二叉查找树）-包含先序、后序、中序、层序" class="headerlink" title="二叉排序树（二叉查找树）[包含先序、后序、中序、层序]"></a>二叉排序树（二叉查找树）[包含先序、后序、中序、层序]</h2><p>二叉排序树或者是一个空树，或者是具有下列性质的二叉树：<br>（1） 如果左子树不空，那么左子树上所有结点的值均小于它的根节点的值。</p>
+<p>（2）如果右子树不为空，那么右子树所有结点的值都均大于它的根节点的值。</p>
+<p>（3）左右子树也分别为二叉排序树。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**</div><div class="line"> * Created by fangheart on 2017/3/6.</div><div class="line"> */</div><div class="line">public class Node &#123;</div><div class="line">    public int data;</div><div class="line">    public Node left;</div><div class="line">    public Node right;</div><div class="line">    public  Node(int data)&#123;</div><div class="line">        this.data = data;</div><div class="line">        this.left = null;</div><div class="line">        this.right = null;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">/**</div><div class="line"> * Created by fangheart on 2017/3/6.</div><div class="line"> */</div><div class="line">public class BinaryTree &#123;</div><div class="line">    private Node root;</div><div class="line">    public void BinartTree()&#123;</div><div class="line">        root = null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        BinaryTree binaryTree = new BinaryTree();</div><div class="line">        int[] data = &#123;2,8,7,4,9,3,1,6,7,5&#125;;</div><div class="line">        binaryTree.buildTree(data);</div><div class="line">        System.out.println(&quot;二叉树的先序遍历：&quot;);</div><div class="line">        binaryTree.preOrder(binaryTree.root);</div><div class="line">        System.out.println();</div><div class="line">        System.out.println(&quot;二叉树的中序遍历：&quot;);</div><div class="line">        binaryTree.inOrder(binaryTree.root);</div><div class="line">        System.out.println();</div><div class="line">        System.out.println(&quot;二叉树的后序遍历：&quot;);</div><div class="line">        binaryTree.postOrder(binaryTree.root);</div><div class="line">        System.out.println();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //将data插入到排序二叉树中</div><div class="line">    public void insert(int data)&#123;</div><div class="line">        Node newNode = new Node(data);</div><div class="line"></div><div class="line">        if(root == null)&#123;</div><div class="line">            root = newNode;</div><div class="line">        &#125;else &#123;</div><div class="line">            Node current = root;</div><div class="line">            Node parent;</div><div class="line">            while(true)&#123;//寻找插入位置</div><div class="line">                parent = current;</div><div class="line">                if (data &lt; current.data)&#123;</div><div class="line">                    current = current.left;</div><div class="line">                if (current==null)&#123;</div><div class="line">                    parent.left = newNode;</div><div class="line">                    return;</div><div class="line">                &#125;</div><div class="line">                &#125;else &#123;</div><div class="line">                    current = current.right;</div><div class="line">                    if (current==null)&#123;</div><div class="line">                        parent.right = newNode;</div><div class="line">                        return;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //将数值插入构建二叉树</div><div class="line">    public void buildTree(int[] data)&#123;</div><div class="line">        for (int i = 0; i &lt; data.length; i++) &#123;</div><div class="line">            insert(data[i]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //中序遍历输出</div><div class="line">    public void inOrder(Node localRoot)&#123;</div><div class="line">        if (localRoot != null)&#123;</div><div class="line">            inOrder(localRoot.left);</div><div class="line">            System.out.print(localRoot.data + &quot; &quot;);</div><div class="line">            inOrder(localRoot.right);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //先序遍历</div><div class="line">    public void preOrder(Node localRoot)&#123;</div><div class="line">        if(localRoot != null )&#123;</div><div class="line">            System.out.print(localRoot.data+&quot; &quot;);</div><div class="line">            preOrder(localRoot.left);</div><div class="line">            preOrder(localRoot.right);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //后续遍历</div><div class="line">    public void postOrder(Node localRoot)&#123;</div><div class="line">        if(localRoot != null)&#123;</div><div class="line">            postOrder(localRoot.left);</div><div class="line">            postOrder(localRoot.right);</div><div class="line">            System.out.print(localRoot.data + &quot; &quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">	</div><div class="line">	//层序遍历</div><div class="line">	//层序遍历的主要思路是将根节点放入队列，然后每次都从队列中取出一个节点打印，</div><div class="line">	//如这个节点有子节点，则将子节点放入队列，直到队列为空</div><div class="line">    public void layerTranverse()&#123;</div><div class="line">        if(this.root==null)</div><div class="line">            return;</div><div class="line">        Queue&lt;Node&gt; q = new LinkedList&lt;Node&gt;();</div><div class="line">        q.add(this.root);</div><div class="line">        while(!q.isEmpty())&#123;</div><div class="line">            Node n = q.poll();</div><div class="line">            System.out.print(n.data+&quot; &quot;);</div><div class="line">            if (n.left!=null)</div><div class="line">                q.add(n.left);</div><div class="line">            if(n.right!=null)</div><div class="line">                q.add(n.right);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="已知先序遍历和中序遍历，求后序遍历"><a href="#已知先序遍历和中序遍历，求后序遍历" class="headerlink" title="已知先序遍历和中序遍历，求后序遍历"></a>已知先序遍历和中序遍历，求后序遍历</h2><p>（已知中序和后序也可以求先序但已知先序和后序不能求中序，因为先序或者后序可以得知根节点，而中序用来区分左右子树）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Created by FangHeart on 2017/3/6.</div><div class="line"> */</div><div class="line">public class Node &#123;</div><div class="line">    public int data;</div><div class="line">    public Node left;</div><div class="line">    public Node right;</div><div class="line">    public Node()&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public Node(int data)&#123;</div><div class="line">        this.data = data;</div><div class="line">        this.left = null;</div><div class="line">        this.right = null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Created by FangHeart on 2017/3/6.</div><div class="line"> */</div><div class="line">public class BinaryTree &#123;</div><div class="line">    private Node root;</div><div class="line">    public BinaryTree()&#123;</div><div class="line">        root = null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        BinaryTree binaryTree = new BinaryTree();</div><div class="line">        int[] preOrder = &#123;1,2,4,8,9,5,10,3,6,7&#125;;</div><div class="line">        int[] inOrder = &#123;8,4,9,2,10,5,1,6,3,7&#125;;</div><div class="line">        binaryTree.initTree(preOrder,inOrder);</div><div class="line">        System.out.print(&quot;二叉树的后序遍历：&quot;);</div><div class="line">        binaryTree.postOrder(binaryTree.root);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //后序遍历方法递归实现</div><div class="line">    public void postOrder(Node localRoot)&#123;</div><div class="line">        if(localRoot != null)&#123;</div><div class="line">            postOrder(localRoot.left);</div><div class="line">            postOrder(localRoot.right);</div><div class="line">            System.out.print(localRoot.data + &quot; &quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void initTree(int[] preOrder,int[] inOrder)&#123;</div><div class="line">        this.root = this.initTree(preOrder,0,preOrder.length-1,inOrder,0,inOrder.length-1);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public Node initTree(int[] preOrder,int start1,int end1,int[] inOrder,int start2,int end2)&#123;</div><div class="line">        if(start1&gt;end1 || start2&gt;end2)&#123;</div><div class="line">            return null;</div><div class="line">        &#125;</div><div class="line">        int rootData = preOrder[start1];</div><div class="line">        Node head = new Node(rootData);</div><div class="line">        //找到根节点所在位置</div><div class="line">        int rootIndex = findIndexInArray(inOrder,rootData,start2,end2);</div><div class="line">        int offSet = rootIndex - start2 - 1;</div><div class="line">        //构建左子树</div><div class="line">        Node left = initTree(preOrder,start1+1,start1+1+offSet,inOrder,start2,start2+offSet);</div><div class="line">        //构建右子树</div><div class="line">        Node right = initTree(preOrder,start1+offSet+2,end1,inOrder,rootIndex+1,end2);</div><div class="line"></div><div class="line">        head.left = left;</div><div class="line">        head.right = right;</div><div class="line">        return head;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private int findIndexInArray(int[] a, int rootData, int begin, int end) &#123;</div><div class="line">        for (int i = begin; i &lt;= end; i++) &#123;</div><div class="line">            if(a[i]==rootData)</div><div class="line">                return i;</div><div class="line">        &#125;</div><div class="line">        return -1;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="如何求二叉树中节点的最大距离"><a href="#如何求二叉树中节点的最大距离" class="headerlink" title="如何求二叉树中节点的最大距离"></a>如何求二叉树中节点的最大距离</h2><p>节点的距离是指着两个节点之间边的个数，写一个程序求一棵二叉树中相距最远的两个节点之间的距离。<br>一般而言，对二叉树的操作通过递归方法比较容易。求最大距离的主要思想如下：<br>首先求左子树距根节点的最大距离，记录为leftMaxDistance；其次求右子树距根节点的最大距离，记录为rightMaxDistance。<br>那么二叉树中节点的最大距离maxDistance = leftMaxDistance + rightMaxDistance;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">public class BinaryTree &#123;</div><div class="line">    private int maxLen = 0;</div><div class="line">    private int max (int a, int b)&#123;</div><div class="line">        return a &gt; b ? a:b;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void FindMaxDistance(Node root)&#123;</div><div class="line">        if(root == null)</div><div class="line">            return;</div><div class="line">        if (root.left==null)</div><div class="line">            root.leftMaxDistance = 0;</div><div class="line">        if (root.right==null)</div><div class="line">            root.rightMaxDistance = 0;</div><div class="line">        if(root.left!=null)</div><div class="line">            FindMaxDistance(root.left);</div><div class="line">        if (root.right!=null)</div><div class="line">            FindMaxDistance(root.right);</div><div class="line"></div><div class="line">        //计算左子树中距离根节点最大距离</div><div class="line">        if(root.left!=null)</div><div class="line">            root.leftMaxDistance = max(root.left.leftMaxDistance,root.left.rightMaxDistance)+1;</div><div class="line">        //计算右子树距离根节点最大的距离</div><div class="line">        if(root.right!=null)</div><div class="line">            root.rightMaxDistance = max(root.right.leftMaxDistance,root.right.rightMaxDistance);</div><div class="line">        //获取二叉树所有节点的最大距离</div><div class="line">        if(root.leftMaxDistance+root.rightMaxDistance&gt;maxLen)&#123;</div><div class="line">            maxLen = root.leftMaxDistance + root.rightMaxDistance;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h2><p>平衡二叉树（Balanced Binary Tree）是二叉查找树的一个进化体，也是第一个引入平衡概念的二叉树。1962年，G.M. Adelson-Velsky 和 E.M. Landis发明了这棵树，所以它又叫AVL树。平衡二叉树要求对于每一个节点来说，它的左右子树的高度之差不能超过1，如果插入或者删除一个节点使得高度之差大于1，就要进行节点之间的旋转，将二叉树重新维持在一个平衡状态。这个方案很好的解决了二叉查找树退化成链表的问题，把插入，查找，删除的时间复杂度最好情况和最坏情况都维持在O(logN)。但是频繁旋转会使插入和删除牺牲掉O(logN)左右的时间，不过相对二叉查找树来说，时间上稳定了很多。<br><img src="http://pic002.cnblogs.com/images/2012/229056/2012082016003157.jpg" alt=""></p>
+<h3 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h3><p>对于一个平衡的节点，由于任意节点最多有两个儿子，因此高度不平衡时，此节点的两颗子树的高度差2.容易看出，这种不平衡出现在下面四种情况：<br><img src="http://pic002.cnblogs.com/images/2012/229056/2012082016021366.jpg" alt=""></p>
+<p>1、6节点的左子树3节点高度比右子树7节点大2，左子树3节点的左子树1节点高度大于右子树4节点，这种情况成为左左。</p>
+<p>2、6节点的左子树2节点高度比右子树7节点大2，左子树2节点的左子树1节点高度小于右子树4节点，这种情况成为左右。</p>
+<p>3、2节点的左子树1节点高度比右子树5节点小2，右子树5节点的左子树3节点高度大于右子树6节点，这种情况成为右左。</p>
+<p>4、2节点的左子树1节点高度比右子树4节点小2，右子树4节点的左子树3节点高度小于右子树6节点，这种情况成为右右。</p>
+<p>从图2中可以可以看出，1和4两种情况是对称的，这两种情况的旋转算法是一致的，只需要经过一次旋转就可以达到目标，我们称之为单旋转。2和3两种情况也是对称的，这两种情况的旋转算法也是一致的，需要进行两次旋转，我们称之为双旋转。</p>
+<p>###：单旋转</p>
+<p>单旋转是针对于左左和右右这两种情况的解决方案，这两种情况是对称的，只要解决了左左这种情况，右右就很好办了。图3是左左情况的解决方案，节点k2不满足平衡特性，因为它的左子树k1比右子树Z深2层，而且k1子树中，更深的一层的是k1的左子树X子树，所以属于左左情况。<br><img src="http://www.cppblog.com/images/cppblog_com/cxiaojia/avltree35.jpg" alt=""></p>
+<p>为使树恢复平衡，我们把k2变成这棵树的根节点，因为k2大于k1，把k2置于k1的右子树上，而原本在k1右子树的Y大于k1，小于k2，就把Y置于k2的左子树上，这样既满足了二叉查找树的性质，又满足了平衡二叉树的性质。</p>
+<p>这样的操作只需要一部分指针改变，结果我们得到另外一颗二叉查找树，它是一棵AVL树，因为X向上一移动了一层，Y还停留在原来的层面上，Z向下移动了一层。整棵树的新高度和之前没有在左子树上插入的高度相同，插入操作使得X高度长高了。因此，由于这颗子树高度没有变化，所以通往根节点的路径就不需要继续旋转了。</p>
+<h3 id="双旋转"><a href="#双旋转" class="headerlink" title="双旋转"></a>双旋转</h3><p>对于左右和右左这两种情况，单旋转不能使它达到一个平衡状态，要经过两次旋转。双旋转是针对于这两种情况的解决方案，同样的，这样两种情况也是对称的，只要解决了左右这种情况，右左就很好办了。图4是左右情况的解决方案，节点k3不满足平衡特性，因为它的左子树k1比右子树Z深2层，而且k1子树中，更深的一层的是k1的右子树k2子树，所以属于左右情况。<br><img src="http://pic002.cnblogs.com/images/2012/229056/2012082016534455.jpg" alt=""><br>为使树恢复平衡，我们需要进行两步，第一步，把k1作为根，进行一次右右旋转，旋转之后就变成了左左情况，所以第二步再进行一次左左旋转，最后得到了一棵以k2为根的平衡二叉树树。</p>
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>插入的方法和二叉查找树基本一样，区别是，插入完成后需要从插入的节点开始维护一个到根节点的路径，每经过一个节点都要维持树的平衡。维持树的平衡要根据高度差的特点选择不同的旋转算法。</p>
+<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><p>和二叉查找树相比，查找方法没有变法，不过根据存储的特性，AVL树能维持在一个O(logN)的稳定的时间，而二叉查找树则相当不稳定。</p>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>删除的方法也和二叉查找树的一致，区别是，删除完成后，需要从删除节点的父亲开始向上维护树的平衡一直到根节点。</p>
+<h3 id="效率"><a href="#效率" class="headerlink" title="效率"></a>效率</h3><p>此数据结构插入、查找和删除的时间复杂度均为O(logN)，但是插入和删除需要额外的旋转算法需要的时间，有时旋转过多也会影响效率。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div><div class="line">340</div><div class="line">341</div><div class="line">342</div><div class="line">343</div><div class="line">344</div><div class="line">345</div><div class="line">346</div><div class="line">347</div><div class="line">348</div><div class="line">349</div><div class="line">350</div><div class="line">351</div><div class="line">352</div><div class="line">353</div><div class="line">354</div><div class="line">355</div><div class="line">356</div><div class="line">357</div><div class="line">358</div><div class="line">359</div><div class="line">360</div><div class="line">361</div><div class="line">362</div><div class="line">363</div><div class="line">364</div><div class="line">365</div><div class="line">366</div><div class="line">367</div><div class="line">368</div><div class="line">369</div><div class="line">370</div><div class="line">371</div><div class="line">372</div><div class="line">373</div><div class="line">374</div><div class="line">375</div><div class="line">376</div><div class="line">377</div><div class="line">378</div><div class="line">379</div><div class="line">380</div><div class="line">381</div><div class="line">382</div><div class="line">383</div><div class="line">384</div><div class="line">385</div><div class="line">386</div><div class="line">387</div><div class="line">388</div><div class="line">389</div><div class="line">390</div><div class="line">391</div><div class="line">392</div><div class="line">393</div><div class="line">394</div><div class="line">395</div><div class="line">396</div><div class="line">397</div><div class="line">398</div><div class="line">399</div><div class="line">400</div><div class="line">401</div><div class="line">402</div><div class="line">403</div><div class="line">404</div><div class="line">405</div><div class="line">406</div><div class="line">407</div><div class="line">408</div><div class="line">409</div><div class="line">410</div><div class="line">411</div><div class="line">412</div><div class="line">413</div><div class="line">414</div><div class="line">415</div><div class="line">416</div><div class="line">417</div><div class="line">418</div><div class="line">419</div><div class="line">420</div><div class="line">421</div><div class="line">422</div><div class="line">423</div><div class="line">424</div><div class="line">425</div><div class="line">426</div><div class="line">427</div><div class="line">428</div><div class="line">429</div><div class="line">430</div><div class="line">431</div><div class="line">432</div><div class="line">433</div><div class="line">434</div><div class="line">435</div><div class="line">436</div><div class="line">437</div><div class="line">438</div><div class="line">439</div><div class="line">440</div><div class="line">441</div><div class="line">442</div><div class="line">443</div><div class="line">444</div><div class="line">445</div><div class="line">446</div><div class="line">447</div><div class="line">448</div><div class="line">449</div><div class="line">450</div><div class="line">451</div><div class="line">452</div><div class="line">453</div><div class="line">454</div><div class="line">455</div><div class="line">456</div><div class="line">457</div><div class="line">458</div><div class="line">459</div><div class="line">460</div><div class="line">461</div><div class="line">462</div><div class="line">463</div><div class="line">464</div><div class="line">465</div><div class="line">466</div><div class="line">467</div><div class="line">468</div><div class="line">469</div><div class="line">470</div><div class="line">471</div><div class="line">472</div><div class="line">473</div><div class="line">474</div><div class="line">475</div><div class="line">476</div><div class="line">477</div><div class="line">478</div><div class="line">479</div><div class="line">480</div><div class="line">481</div><div class="line">482</div><div class="line">483</div><div class="line">484</div><div class="line">485</div><div class="line">486</div><div class="line">487</div><div class="line">488</div><div class="line">489</div><div class="line">490</div><div class="line">491</div><div class="line">492</div><div class="line">493</div><div class="line">494</div><div class="line">495</div><div class="line">496</div><div class="line">497</div><div class="line">498</div><div class="line">499</div><div class="line">500</div><div class="line">501</div><div class="line">502</div><div class="line">503</div><div class="line">504</div><div class="line">505</div><div class="line">506</div><div class="line">507</div><div class="line">508</div><div class="line">509</div><div class="line">510</div><div class="line">511</div><div class="line">512</div><div class="line">513</div><div class="line">514</div><div class="line">515</div><div class="line">516</div><div class="line">517</div><div class="line">518</div><div class="line">519</div><div class="line">520</div><div class="line">521</div><div class="line">522</div><div class="line">523</div><div class="line">524</div><div class="line">525</div><div class="line">526</div><div class="line">527</div><div class="line">528</div><div class="line">529</div><div class="line">530</div><div class="line">531</div><div class="line">532</div><div class="line">533</div><div class="line">534</div><div class="line">535</div><div class="line">536</div><div class="line">537</div><div class="line">538</div><div class="line">539</div><div class="line">540</div><div class="line">541</div><div class="line">542</div><div class="line">543</div><div class="line">544</div><div class="line">545</div><div class="line">546</div><div class="line">547</div><div class="line">548</div><div class="line">549</div><div class="line">550</div><div class="line">551</div><div class="line">552</div><div class="line">553</div><div class="line">554</div><div class="line">555</div><div class="line">556</div><div class="line">557</div><div class="line">558</div><div class="line">559</div><div class="line">560</div><div class="line">561</div><div class="line">562</div><div class="line">563</div><div class="line">564</div><div class="line">565</div><div class="line">566</div><div class="line">567</div><div class="line">568</div><div class="line">569</div><div class="line">570</div><div class="line">571</div><div class="line">572</div><div class="line">573</div><div class="line">574</div><div class="line">575</div><div class="line">576</div><div class="line">577</div><div class="line">578</div><div class="line">579</div><div class="line">580</div><div class="line">581</div><div class="line">582</div><div class="line">583</div><div class="line">584</div><div class="line">585</div><div class="line">586</div><div class="line">587</div><div class="line">588</div><div class="line">589</div><div class="line">590</div><div class="line">591</div><div class="line">592</div></pre></td><td class="code"><pre><div class="line">package com.utils;  </div><div class="line">import java.util.Iterator;  </div><div class="line">import java.util.NoSuchElementException;  </div><div class="line">/** </div><div class="line"> * 平衡二叉树 </div><div class="line"> * 定义:首先它是一种特殊的二叉排序树，其次它的左子树和右子树都是平衡二叉树， </div><div class="line"> * 且左子树和右子树的深度之差不超过1 </div><div class="line"> * 平衡因子:可以定义为左子树的深度减去右子树的深度 </div><div class="line"> *  </div><div class="line"> * 平衡二叉树是对二叉排序树的优化，防止二叉排序树在最坏情况下平均查找时间为n， </div><div class="line"> * 二叉排序树在此时形如一个单链表 </div><div class="line"> * 平衡二叉树查找元素的次数不超过树的深度，时间复杂度为logN </div><div class="line"> */  </div><div class="line">public class AVLTree&lt;E&gt; &#123;  </div><div class="line">    /** </div><div class="line">     * 根节点 </div><div class="line">     */  </div><div class="line">    private Entry&lt;E&gt; root = null;  </div><div class="line">      </div><div class="line">    /** </div><div class="line">     * 树中元素个数 </div><div class="line">     */  </div><div class="line">    private int size = 0;  </div><div class="line">      </div><div class="line">    public AVLTree()&#123;  </div><div class="line">          </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    public int size()&#123;  </div><div class="line">        return size;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">  </div><div class="line">    /** </div><div class="line">     * @param p 最小旋转子树的根节点 </div><div class="line">     * 向左旋转之后p移到p的左子树处，p的右子树B变为此最小子树根节点， </div><div class="line">     * B的左子树变为p的右子树 </div><div class="line">     * 比如：     A(-2)                   B(1) </div><div class="line">     *              \        左旋转       /   \ </div><div class="line">     *             B(0)     ----&gt;       A(0)   \        </div><div class="line">     *             /   \                   \    \ </div><div class="line">     *           BL(0)  BR(0)              BL(0) BR(0)  </div><div class="line">     *  旋转之后树的深度之差不超过1 </div><div class="line">     */  </div><div class="line">    private void rotateLeft(Entry&lt;E&gt; p) &#123;  </div><div class="line">        System.out.println(&quot;绕&quot;+p.element+&quot;左旋&quot;);  </div><div class="line">        if(p!=null)&#123;  </div><div class="line">            Entry&lt;E&gt; r = p.right;  </div><div class="line">            p.right = r.left;   //把p右子树的左节点嫁接到p的右节点，如上图，把BL作为A的右子节点  </div><div class="line">            if (r.left != null) //如果B的左节点BL不为空，把BL的父节点设为A  </div><div class="line">                r.left.parent = p;  </div><div class="line">            r.parent = p.parent;  //A的父节点设为B的父节点  </div><div class="line">            if (p.parent == null)         //如果p是根节点  </div><div class="line">                root = r;                 //r变为父节点，即B为父节点  </div><div class="line">            else if (p.parent.left == p)  //如果p是左子节点  </div><div class="line">                p.parent.left = r;        //p的父节点的左子树为r  </div><div class="line">            else                          //如果p是右子节点  </div><div class="line">                p.parent.right = r;       //p的父节点的右子树为r  </div><div class="line">            r.left = p;                   //p变为r的左子树，即A为B的左子树  </div><div class="line">            p.parent = r;                 //同时更改p的父节点为r，即A的父节点为B  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    /** </div><div class="line">     * @param p 最小旋转子树的根节点 </div><div class="line">     * 向右旋转之后，p移到p的右子节点处，p的左子树B变为最小旋转子树的根节点 </div><div class="line">     * B的右子节点变为p的左节点、 </div><div class="line">     * 例如:       A(2)                     B(-1) </div><div class="line">     *            /         右旋转          /    \ </div><div class="line">     *          B(0)       ------&gt;         /     A(0) </div><div class="line">     *         /   \                      /      / </div><div class="line">     *       BL(0) BR(0)                BL(0)  BR(0)  </div><div class="line">     */  </div><div class="line">    private void rotateRight(Entry&lt;E&gt; p)&#123;  </div><div class="line">        System.out.println(&quot;绕&quot;+p.element+&quot;右旋&quot;);  </div><div class="line">        if(p!=null)&#123;  </div><div class="line">            Entry&lt;E&gt; l = p.left;    </div><div class="line">            p.left = l.right;    //把B的右节点BR作为A的左节点  </div><div class="line">            if (l.right != null)   //如果BR不为null，设置BR的父节点为A  </div><div class="line">                l.right.parent = p;  </div><div class="line">            l.parent = p.parent;  //A的父节点赋给B的父节点  </div><div class="line">            if (p.parent == null)   //如果p是根节点  </div><div class="line">                root = l;          //B为根节点  </div><div class="line">            else if (p.parent.right == p) //如果A是其父节点的左子节点  </div><div class="line">                p.parent.right = l;     //B为A的父节点的左子树  </div><div class="line">            else                        //如果A是其父节点的右子节点  </div><div class="line">                p.parent.left = l;      //B为A的父节点的右子树  </div><div class="line">            l.right = p;                //A为B的右子树  </div><div class="line">            p.parent = l;               //设置A的父节点为B  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">      </div><div class="line">    /** </div><div class="line">     * 平衡而二叉树的插入操作 </div><div class="line">     * 基本原理为： </div><div class="line">     * 1.首先如同二叉排序树一般，找到其要插入的节点的位置，并把元素插入其中； </div><div class="line">     * 2.自下向上进行回溯，回溯做两个事情： </div><div class="line">     * (1)其一是修改祖先节点的平衡因子，当插入 一个节点时只有根节点到插入节点 </div><div class="line">     * 的路径中的节点的平衡因子会被改变，而且改变的原则是当插入节点在某节点(称为A) </div><div class="line">     * 的左子树 中时，A的平衡因子(称为BF)为BF+1,当插入节点在A的右子树中时A的BF-1， </div><div class="line">     * 而判断插入节点在左子树中还是右子树中只要简单的比较它与A的大小 </div><div class="line">     * (2)在改变祖先节点的平衡因子的同时，找到最近一个平衡因子大于2或小于-2的节点， </div><div class="line">     * 从这个节点开始调整最小不平衡树进行旋转调整，关于如何调整见下文。 </div><div class="line">     * 由于调整后，最小不平衡子树的高度与插入节点前的高度相同，故不需继续要调整祖先节点。 </div><div class="line">     * 这里还有一个特殊情况，如果调整BF时，发现某个节点的BF变为0了，则停止向上继续调整， </div><div class="line">     * 因为这表明此节点中高度小的子树增加了新节点，高度不变，那么祖先节点的BF自然不变。 </div><div class="line">     *  </div><div class="line">     *  </div><div class="line">     */  </div><div class="line">    public boolean add(E element)&#123;  </div><div class="line">        Entry&lt;E&gt; t = root;  </div><div class="line">        if(t == null)&#123;  </div><div class="line">            root = new Entry&lt;E&gt;(element,null);  </div><div class="line">            size = 1;  </div><div class="line">            return true;  </div><div class="line">        &#125;  </div><div class="line">        int cmp;  </div><div class="line">        Entry&lt;E&gt; parent;  //保存t的父节点  </div><div class="line">        Comparable&lt;? super E&gt; e = (Comparable&lt;? super E&gt;) element;  </div><div class="line">        //从根节点向下搜索，找到插入位置  </div><div class="line">        do &#123;  </div><div class="line">            parent = t;       </div><div class="line">            cmp = e.compareTo(t.element);  </div><div class="line">            if(cmp &lt; 0)&#123;  </div><div class="line">                t = t.left;  </div><div class="line">            &#125;else if(cmp &gt; 0)&#123;  </div><div class="line">                t = t.right;  </div><div class="line">            &#125;else&#123;  </div><div class="line">                return false;  </div><div class="line">            &#125;  </div><div class="line">        &#125; while (t!=null);  </div><div class="line">          </div><div class="line">        Entry&lt;E&gt; child = new Entry(element,parent);  </div><div class="line">        if(cmp &lt; 0)&#123;  </div><div class="line">            parent.left = child;  </div><div class="line">              </div><div class="line">        &#125;else&#123;  </div><div class="line">            parent.right = child;     </div><div class="line">        &#125;  </div><div class="line">        //自下向上回溯，查找最近不平衡节点  </div><div class="line">        while(parent!=null)&#123;  </div><div class="line">            cmp = e.compareTo(parent.element);  </div><div class="line">            if(cmp &lt; 0)&#123;    //插入节点在parent的左子树中  </div><div class="line">                parent.balance++;  </div><div class="line">            &#125;else&#123;           //插入节点在parent的右子树中  </div><div class="line">                parent.balance--;  </div><div class="line">            &#125;  </div><div class="line">            if(parent.balance == 0)&#123;    //此节点的balance为0，不再向上调整BF值，且不需要旋转  </div><div class="line">                break;  </div><div class="line">            &#125;  </div><div class="line">            if(Math.abs(parent.balance) == 2)&#123;  //找到最小不平衡子树根节点  </div><div class="line">                fixAfterInsertion(parent);  </div><div class="line">                break;                  //不用继续向上回溯  </div><div class="line">            &#125;  </div><div class="line">            parent = parent.parent;  </div><div class="line">        &#125;  </div><div class="line">        size ++;  </div><div class="line">        return true;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    /** </div><div class="line">     * 调整的方法： </div><div class="line">     * 1.当最小不平衡子树的根(以下简称R)为2时，即左子树高于右子树： </div><div class="line">     * 如果R的左子树的根节点的BF为1时，做右旋； </div><div class="line">     * 如果R的左子树的根节点的BF为-1时，先左旋然后再右旋 </div><div class="line">     *  </div><div class="line">     * 2.R为-2时，即右子树高于左子树： </div><div class="line">     * 如果R的右子树的根节点的BF为1时，先右旋后左旋 </div><div class="line">     * 如果R的右子树的根节点的BF为-1时，做左旋 </div><div class="line">     *  </div><div class="line">     * 至于调整之后，各节点的BF变化见代码 </div><div class="line">     */  </div><div class="line">    private void fixAfterInsertion(Entry&lt;E&gt; p)&#123;  </div><div class="line">        if(p.balance == 2)&#123;  </div><div class="line">            leftBalance(p);  </div><div class="line">        &#125;  </div><div class="line">        if(p.balance == -2)&#123;  </div><div class="line">            rightBalance(p);  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">      </div><div class="line">    /** </div><div class="line">     * 做左平衡处理 </div><div class="line">     * 平衡因子的调整如图： </div><div class="line">     *         t                       rd </div><div class="line">     *       /   \                   /    \ </div><div class="line">     *      l    tr   左旋后右旋    l       t </div><div class="line">     *    /   \       -------&gt;    /  \    /  \ </div><div class="line">     *  ll    rd                ll   rdl rdr  tr </div><div class="line">     *       /   \ </div><div class="line">     *     rdl  rdr </div><div class="line">     *      </div><div class="line">     *   情况2(rd的BF为0) </div><div class="line">     *  </div><div class="line">     *    </div><div class="line">     *         t                       rd </div><div class="line">     *       /   \                   /    \ </div><div class="line">     *      l    tr   左旋后右旋    l       t </div><div class="line">     *    /   \       -------&gt;    /  \       \ </div><div class="line">     *  ll    rd                ll   rdl     tr </div><div class="line">     *       /    </div><div class="line">     *     rdl   </div><div class="line">     *      </div><div class="line">     *   情况1(rd的BF为1) </div><div class="line">     *   </div><div class="line">     *    </div><div class="line">     *         t                       rd </div><div class="line">     *       /   \                   /    \ </div><div class="line">     *      l    tr   左旋后右旋    l       t </div><div class="line">     *    /   \       -------&gt;    /       /  \ </div><div class="line">     *  ll    rd                ll       rdr  tr </div><div class="line">     *           \ </div><div class="line">     *          rdr </div><div class="line">     *      </div><div class="line">     *   情况3(rd的BF为-1) </div><div class="line">     *  </div><div class="line">     *    </div><div class="line">     *         t                         l </div><div class="line">     *       /       右旋处理          /    \ </div><div class="line">     *      l        ------&gt;          ll     t </div><div class="line">     *    /   \                             / </div><div class="line">     *   ll   rd                           rd </div><div class="line">     *   情况4(L等高) </div><div class="line">     */  </div><div class="line">    private boolean leftBalance(Entry&lt;E&gt; t)&#123;  </div><div class="line">        boolean heightLower = true;  </div><div class="line">        Entry&lt;E&gt; l = t.left;  </div><div class="line">        switch (l.balance) &#123;  </div><div class="line">        case LH:            //左高，右旋调整,旋转后树的高度减小  </div><div class="line">            t.balance = l.balance = EH;  </div><div class="line">            rotateRight(t);  </div><div class="line">            break;   </div><div class="line">        case RH:            //右高，分情况调整                                            </div><div class="line">            Entry&lt;E&gt; rd = l.right;  </div><div class="line">            switch (rd.balance) &#123;   //调整各个节点的BF  </div><div class="line">            case LH:    //情况1  </div><div class="line">                t.balance = RH;  </div><div class="line">                l.balance = EH;  </div><div class="line">                break;  </div><div class="line">            case EH:    //情况2  </div><div class="line">                t.balance = l.balance = EH;  </div><div class="line">                break;  </div><div class="line">            case RH:    //情况3  </div><div class="line">                t.balance = EH;  </div><div class="line">                l.balance = LH;  </div><div class="line">                break;  </div><div class="line">            &#125;  </div><div class="line">            rd.balance = EH;  </div><div class="line">            rotateLeft(t.left);  </div><div class="line">            rotateRight(t);  </div><div class="line">            break;  </div><div class="line">        case EH:      //特殊情况4,这种情况在添加时不可能出现，只在移除时可能出现，旋转之后整体树高不变  </div><div class="line">            l.balance = RH;  </div><div class="line">            t.balance = LH;  </div><div class="line">            rotateRight(t);  </div><div class="line">            heightLower = false;  </div><div class="line">            break;  </div><div class="line">        &#125;  </div><div class="line">        return heightLower;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    /** </div><div class="line">     * 做右平衡处理 </div><div class="line">     * 平衡因子的调整如图： </div><div class="line">     *           t                               ld </div><div class="line">     *        /     \                          /     \ </div><div class="line">     *      tl       r       先右旋再左旋     t       r </div><div class="line">     *             /   \     --------&gt;      /   \    /  \ </div><div class="line">     *           ld    rr                 tl   ldl  ldr rr </div><div class="line">     *          /  \ </div><div class="line">     *       ldl  ldr </div><div class="line">     *       情况2(ld的BF为0) </div><div class="line">     *        </div><div class="line">     *           t                               ld </div><div class="line">     *        /     \                          /     \ </div><div class="line">     *      tl       r       先右旋再左旋     t       r </div><div class="line">     *             /   \     --------&gt;      /   \       \ </div><div class="line">     *           ld    rr                 tl   ldl      rr </div><div class="line">     *          /   </div><div class="line">     *       ldl   </div><div class="line">     *       情况1(ld的BF为1) </div><div class="line">     *        </div><div class="line">     *           t                               ld </div><div class="line">     *        /     \                          /     \ </div><div class="line">     *      tl       r       先右旋再左旋     t       r </div><div class="line">     *             /   \     --------&gt;      /        /  \ </div><div class="line">     *           ld    rr                 tl        ldr rr </div><div class="line">     *             \ </div><div class="line">     *             ldr </div><div class="line">     *       情况3(ld的BF为-1) </div><div class="line">     *        </div><div class="line">     *           t                                  r </div><div class="line">     *             \          左旋                /   \ </div><div class="line">     *              r        -------&gt;           t      rr      </div><div class="line">     *            /   \                          \ </div><div class="line">     *           ld   rr                         ld </div><div class="line">     *        情况4(r的BF为0)    </div><div class="line">     */  </div><div class="line">    private boolean rightBalance(Entry&lt;E&gt; t)&#123;  </div><div class="line">        boolean heightLower = true;  </div><div class="line">        Entry&lt;E&gt; r = t.right;  </div><div class="line">        switch (r.balance) &#123;  </div><div class="line">        case LH:            //左高，分情况调整  </div><div class="line">            Entry&lt;E&gt; ld = r.left;  </div><div class="line">            switch (ld.balance) &#123;   //调整各个节点的BF  </div><div class="line">            case LH:    //情况1  </div><div class="line">                t.balance = EH;  </div><div class="line">                r.balance = RH;  </div><div class="line">                break;  </div><div class="line">            case EH:    //情况2  </div><div class="line">                t.balance = r.balance = EH;  </div><div class="line">                break;  </div><div class="line">            case RH:    //情况3  </div><div class="line">                t.balance = LH;  </div><div class="line">                r.balance = EH;  </div><div class="line">                break;  </div><div class="line">            &#125;  </div><div class="line">            ld.balance = EH;  </div><div class="line">            rotateRight(t.right);  </div><div class="line">            rotateLeft(t);  </div><div class="line">            break;  </div><div class="line">        case RH:            //右高，左旋调整  </div><div class="line">            t.balance = r.balance = EH;  </div><div class="line">            rotateLeft(t);  </div><div class="line">            break;  </div><div class="line">        case EH:       //特殊情况4  </div><div class="line">            r.balance = LH;  </div><div class="line">            t.balance = RH;  </div><div class="line">            rotateLeft(t);  </div><div class="line">            heightLower = false;  </div><div class="line">            break;  </div><div class="line">        &#125;  </div><div class="line">        return heightLower;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    /** </div><div class="line">     * 查找指定元素，如果找到返回其Entry对象，否则返回null </div><div class="line">     */  </div><div class="line">    private Entry&lt;E&gt; getEntry(Object element) &#123;    </div><div class="line">        Entry&lt;E&gt; tmp = root;    </div><div class="line">        Comparable&lt;? super E&gt; e = (Comparable&lt;? super E&gt;) element;  </div><div class="line">        int c;    </div><div class="line">        while (tmp != null) &#123;    </div><div class="line">            c = e.compareTo(tmp.element);    </div><div class="line">            if (c == 0) &#123;    </div><div class="line">                return tmp;    </div><div class="line">            &#125; else if (c &lt; 0) &#123;    </div><div class="line">                tmp = tmp.left;    </div><div class="line">            &#125; else &#123;    </div><div class="line">                tmp = tmp.right;    </div><div class="line">            &#125;    </div><div class="line">        &#125;    </div><div class="line">        return null;    </div><div class="line">    &#125;    </div><div class="line">      </div><div class="line">    /** </div><div class="line">     * 平衡二叉树的移除元素操作 </div><div class="line">     *  </div><div class="line">     */  </div><div class="line">    public boolean remove(Object o)&#123;  </div><div class="line">        Entry&lt;E&gt; e = getEntry(o);  </div><div class="line">        if(e!=null)&#123;  </div><div class="line">            deleteEntry(e);  </div><div class="line">            return true;  </div><div class="line">        &#125;  </div><div class="line">        return false;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    private void deleteEntry(Entry&lt;E&gt; p)&#123;  </div><div class="line">        size --;  </div><div class="line">        //如果p左右子树都不为空，找到其直接后继，替换p，之后p指向s，删除p其实是删除s  </div><div class="line">        //所有的删除左右子树不为空的节点都可以调整为删除左右子树有其一不为空，或都为空的情况。  </div><div class="line">        if (p.left != null &amp;&amp; p.right != null) &#123;  </div><div class="line">             Entry&lt;E&gt; s = successor(p);  </div><div class="line">             p.element = s.element;  </div><div class="line">             p = s;  </div><div class="line">        &#125;  </div><div class="line">        Entry&lt;E&gt; replacement = (p.left != null ? p.left : p.right);  </div><div class="line">  </div><div class="line">        if (replacement != null) &#123;      //如果其左右子树有其一不为空  </div><div class="line">            replacement.parent = p.parent;  </div><div class="line">            if (p.parent == null)   //如果p为root节点  </div><div class="line">                root = replacement;  </div><div class="line">            else if (p == p.parent.left)    //如果p是左孩子  </div><div class="line">                p.parent.left  = replacement;     </div><div class="line">            else                            //如果p是右孩子  </div><div class="line">                p.parent.right = replacement;  </div><div class="line">  </div><div class="line">            p.left = p.right = p.parent = null;     //p的指针清空  </div><div class="line">              </div><div class="line">            //这里更改了replacement的父节点，所以可以直接从它开始向上回溯  </div><div class="line">            fixAfterDeletion(replacement);    </div><div class="line">  </div><div class="line">        &#125; else if (p.parent == null) &#123; // 如果全树只有一个节点  </div><div class="line">            root = null;  </div><div class="line">        &#125; else &#123;  //左右子树都为空  </div><div class="line">            fixAfterDeletion(p);    //这里从p开始回溯  </div><div class="line">            if (p.parent != null) &#123;  </div><div class="line">                if (p == p.parent.left)  </div><div class="line">                    p.parent.left = null;  </div><div class="line">                else if (p == p.parent.right)  </div><div class="line">                    p.parent.right = null;  </div><div class="line">                p.parent = null;  </div><div class="line">            &#125;  </div><div class="line">        &#125;     </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    /** </div><div class="line">     * 返回以中序遍历方式遍历树时，t的直接后继 </div><div class="line">     */  </div><div class="line">    static &lt;E&gt; Entry&lt;E&gt; successor(Entry&lt;E&gt; t) &#123;  </div><div class="line">        if (t == null)  </div><div class="line">            return null;  </div><div class="line">        else if (t.right != null) &#123; //往右，然后向左直到尽头  </div><div class="line">            Entry&lt;E&gt; p = t.right;  </div><div class="line">            while (p.left != null)  </div><div class="line">                p = p.left;  </div><div class="line">            return p;  </div><div class="line">        &#125; else &#123;        //right为空，如果t是p的左子树，则p为t的直接后继  </div><div class="line">            Entry&lt;E&gt; p = t.parent;  </div><div class="line">            Entry&lt;E&gt; ch = t;  </div><div class="line">            while (p != null &amp;&amp; ch == p.right) &#123;    //如果t是p的右子树，则继续向上搜索其直接后继  </div><div class="line">                ch = p;  </div><div class="line">                p = p.parent;  </div><div class="line">            &#125;  </div><div class="line">            return p;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    /** </div><div class="line">     * 删除某节点p后的调整方法： </div><div class="line">     * 1.从p开始向上回溯，修改祖先的BF值，这里只要调整从p的父节点到根节点的BF值， </div><div class="line">     * 调整原则为，当p位于某祖先节点(简称A)的左子树中时，A的BF减1，当p位于A的 </div><div class="line">     * 右子树中时A的BF加1。当某个祖先节点BF变为1或-1时停止回溯，这里与插入是相反的， </div><div class="line">     * 因为原本这个节点是平衡的，删除它的子树的某个节点并不会改变它的高度 </div><div class="line">     *  </div><div class="line">     * 2.检查每个节点的BF值，如果为2或-2需要进行旋转调整，调整方法如下文， </div><div class="line">     * 如果调整之后这个最小子树的高度降低了，那么必须继续从这个最小子树的根节点(假设为B)继续 </div><div class="line">     * 向上回溯，这里和插入不一样，因为B的父节点的平衡性因为其子树B的高度的改变而发生了改变， </div><div class="line">     * 那么就可能需要调整，所以删除可能进行多次的调整。 </div><div class="line">     *  </div><div class="line">     */  </div><div class="line">    private void fixAfterDeletion(Entry&lt;E&gt; p)&#123;  </div><div class="line">        boolean heightLower = true;     //看最小子树调整后，它的高度是否发生变化，如果减小，继续回溯  </div><div class="line">        Entry&lt;E&gt; t = p.parent;  </div><div class="line">        Comparable&lt;? super E&gt; e = (Comparable&lt;? super E&gt;)p.element;  </div><div class="line">        int cmp;  </div><div class="line">        //自下向上回溯，查找不平衡的节点进行调整  </div><div class="line">        while(t!=null &amp;&amp; heightLower)&#123;  </div><div class="line">            cmp = e.compareTo(t.element);  </div><div class="line">            /** </div><div class="line">             * 删除的节点是右子树，等于的话，必然是删除的某个节点的左右子树不为空的情况 </div><div class="line">             * 例如：     10 </div><div class="line">             *          /    \ </div><div class="line">             *         5     15 </div><div class="line">             *       /   \ </div><div class="line">             *      3    6  </div><div class="line">             * 这里删除5，是把6的值赋给5，然后删除6，这里6是p，p的父节点的值也是6。 </div><div class="line">             * 而这也是右子树的一种 </div><div class="line">             */   </div><div class="line">            if(cmp &gt;= 0 )&#123;     </div><div class="line">                t.balance ++;  </div><div class="line">            &#125;else&#123;  </div><div class="line">                t.balance --;  </div><div class="line">            &#125;  </div><div class="line">            if(Math.abs(t.balance) == 1)&#123;   //父节点经过调整平衡因子后，如果为1或-1，说明调整之前是0，停止回溯。  </div><div class="line">                break;  </div><div class="line">            &#125;  </div><div class="line">            Entry&lt;E&gt; r = t;  </div><div class="line">            //这里的调整跟插入一样  </div><div class="line">            if(t.balance == 2)&#123;  </div><div class="line">                heightLower = leftBalance(r);  </div><div class="line">            &#125;else if(t.balance==-2)&#123;  </div><div class="line">                heightLower = rightBalance(r);  </div><div class="line">            &#125;  </div><div class="line">            t = t.parent;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">      </div><div class="line">      </div><div class="line">    private static final int LH = 1;    //左高  </div><div class="line">    private static final int EH = 0;    //等高  </div><div class="line">    private static final int RH = -1;   //右高  </div><div class="line">      </div><div class="line">    /** </div><div class="line">     * 树节点，为方便起见不写get，Set方法 </div><div class="line">     */  </div><div class="line">    static class Entry&lt;E&gt;&#123;  </div><div class="line">        E element;  </div><div class="line">        Entry&lt;E&gt; parent;  </div><div class="line">        Entry&lt;E&gt; left;  </div><div class="line">        Entry&lt;E&gt; right;  </div><div class="line">        int balance = EH;   //平衡因子，只能为1或0或-1  </div><div class="line">          </div><div class="line">        public Entry(E element,Entry&lt;E&gt; parent)&#123;  </div><div class="line">            this.element = element;  </div><div class="line">            this.parent = parent;  </div><div class="line">        &#125;  </div><div class="line">          </div><div class="line">        public Entry()&#123;&#125;  </div><div class="line">  </div><div class="line">        @Override  </div><div class="line">        public String toString() &#123;  </div><div class="line">            return element+&quot; BF=&quot;+balance;  </div><div class="line">        &#125;  </div><div class="line">              </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">      </div><div class="line">    //返回中序遍历此树的迭代器,返回的是一个有序列表  </div><div class="line">    private class BinarySortIterator implements Iterator&lt;E&gt;&#123;  </div><div class="line">        Entry&lt;E&gt; next;  </div><div class="line">        Entry&lt;E&gt; lastReturned;  </div><div class="line">          </div><div class="line">        public BinarySortIterator()&#123;  </div><div class="line">            Entry&lt;E&gt; s = root;  </div><div class="line">            if(s !=null)&#123;  </div><div class="line">                while(s.left != null)&#123;  //找到中序遍历的第一个元素  </div><div class="line">                    s = s.left;  </div><div class="line">                &#125;  </div><div class="line">            &#125;  </div><div class="line">            next = s;   //赋给next  </div><div class="line">        &#125;  </div><div class="line">          </div><div class="line">        @Override  </div><div class="line">        public boolean hasNext() &#123;  </div><div class="line">            return next!=null;  </div><div class="line">        &#125;  </div><div class="line">  </div><div class="line">        @Override  </div><div class="line">        public E next() &#123;  </div><div class="line">            Entry&lt;E&gt; e = next;  </div><div class="line">            if (e == null)  </div><div class="line">                throw new NoSuchElementException();  </div><div class="line">            next = successor(e);  </div><div class="line">            lastReturned = e;  </div><div class="line">            return e.element;  </div><div class="line">        &#125;  </div><div class="line">  </div><div class="line">        @Override  </div><div class="line">        public void remove() &#123;  </div><div class="line">            if (lastReturned == null)  </div><div class="line">                throw new IllegalStateException();  </div><div class="line">            // deleted entries are replaced by their successors  </div><div class="line">            if (lastReturned.left != null &amp;&amp; lastReturned.right != null)  </div><div class="line">                next = lastReturned;  </div><div class="line">            deleteEntry(lastReturned);  </div><div class="line">            lastReturned = null;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    public Iterator&lt;E&gt; itrator()&#123;  </div><div class="line">        return new BinarySortIterator();  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">  </div><div class="line">      </div><div class="line">    private int treeHeight(Entry&lt;E&gt; p)&#123;  </div><div class="line">        if(p == null)&#123;  </div><div class="line">            return -1;  </div><div class="line">        &#125;  </div><div class="line">        return 1 + Math.max(treeHeight(p.left), treeHeight(p.right));  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">      </div><div class="line">    //测试，你也可以任意测试  </div><div class="line">    public static void main(String[] args) &#123;  </div><div class="line">        AVLTree&lt;Integer&gt; tree = new AVLTree&lt;Integer&gt;();  </div><div class="line">        System.out.println(&quot;------添加------&quot;);  </div><div class="line">        tree.add(50);  </div><div class="line">        System.out.print(50+&quot; &quot;);  </div><div class="line">        tree.add(66);  </div><div class="line">        System.out.print(66+&quot; &quot;);  </div><div class="line">        for(int i=0;i&lt;10;i++)&#123;  </div><div class="line">            int ran = (int)(Math.random() * 100);  </div><div class="line">            System.out.print(ran+&quot; &quot;);  </div><div class="line">            tree.add(ran);  </div><div class="line">        &#125;  </div><div class="line">        System.out.println(&quot;------删除------&quot;);  </div><div class="line">        tree.remove(50);  </div><div class="line">        tree.remove(66);  </div><div class="line">          </div><div class="line">        System.out.println();  </div><div class="line">        Iterator&lt;Integer&gt; it = tree.itrator();  </div><div class="line">        while(it.hasNext())&#123;  </div><div class="line">            System.out.print(it.next()+&quot; &quot;);  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="B-树"><a href="#B-树" class="headerlink" title="B-树"></a>B-树</h2><pre><code>是一种多路搜索树（并不是二叉的）：
+1.定义任意非叶子结点最多只有M个儿子；且M&gt;2；
+2.根结点的儿子数为[2, M]；
+3.除根结点以外的非叶子结点的儿子数为[M/2, M]；
+4.每个结点存放至少M/2-1（取上整）和至多M-1个关键字；（至少2个关键字）
+5.非叶子结点的关键字个数=指向儿子的指针个数-1；
+6.非叶子结点的关键字：K[1], K[2], …, K[M-1]；且K[i] &lt; K[i+1]；
+7.非叶子结点的指针：P[1], P[2], …, P[M]；其中P[1]指向关键字小于K[1]的子树，P[M]指向关键字大于K[M-1]的子树，其它P[i]指向关键字属于(K[i-1], K[i])的子树；
+8.所有叶子结点位于同一层；
+</code></pre><p>如：（M=3）<br><img src="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/4.JPG" alt=""></p>
+<p>B-树的搜索，从根结点开始，对结点内的关键字（有序）序列进行二分查找，如果命中则结束，否则进入查询关键字所属范围的儿子结点；重复，直到所对应的儿子指针为空，或已经是叶子结点。</p>
+<p>B-树的特性：</p>
+<pre><code>1.关键字集合分布在整颗树中；
+
+2.任何一个关键字出现且只出现在一个结点中；
+
+3.搜索有可能在非叶子结点结束；
+
+4.其搜索性能等价于在关键字全集内做一次二分查找；
+
+5.自动层次控制；
+
+由于限制了除根结点以外的非叶子结点，至少含有M/2个儿子，确保了结点的至少利用率，其最底搜索性能为：
+</code></pre><p><img src="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/0.JPG" alt=""></p>
+<pre><code>其中，M为设定的非叶子结点最多子树个数，N为关键字总数；
+
+所以B-树的性能总是等价于二分查找（与M值无关），也就没有B树平衡的问题；
+
+由于M/2的限制，在插入结点时，如果结点已满，需要将结点分裂为两个各占M/2的结点；删除结点时，需将两个不足M/2的兄弟结点合并；
+</code></pre><h2 id="B-树-1"><a href="#B-树-1" class="headerlink" title="B+树"></a>B+树</h2><pre><code>B+树是B-树的变体，也是一种多路搜索树：
+
+1.其定义基本与B-树同，除了：
+
+2.非叶子结点的子树指针与关键字个数相同；
+
+3.非叶子结点的子树指针P[i]，指向关键字值属于[K[i], K[i+1])的子树（B-树是开区间）；
+
+5.为所有叶子结点增加一个链指针；
+
+6.所有关键字都在叶子结点出现；
+
+如：（M=3）
+</code></pre><p><img src="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/5.JPG" alt=""></p>
+<p>   B+的搜索与B-树也基本相同，区别是B+树只有达到叶子结点才命中（B-树可以在</p>
+<p>非叶子结点命中），其性能也等价于在关键字全集做一次二分查找；</p>
+<pre><code>B+的特性：
+
+1.所有关键字都出现在叶子结点的链表中（稠密索引），且链表中的关键字恰好是有序的；
+
+2.不可能在非叶子结点命中；
+
+3.非叶子结点相当于是叶子结点的索引（稀疏索引），叶子结点相当于是存储（关键字）数据的数据层；
+
+4.更适合文件索引系统；
+</code></pre><h2 id="B-树-2"><a href="#B-树-2" class="headerlink" title="B*树"></a>B*树</h2><p>是B+树的变体，在B+树的非根和非叶子结点再增加指向兄弟的指针；</p>
+<p><img src="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/6.JPG" alt=""></p>
+<p>B<em> 树定义了非叶子结点关键字个数至少为(2/3) </em> M，即块的最低使用率为2/3（代替B+树的1/2）；<br>B+树的分裂：当一个结点满时，分配一个新的结点，并将原结点中1/2的数据复制到新结点，最后在父结点中增加新结点的指针；B+树的分裂只影响原结点和父结点，而不会影响兄弟结点，所以它不需要指向兄弟的指针；<br>B<em> 树的分裂：当一个结点满时，如果它的下一个兄弟结点未满，那么将一部分数据移到兄弟结点中，再在原结点插入关键字，最后修改父结点中兄弟结点的关键字（因为兄弟结点的关键字范围改变了）；如果兄弟也满了，则在原结点与兄弟结点之间增加新结点，并各复制1/3的数据到新结点，最后在父结点增加新结点的指针；<br>所以，B</em>树分配新结点的概率比B+树要低，空间使用率更高；</p>
+<p>小结</p>
+<p>B树：二叉树，每个结点只存储一个关键字，等于则命中，小于走左结点，大于走右结点；</p>
+<p>B-树：多路搜索树，每个结点存储M/2到M个关键字，非叶子结点存储指向关键字范围的子结点；</p>
+<p>所有关键字在整颗树中出现，且只出现一次，非叶子结点可以命中；</p>
+<p>B+树：在B-树基础上，为叶子结点增加链表指针，所有关键字都在叶子结点中出现，非叶子结点作为叶子结点的索引；B+树总是到叶子结点才命中；</p>
+<p>B*树：在B+树基础上，为非叶子结点也增加链表指针，将结点的最低利用率从1/2提高到2/3；</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/personnal/wechat-reward-image.jpg" alt="FangHeart WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/personnal/alipay-reward-image.jpg" alt="FangHeart Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/01/字符串相关算法/" rel="next" title="字符串相关算法">
+                <i class="fa fa-chevron-left"></i> 字符串相关算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/07/数组相关算法/" rel="prev" title="数组相关算法">
+                数组相关算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/personnal/author.jpg"
+               alt="FangHeart" />
+          <p class="site-author-name" itemprop="name">FangHeart</p>
+           
+              <p class="site-description motion-element" itemprop="description">不忘初心，方得始终。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fangheart" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2013845927/" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/fangheart" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fangheart@fangheart.win" target="_blank" title="邮箱">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  邮箱
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://haroldliu.weebly.com" title="HaroldLiuChi" target="_blank">HaroldLiuChi</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://guangyugao.weebly.com/" title="GaoGuangYu" target="_blank">GaoGuangYu</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wenjiewang.top" title="WenJieWang" target="_blank">WenJieWang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/it_dx" title="DuanXiong" target="_blank">DuanXiong</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dongxicheng.org/recommend/" title="DongXiCheng" target="_blank">DongXiCheng</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树的常见概念"><span class="nav-number">1.</span> <span class="nav-text">二叉树的常见概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉树的基本性质"><span class="nav-number">1.1.</span> <span class="nav-text">二叉树的基本性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉排序树（二叉查找树）-包含先序、后序、中序、层序"><span class="nav-number">2.</span> <span class="nav-text">二叉排序树（二叉查找树）[包含先序、后序、中序、层序]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#已知先序遍历和中序遍历，求后序遍历"><span class="nav-number">3.</span> <span class="nav-text">已知先序遍历和中序遍历，求后序遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何求二叉树中节点的最大距离"><span class="nav-number">4.</span> <span class="nav-text">如何求二叉树中节点的最大距离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#平衡二叉树"><span class="nav-number">5.</span> <span class="nav-text">平衡二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#旋转"><span class="nav-number">5.1.</span> <span class="nav-text">旋转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双旋转"><span class="nav-number">5.2.</span> <span class="nav-text">双旋转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入"><span class="nav-number">5.3.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找"><span class="nav-number">5.4.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除"><span class="nav-number">5.5.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效率"><span class="nav-number">5.6.</span> <span class="nav-text">效率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-树"><span class="nav-number">6.</span> <span class="nav-text">B-树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-树-1"><span class="nav-number">7.</span> <span class="nav-text">B+树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-树-2"><span class="nav-number">8.</span> <span class="nav-text">B*树</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-FangHeart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FangHeart</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      个访问本站的人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "eb7c3e4313a441e99919491234887c0d",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("EFaViLzEeIm1xLj3lRgl6Ktw-gzGzoHsz", "6QrsfTcpIvP6XuQ8mKM70tx9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+
+  
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<!-- 背景动画 -->
+<script type="text/javascript" src="/js/src/particle.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1660 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="大数据,大数据安全与治理," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/personnal/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="如今，随着大数据越来越流行，大数据安全治理也变得越来越火热，介绍下其中数据处理框架Apache的顶级项目Falcon。先以安装为开始。
+1. Hadoop配置项的修改1.1 修改yarn-site.xml操作机器
+在主机-1、主机-2、主机-3节点上使用 hdfs 用户， /var/local/hadoop/hadoop-2.6.0/etc/hadoop 目录下
+操作指令
+1vim yarn-si">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache Falcon（一）安装">
+<meta property="og:url" content="http://www.fangheart.top/2016/12/28/Apache Falcon（一）安装/index.html">
+<meta property="og:site_name" content="FangHeart's blog">
+<meta property="og:description" content="如今，随着大数据越来越流行，大数据安全治理也变得越来越火热，介绍下其中数据处理框架Apache的顶级项目Falcon。先以安装为开始。
+1. Hadoop配置项的修改1.1 修改yarn-site.xml操作机器
+在主机-1、主机-2、主机-3节点上使用 hdfs 用户， /var/local/hadoop/hadoop-2.6.0/etc/hadoop 目录下
+操作指令
+1vim yarn-si">
+<meta property="og:updated_time" content="2016-12-28T14:27:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Apache Falcon（一）安装">
+<meta name="twitter:description" content="如今，随着大数据越来越流行，大数据安全治理也变得越来越火热，介绍下其中数据处理框架Apache的顶级项目Falcon。先以安装为开始。
+1. Hadoop配置项的修改1.1 修改yarn-site.xml操作机器
+在主机-1、主机-2、主机-3节点上使用 hdfs 用户， /var/local/hadoop/hadoop-2.6.0/etc/hadoop 目录下
+操作指令
+1vim yarn-si">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.fangheart.top/2016/12/28/Apache Falcon（一）安装/"/>
+
+
+
+
+
+  <title> Apache Falcon（一）安装 | FangHeart's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FangHeart's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">爱生活，爱编码。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.fangheart.top/2016/12/28/Apache Falcon（一）安装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FangHeart">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/personnal/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FangHeart's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Apache Falcon（一）安装
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-28T21:57:00+08:00">
+                2016-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2016/12/28/Apache Falcon（一）安装/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/12/28/Apache Falcon（一）安装/" class="leancloud_visitors" data-flag-title="Apache Falcon（一）安装">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>如今，随着大数据越来越流行，大数据安全治理也变得越来越火热，介绍下其中数据处理框架Apache的顶级项目Falcon。先以安装为开始。</p>
+<h2 id="1-Hadoop配置项的修改"><a href="#1-Hadoop配置项的修改" class="headerlink" title="1. Hadoop配置项的修改"></a>1. Hadoop配置项的修改</h2><h3 id="1-1-修改yarn-site-xml"><a href="#1-1-修改yarn-site-xml" class="headerlink" title="1.1 修改yarn-site.xml"></a>1.1 修改yarn-site.xml</h3><p>操作机器</p>
+<p>在主机-1、主机-2、主机-3节点上使用 hdfs 用户， /var/local/hadoop/hadoop-2.6.0/etc/hadoop 目录下</p>
+<p>操作指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim yarn-site.xml</div></pre></td></tr></table></figure>
+<p>在<configuration>标签内修改添加如下内容</configuration></p>
+<pre><code>&lt;property&gt;  
+   &lt;name&gt;mapred.jobtracker.taskScheduler&lt;/name&gt;  
+   &lt;value&gt;org.apache.hadoop.mapred.FairScheduler&lt;/value&gt;  
+ &lt;/property&gt;  
+ &lt;property&gt;  
+     &lt;name&gt;mapred.fairscheduler.allocation.file&lt;/name&gt;  
+     &lt;value&gt;/var/local/hadoop/hadoop-2.6.0/etc/hadoop/fair-scheduler.xml&lt;/value&gt;  
+  &lt;/property&gt;  
+  &lt;property&gt;  
+    &lt;name&gt;mapred.fairscheduler.preemption&lt;/name&gt;  
+    &lt;value&gt;true&lt;/value&gt;  
+  &lt;/property&gt;  
+  &lt;property&gt;  
+    &lt;name&gt;mapred.fairscheduler.assignmultiple&lt;/name&gt;  
+    &lt;value&gt;true&lt;/value&gt;  
+  &lt;/property&gt;  
+  &lt;property&gt;  
+    &lt;name&gt;mapred.fairscheduler.poolnameproperty&lt;/name&gt;  
+    &lt;value&gt;mapred.job.queue.name&lt;/value&gt;  
+    &lt;description&gt;job.set(&quot;mapred.job.queue.name&quot;,pool); &lt;/description&gt;  
+  &lt;/property&gt;  
+  &lt;property&gt;  
+    &lt;name&gt;mapred.fairscheduler.preemption.only.log&lt;/name&gt;  
+    &lt;value&gt;true&lt;/value&gt;  
+  &lt;/property&gt;  
+  &lt;property&gt;  
+    &lt;name&gt;mapred.fairscheduler.preemption.interval&lt;/name&gt;  
+    &lt;value&gt;15000&lt;/value&gt;  
+  &lt;/property&gt;  
+  &lt;property&gt;  
+    &lt;name&gt;mapred.queue.names&lt;/name&gt;  
+    &lt;value&gt;default,hadoop,hive&lt;/value&gt;  
+  &lt;/property&gt;  
+&lt;property&gt;
+  &lt;name&gt;yarn.nodemanager.resource.memory-mb&lt;/name&gt;
+  &lt;value&gt;20960&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+  &lt;name&gt;yarn.scheduler.minimum-allocation-mb&lt;/name&gt;
+  &lt;value&gt;1024&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+  &lt;name&gt;yarn.scheduler.maximum-allocation-mb&lt;/name&gt;
+  &lt;value&gt;2048&lt;/value&gt;
+  &lt;/property&gt;
+</code></pre><h3 id="1-2-添加公平策略fair-scheduler-xml"><a href="#1-2-添加公平策略fair-scheduler-xml" class="headerlink" title="1.2 添加公平策略fair-scheduler.xml"></a>1.2 添加公平策略fair-scheduler.xml</h3><p>因为Falcon的运作过程中会涉及大量的MapReduce作业，所以yarn调度需要进行一些处理，来保证他的负载均衡，所以此处我们最好加上公平策略。</p>
+<p>操作机器</p>
+<p>在主机-1、主机-2、主机-3节点上使用 hdfs 用户， /var/local/hadoop/hadoop-2.6.0/etc/hadoop 目录下</p>
+<p>操作指令</p>
+<p>vim fair-scheduler.xml</p>
+<p>在文件中添加如下内容：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;  
+&lt;allocations&gt;  
+&lt;pool name=&quot;hive&quot;&gt;  
+&lt;minMaps&gt;90&lt;/minMaps&gt;  
+&lt;minReduces&gt;20&lt;/minReduces&gt;  
+&lt;maxRunningJobs&gt;20&lt;/maxRunningJobs&gt;  
+&lt;weight&gt;2.0&lt;/weight&gt;  
+&lt;minSharePreemptionTimeout&gt;30&lt;/minSharePreemptionTimeout&gt;  
+&lt;/pool&gt;  
+
+&lt;pool name=&quot;hadoop&quot;&gt;  
+&lt;minMaps&gt;9&lt;/minMaps&gt;  
+&lt;minReduces&gt;2&lt;/minReduces&gt;  
+&lt;maxRunningJobs&gt;20&lt;/maxRunningJobs&gt;  
+&lt;weight&gt;1.0&lt;/weight&gt;  
+&lt;minSharePreemptionTimeout&gt;30&lt;/minSharePreemptionTimeout&gt;  
+&lt;/pool&gt;  
+
+&lt;user name=&quot;hadoop&quot;&gt;  
+&lt;maxRunningJobs&gt;6&lt;/maxRunningJobs&gt;  
+&lt;/user&gt;  
+&lt;poolMaxJobsDefault&gt;10&lt;/poolMaxJobsDefault&gt;  
+&lt;userMaxJobsDefault&gt;8&lt;/userMaxJobsDefault&gt;  
+&lt;defaultMinSharePreemptionTimeout&gt;600&lt;/defaultMinSharePreemptionTimeout&gt;  
+&lt;fairSharePreemptionTimeout&gt;600&lt;/fairSharePreemptionTimeout&gt;  
+&lt;/allocations&gt;  
+</code></pre><p>指令说明</p>
+<p>minResources: 最少资源保证量,格式为 “X mb,Y vcores”. 各队列最少资源保证量之和最好不要超过YARN最大的可使用的内存</p>
+<p>maxResources: 最多可以使用资源量,Fair Scheduler会保证每个队列使用的资源量不会超过该队列的最多可使用资源量.</p>
+<p>maxRunningApps: 最多同时运行的应用程序数目.</p>
+<p>schedulingPolicy: 队列采用的调度模式,支持 fifo,fair,drf</p>
+<p>aclSubmitApps: 可向队列中提交应用程序的数目,默认是*.如果需要指定多个用户可以这样hadoopuser hadoopgroup,sparkuser</p>
+<p>aclAdministerApps: 该队列的管理员列表,管理员可以杀死队列中的任一个任务</p>
+<p>userMaxAppsDefault: 默认的用户最多同时运行应用程序</p>
+<p>注:<br>使用队列时只使用叶子队列<br>maxRunningApps 参数非常有用需要根据当前集群的可用内存资源来配置。<br>会因hadoop的版本不同，如果设置不当（值过大）,测试短时间内提交多个yarn程序同时运行时Yarn资源迅速用完时，各Job会长时间等待任务的分配。</p>
+<h2 id="2-编译和部署Oozie-4-2-0"><a href="#2-编译和部署Oozie-4-2-0" class="headerlink" title="2. 编译和部署Oozie-4.2.0"></a>2. 编译和部署Oozie-4.2.0</h2><p>oozie是falcon运行过程中所运行的调度器，所以其是falcon正常运行所必须的。</p>
+<h3 id="2-1-编译oozie"><a href="#2-1-编译oozie" class="headerlink" title="2.1 编译oozie"></a>2.1 编译oozie</h3><p>操作机器</p>
+<p>在集群 namenode 节点 主机-1 上使用 hdfs 用户， /home/hdfs 目录下</p>
+<p>操作指令</p>
+<pre><code>wget http://mirror.bit.edu.cn/apache/oozie/4.2.0/oozie-4.2.0.tar.gz
+</code></pre><p>下载 oozie 源代码</p>
+<pre><code>tar zxvf oozie-4.2.0.tar.gz
+cd oozie-4.2.0
+</code></pre><p>解压缩 oozie-4.2.0, 进入 oozie源代码目录</p>
+<pre><code>bin/mkdistro.sh -DskipTests -Phadoop-2 -Dhadoop.auth.version=2.6.0 -Ddistcp.version=2.6.0 -Dhive.version=1.2.1 -Dsqoop.version=1.4.6
+</code></pre><p>编译oozie-4.2.0，编译完成后在distro/target/ 目录下有oozie程序压缩包 oozie-4.2.0-distro.tar.gz</p>
+<pre><code>tar -zxf oozie-4.2.0-distro.tar.gz
+mv oozie-4.2.0 /var/local/hadoop/
+</code></pre><p>解压缩oozie-4.2.0并将得到的文件移动到 /var/local/hadoop 目录下</p>
+<h3 id="2-2修改hdfs配置"><a href="#2-2修改hdfs配置" class="headerlink" title="2.2修改hdfs配置"></a>2.2修改hdfs配置</h3><p>操作机器</p>
+<p>在集群namenode节点主机-1上使用hdfs用户。</p>
+<p>操作指令</p>
+<pre><code>vim /var/local/hadoop/hadoop-2.6.0/etc/hadoop/core-site.xml
+</code></pre><p>修改 hadoop core-site.xml文件，添加如下配置：</p>
+<pre><code>&lt;property&gt;  
+&lt;name&gt;hadoop.proxyuser.hdfs.hosts&lt;/name&gt;  
+&lt;value&gt;*&lt;/value&gt;  
+&lt;/property&gt;  
+&lt;property&gt;  
+&lt;name&gt;hadoop.proxyuser.hdfs.groups&lt;/name&gt;  
+&lt;value&gt;*&lt;/value&gt;  
+&lt;/property&gt;
+</code></pre><p>其中hdfs是用户之后运行oozie的用户名</p>
+<pre><code>hdfs dfsadmin -refreshSuperUserGroupsConfiguration
+yarn rmadmin -refreshSuperUserGroupsConfiguration
+</code></pre><p>不重启hadoop集群，而使配置生效</p>
+<h3 id="2-3添加Oozie-lib扩展包"><a href="#2-3添加Oozie-lib扩展包" class="headerlink" title="2.3添加Oozie lib扩展包"></a>2.3添加Oozie lib扩展包</h3><p>操作机器</p>
+<p>在集群namenode节点主机-1上使用hdfs用户。</p>
+<p>操作指令</p>
+<pre><code>cd /var/local/hadoop/oozie-4.2.0
+mkdir libext
+tar zxvf oozie-sharelib-4.2.0.tar.gz
+</code></pre><p>在 oozie-4.2.0 新建 libext 文件夹并进入该目录</p>
+<pre><code>cp $HADOOP_HOME/share/hadoop/*/*.jar libext/ 
+cp $HADOOP_HOME/share/hadoop/*/lib/*.jar libext/
+cp $HIVE_HOME/lib/*.jar libext/ 
+cp share/lib/hcatalog/*.jar libext/
+</code></pre><p>将hadoop的jar包导入oozie libext</p>
+<pre><code>cd libext
+mv servlet-api-2.5.jar servlet-api-2.5.jar.bak 
+mv jsp-api-2.1.jar jsp-api-2.1.jar.bak 
+mv jasper-compiler-5.5.23.jar jasper-compiler-5.5.23.jar.bak 
+mv jasper-runtime-5.5.23.jar jasper-runtime-5.5.23.jar.bak
+</code></pre><p>把hadoop与tomcat冲突jar包去掉</p>
+<p>将附件中ext-2.2.zip上传到$OOZIE_HOME/libext/目录下（此文件请百度自行下载文件）</p>
+<pre><code>wget http://mirror.bit.edu.cn/mysql/Downloads/Connector-J/mysql-connector-java-5.1.38.tar.gz
+tar zxvf mysql-connector-java-5.1.38.tar.gz
+cp mysql-connector-java-5.1.38/mysql-connector-java-5.1.38-bin.jar /var/local/hadoop/oozie-4.2.0/libext
+</code></pre><p>下载mysql驱动包至libext/目录下</p>
+<h3 id="2-4添加Oozie配置项"><a href="#2-4添加Oozie配置项" class="headerlink" title="2.4添加Oozie配置项"></a>2.4添加Oozie配置项</h3><p>操作机器</p>
+<p>在集群namenode节点主机-1上使用hdfs用户</p>
+<p>操作指令</p>
+<pre><code>cd /var/local/hadoop/oozie-4.2.0
+vim conf/oozie-site.xml
+</code></pre><p>修改oozie配置文件，添加如下内容</p>
+<pre><code>&lt;property&gt;
+&lt;name&gt;oozie.service.JPAService.create.db.schema&lt;/name&gt;  
+&lt;value&gt;true&lt;/value&gt;  
+&lt;/property&gt;
+&lt;property&gt;
+&lt;name&gt;oozie.service.JPAService.jdbc.driver&lt;/name&gt;  
+&lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;  
+&lt;/property&gt;
+&lt;property&gt;
+&lt;name&gt;oozie.service.JPAService.jdbc.url&lt;/name&gt;  
+&lt;value&gt;jdbc:mysql://主机-1:3306/oozie?createDatabaseIfNotExist=true&lt;/value&gt;  
+&lt;/property&gt;
+&lt;property&gt;
+&lt;name&gt;oozie.service.JPAService.jdbc.username&lt;/name&gt;  
+&lt;value&gt;oozie&lt;/value&gt;  
+&lt;/property&gt; 
+&lt;property&gt;
+&lt;name&gt;oozie.service.JPAService.jdbc.password&lt;/name&gt;  
+&lt;value&gt;oozie&lt;/value&gt;  
+&lt;/property&gt; 
+&lt;property&gt; 
+&lt;name&gt;oozie.service.HadoopAccessorService.hadoop.configurations&lt;/name&gt;  
+&lt;value&gt;*=/var/local/hadoop/hadoop-2.6.0/etc/hadoop&lt;/value&gt;  
+&lt;/property&gt;
+&lt;property&gt;
+&lt;name&gt;oozie.service.ProxyUserService.proxyuser.hdfs.hosts&lt;/name&gt;
+&lt;value&gt;*&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+&lt;name&gt;oozie.service.ProxyUserService.proxyuser.hdfs.groups&lt;/name&gt;
+&lt;value&gt;*&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>操作说明</p>
+<p>其中oozie.service.HadoopAccessorService.hadoop.configurations项配置目录为$HADOOP_HOME下的etc/hadoop目录，主机-1是运行oozie的节点机子，主机是运行oozie的用户名，与前面hadoop的core-site.xml配置一致</p>
+<h3 id="2-5添加mysql用户"><a href="#2-5添加mysql用户" class="headerlink" title="2.5添加mysql用户"></a>2.5添加mysql用户</h3><p>操作机器</p>
+<p>在集群namenode节点主机-1上使用hdfs用户</p>
+<p>操作指令</p>
+<pre><code>mysql -uroot -padmin
+</code></pre><p>使用管理员用户进入mysql控制台</p>
+<pre><code>create database oozie;
+</code></pre><p>创建名称为oozie的数据库</p>
+<pre><code>grant all privileges on oozie.* to &apos;oozie&apos;@&apos;localhost&apos; identified by &apos;oozie&apos;;
+</code></pre><p>设置oozie数据库的访问权限，创建用户名为oozie，密码为oozie的用户</p>
+<pre><code>grant all privileges on oozie.* to &apos;oozie&apos;@&apos;%&apos; identified by &apos;oozie&apos;;
+</code></pre><p>设置oozie数据库的访问权限<br>    update mysql.user set host=’%’ where user=’root’ and host=’localhost’;<br>    insert into mysql.user (host,user,password) values(‘主机-1’,’oozie’,PASSWORD(‘oozie’));</p>
+<p>设置oozie用户的认证权限</p>
+<pre><code>FLUSH PRIVILEGES;
+quit 
+</code></pre><p>退出mysql控制台</p>
+<p>重启mysql使配置生效：</p>
+<pre><code>sudo service mysqld restart
+</code></pre><h3 id="2-6配置Oozie环境变量"><a href="#2-6配置Oozie环境变量" class="headerlink" title="2.6配置Oozie环境变量"></a>2.6配置Oozie环境变量</h3><p>操作机器：</p>
+<p>在主机-1，主机-2，主机-3上，使用hdfs用户，任意目录下</p>
+<p>操作命令：</p>
+<pre><code>sudo vim /etc/profile
+</code></pre><p>主机-1,主机-2,主机-3在文件末尾，添加如下内容：</p>
+<pre><code>export OOZIE_HOME=/var/local/hadoop/oozie-4.2.0
+export PATH=$PATH:$HADOOP_HOME/bin:$OOZIE_HOME/bin
+</code></pre><h3 id="2-7刷新环境变量"><a href="#2-7刷新环境变量" class="headerlink" title="2.7刷新环境变量"></a>2.7刷新环境变量</h3><p>操作机器：</p>
+<p>在主机-1,主机-2,主机-3上，使用当前终端，任意目录下</p>
+<p>操作命令：</p>
+<pre><code>source /etc/profile
+</code></pre><h3 id="2-8部署oozie"><a href="#2-8部署oozie" class="headerlink" title="2.8部署oozie"></a>2.8部署oozie</h3><p>操作机器</p>
+<p>在集群namenode节点主机-1上使用hdfs用户</p>
+<p>操作指令</p>
+<pre><code>cd /var/local/hadoop/oozie-4.2.0
+bin/oozie-setup.sh prepare-war
+</code></pre><p>打包oozie war包</p>
+<pre><code>bin/ooziedb.sh create -sqlfile oozie.sql -run
+</code></pre><p>初始化数据库</p>
+<pre><code>vim oozie-server/conf/server.xml
+</code></pre><p>修改服务器端conf/server.xml文件，注释掉下面的记录<br>    <!--<Listener className="org.apache.catalina.mbeans.ServerLifecycleListener" />--></p>
+<pre><code>bin/oozie-setup.sh sharelib create -fs hdfs://主机-1:9000
+</code></pre><p>将oozie share库中的jar上传至hdfs上</p>
+<h3 id="2-9启动并测试oozie"><a href="#2-9启动并测试oozie" class="headerlink" title="2.9启动并测试oozie"></a>2.9启动并测试oozie</h3><p>操作机器</p>
+<p>在集群namenode节点主机-1上使用hdfs用户</p>
+<p>操作指令</p>
+<pre><code>jps 
+</code></pre><p>显示启动的java服务，如果列表中没有historyserver服务，则输入下列指令启动historyserver：<br>    $HADOOP_HOME/sbin/mr-jobhistory-daemon.sh start historyserver</p>
+<p>完成后再次输入jps查看启动结果</p>
+<pre><code>cd /var/local/hadoop/oozie-4.2.0
+bin/oozied.sh start
+</code></pre><p>启动oozie服务</p>
+<pre><code>oozie admin -oozie http://主机-1:11000/oozie -status
+</code></pre><p>检验服务是否正常启动，如果显示System model:Normal启动成功，反之失败</p>
+<p>操作说明</p>
+<p>用户可以在浏览器输入<a href="http://主机-1:11000/oozie/进入oozie" target="_blank" rel="external">http://主机-1:11000/oozie/进入oozie</a> web端控制台查看oozie运行状态，其中主机-1为安装并运行oozie的节点ip地址</p>
+<h2 id="3-编译和部署Falcon"><a href="#3-编译和部署Falcon" class="headerlink" title="3. 编译和部署Falcon"></a>3. 编译和部署Falcon</h2><h3 id="3-1编译falcon"><a href="#3-1编译falcon" class="headerlink" title="3.1编译falcon"></a>3.1编译falcon</h3><p>操作机器</p>
+<p>在集群 namenode 节点 主机-1 上使用 hdfs 用户， /home/hdfs 目录下</p>
+<p>操作指令</p>
+<pre><code>wget http://mirror.bit.edu.cn/apache/falcon/0.9/apache-falcon-0.9-sources.tar.gz
+</code></pre><p>下载 falcon源码</p>
+<pre><code>tar -zxvf apache-falcon-0.9-sources.tar.gz
+cd falcon-sources-0.9/
+</code></pre><p>解压缩得到代码文件 falcon-sources-0.9 并进入 </p>
+<pre><code>export MAVEN_OPTS=&quot;-Xmx1024m -XX:MaxPermSize=256m -noverify&quot; &amp;&amp; mvn clean install -Dhadoop.version=2.6.0 -Doozie.version=4.2.0 –DskipTests
+</code></pre><p>打包编译falcon源码，如果在编译过程中出现npm error报错，输入下列指令安装npm：</p>
+<pre><code>sudo yum -y install npm
+</code></pre><p>安装npm并使用国内镜像</p>
+<pre><code>npm --registry https://registry.npm.taobao.org info underscore
+mvn clean assembly:assembly -DskipTests -DskipCheck=true
+</code></pre><p>编译完成后在target/ 文件夹下存在apache-falcon-0.9-bin.tar.gz和apache-falcon-0.9-bin.zip压缩包</p>
+<pre><code>tar -zxvf target/apache-falcon-0.9-bin.tar.gz
+mv falcon-0.9 /var/local/hadoop/
+</code></pre><p>解压缩falcon工程包，并将解压缩得到的falcon-0.9 文件移到/var/local/hadoop 目录下</p>
+<h3 id="3-2-修改oozie配置项"><a href="#3-2-修改oozie配置项" class="headerlink" title="3.2 修改oozie配置项"></a>3.2 修改oozie配置项</h3><p>操作机器</p>
+<p>在集群 namenode 节点 主机-1 上使用 hdfs 用户</p>
+<p>操作指令</p>
+<pre><code>cd /var/local/hadoop/oozie-4.2.0
+vim conf/oozie-site.xml
+</code></pre><p>在oozie的oozie-site.xml配置文件中添加以下内容</p>
+<pre><code>&lt;!-- Oozie EL Extension configurations for falcon --&gt;
+&lt;property&gt;
+    &lt;name&gt;oozie.service.ELService.ext.functions.coord-job-submit-instances&lt;/name&gt;
+    &lt;value&gt;
+        now=org.apache.oozie.extensions.OozieELExtensions#ph1_now_echo,
+        today=org.apache.oozie.extensions.OozieELExtensions#ph1_today_echo,
+        yesterday=org.apache.oozie.extensions.OozieELExtensions#ph1_yesterday_echo,
+        currentWeek=org.apache.oozie.extensions.OozieELExtensions#ph1_currentWeek_echo,
+        lastWeek=org.apache.oozie.extensions.OozieELExtensions#ph1_lastWeek_echo,
+        currentMonth=org.apache.oozie.extensions.OozieELExtensions#ph1_currentMonth_echo,
+        lastMonth=org.apache.oozie.extensions.OozieELExtensions#ph1_lastMonth_echo,
+        currentYear=org.apache.oozie.extensions.OozieELExtensions#ph1_currentYear_echo,
+        lastYear=org.apache.oozie.extensions.OozieELExtensions#ph1_lastYear_echo,
+        formatTime=org.apache.oozie.coord.CoordELFunctions#ph1_coord_formatTime_echo,
+        latest=org.apache.oozie.coord.CoordELFunctions#ph2_coord_latest_echo,
+        future=org.apache.oozie.coord.CoordELFunctions#ph2_coord_future_echo
+    &lt;/value&gt;
+    &lt;description&gt;
+        EL functions declarations, separated by commas, format is [PREFIX:]NAME=CLASS#METHOD.
+        This property is a convenience property to add extensions to the built in
+        executors without having to
+        include all the built in ones.
+    &lt;/description&gt;
+&lt;/property&gt;
+&lt;property&gt;
+    &lt;name&gt;oozie.service.ELService.ext.functions.coord-action-create-inst&lt;/name&gt;
+    &lt;value&gt;
+        now=org.apache.oozie.extensions.OozieELExtensions#ph2_now_inst,
+        today=org.apache.oozie.extensions.OozieELExtensions#ph2_today_inst,
+        yesterday=org.apache.oozie.extensions.OozieELExtensions#ph2_yesterday_inst,
+        currentWeek=org.apache.oozie.extensions.OozieELExtensions#ph2_currentWeek_inst,
+        lastWeek=org.apache.oozie.extensions.OozieELExtensions#ph2_lastWeek_inst,
+        currentMonth=org.apache.oozie.extensions.OozieELExtensions#ph2_currentMonth_inst,
+        lastMonth=org.apache.oozie.extensions.OozieELExtensions#ph2_lastMonth_inst,
+        currentYear=org.apache.oozie.extensions.OozieELExtensions#ph2_currentYear_inst,
+        lastYear=org.apache.oozie.extensions.OozieELExtensions#ph2_lastYear_inst,
+        latest=org.apache.oozie.coord.CoordELFunctions#ph2_coord_latest_echo,
+        future=org.apache.oozie.coord.CoordELFunctions#ph2_coord_future_echo,
+        formatTime=org.apache.oozie.coord.CoordELFunctions#ph2_coord_formatTime,
+        user=org.apache.oozie.coord.CoordELFunctions#coord_user
+    &lt;/value&gt;
+    &lt;description&gt;
+        EL functions declarations, separated by commas, format is [PREFIX:]NAME=CLASS#METHOD.
+        This property is a convenience property to add extensions to the built in
+        executors without having to
+        include all the built in ones.
+    &lt;/description&gt;
+&lt;/property&gt;
+&lt;property&gt;
+    &lt;name&gt;oozie.service.ELService.ext.functions.coord-action-create&lt;/name&gt;
+    &lt;value&gt;
+        now=org.apache.oozie.extensions.OozieELExtensions#ph2_now,
+        today=org.apache.oozie.extensions.OozieELExtensions#ph2_today,
+        yesterday=org.apache.oozie.extensions.OozieELExtensions#ph2_yesterday,
+        currentWeek=org.apache.oozie.extensions.OozieELExtensions#ph2_currentWeek,
+        lastWeek=org.apache.oozie.extensions.OozieELExtensions#ph2_lastWeek,
+        currentMonth=org.apache.oozie.extensions.OozieELExtensions#ph2_currentMonth,
+        lastMonth=org.apache.oozie.extensions.OozieELExtensions#ph2_lastMonth,
+        currentYear=org.apache.oozie.extensions.OozieELExtensions#ph2_currentYear,
+        lastYear=org.apache.oozie.extensions.OozieELExtensions#ph2_lastYear,
+        latest=org.apache.oozie.coord.CoordELFunctions#ph2_coord_latest_echo,
+        future=org.apache.oozie.coord.CoordELFunctions#ph2_coord_future_echo,
+        formatTime=org.apache.oozie.coord.CoordELFunctions#ph2_coord_formatTime,
+        user=org.apache.oozie.coord.CoordELFunctions#coord_user
+    &lt;/value&gt;
+    &lt;description&gt;
+        EL functions declarations, separated by commas, format is [PREFIX:]NAME=CLASS#METHOD.
+        This property is a convenience property to add extensions to the built in
+        executors without having to
+        include all the built in ones.
+    &lt;/description&gt;
+&lt;/property&gt;
+&lt;property&gt;
+    &lt;name&gt;oozie.service.ELService.ext.functions.coord-job-submit-data&lt;/name&gt;
+    &lt;value&gt;
+        now=org.apache.oozie.extensions.OozieELExtensions#ph1_now_echo,
+        today=org.apache.oozie.extensions.OozieELExtensions#ph1_today_echo,
+        yesterday=org.apache.oozie.extensions.OozieELExtensions#ph1_yesterday_echo,
+        currentWeek=org.apache.oozie.extensions.OozieELExtensions#ph1_currentWeek_echo,
+        lastWeek=org.apache.oozie.extensions.OozieELExtensions#ph1_lastWeek_echo,
+        currentMonth=org.apache.oozie.extensions.OozieELExtensions#ph1_currentMonth_echo,
+        lastMonth=org.apache.oozie.extensions.OozieELExtensions#ph1_lastMonth_echo,
+        currentYear=org.apache.oozie.extensions.OozieELExtensions#ph1_currentYear_echo,
+        lastYear=org.apache.oozie.extensions.OozieELExtensions#ph1_lastYear_echo,
+        dataIn=org.apache.oozie.extensions.OozieELExtensions#ph1_dataIn_echo,
+        instanceTime=org.apache.oozie.coord.CoordELFunctions#ph1_coord_nominalTime_echo_wrap,
+        formatTime=org.apache.oozie.coord.CoordELFunctions#ph1_coord_formatTime_echo,
+        dateOffset=org.apache.oozie.coord.CoordELFunctions#ph1_coord_dateOffset_echo,
+        user=org.apache.oozie.coord.CoordELFunctions#coord_user
+    &lt;/value&gt;
+    &lt;description&gt;
+        EL constant declarations, separated by commas, format is [PREFIX:]NAME=CLASS#CONSTANT.
+        This property is a convenience property to add extensions to the built in
+        executors without having to
+        include all the built in ones.
+    &lt;/description&gt;
+&lt;/property&gt;
+&lt;property&gt;
+    &lt;name&gt;oozie.service.ELService.ext.functions.coord-action-start&lt;/name&gt;
+    &lt;value&gt;
+        now=org.apache.oozie.extensions.OozieELExtensions#ph2_now,
+        today=org.apache.oozie.extensions.OozieELExtensions#ph2_today,
+        yesterday=org.apache.oozie.extensions.OozieELExtensions#ph2_yesterday,
+        currentWeek=org.apache.oozie.extensions.OozieELExtensions#ph2_currentWeek,
+        lastWeek=org.apache.oozie.extensions.OozieELExtensions#ph2_lastWeek,
+        currentMonth=org.apache.oozie.extensions.OozieELExtensions#ph2_currentMonth,
+        lastMonth=org.apache.oozie.extensions.OozieELExtensions#ph2_lastMonth,
+        currentYear=org.apache.oozie.extensions.OozieELExtensions#ph2_currentYear,
+        lastYear=org.apache.oozie.extensions.OozieELExtensions#ph2_lastYear,
+        latest=org.apache.oozie.coord.CoordELFunctions#ph3_coord_latest,
+        future=org.apache.oozie.coord.CoordELFunctions#ph3_coord_future,
+        dataIn=org.apache.oozie.extensions.OozieELExtensions#ph3_dataIn,
+        instanceTime=org.apache.oozie.coord.CoordELFunctions#ph3_coord_nominalTime,
+        dateOffset=org.apache.oozie.coord.CoordELFunctions#ph3_coord_dateOffset,
+        formatTime=org.apache.oozie.coord.CoordELFunctions#ph3_coord_formatTime,
+        user=org.apache.oozie.coord.CoordELFunctions#coord_user
+    &lt;/value&gt;
+    &lt;description&gt;
+        EL functions declarations, separated by commas, format is [PREFIX:]NAME=CLASS#METHOD.
+        This property is a convenience property to add extensions to the built in
+        executors without having to
+        include all the built in ones.
+    &lt;/description&gt;
+&lt;/property&gt;
+&lt;property&gt;
+    &lt;name&gt;oozie.service.ELService.ext.functions.coord-sla-submit&lt;/name&gt;
+    &lt;value&gt;
+        instanceTime=org.apache.oozie.coord.CoordELFunctions#ph1_coord_nominalTime_echo_fixed,
+        user=org.apache.oozie.coord.CoordELFunctions#coord_user
+    &lt;/value&gt;
+    &lt;description&gt;
+        EL functions declarations, separated by commas, format is [PREFIX:]NAME=CLASS#METHOD.
+    &lt;/description&gt;
+&lt;/property&gt;
+&lt;property&gt;
+    &lt;name&gt;oozie.service.ELService.ext.functions.coord-sla-create&lt;/name&gt;
+    &lt;value&gt;
+        instanceTime=org.apache.oozie.coord.CoordELFunctions#ph2_coord_nominalTime,
+        user=org.apache.oozie.coord.CoordELFunctions#coord_user
+    &lt;/value&gt;
+    &lt;description&gt;
+        EL functions declarations, separated by commas, format is [PREFIX:]NAME=CLASS#METHOD.
+    &lt;/description&gt;
+&lt;/property&gt;
+&lt;!-- Required to Notify Falcon on Workflow job status. --&gt;
+&lt;property&gt;
+    &lt;name&gt;oozie.services.ext&lt;/name&gt;
+    &lt;value&gt;
+        org.apache.oozie.service.JMSAccessorService,
+        org.apache.oozie.service.JMSTopicService,
+        org.apache.oozie.service.EventHandlerService
+    &lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+    &lt;name&gt;oozie.service.EventHandlerService.event.listeners&lt;/name&gt;
+    &lt;value&gt;
+        org.apache.oozie.jms.JMSJobEventListener
+    &lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+    &lt;name&gt;oozie.jms.producer.connection.properties&lt;/name&gt;
+    &lt;value&gt;
+        java.naming.factory.initial#org.apache.activemq.jndi.ActiveMQInitialContextFactory;java.naming.provider.url#tcp://主机-1:61616
+    &lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+&lt;name&gt;oozie.service.JMSTopicService.topic.name&lt;/name&gt;
+&lt;value&gt;
+    WORKFLOW=ENTITY.TOPIC, COORDINATOR=ENTITY.TOPIC
+&lt;/value&gt;
+&lt;description&gt;
+Topic options are ${username} or a fixed string which can be specified as default or for a
+particular job type.
+For e.g To have a fixed string topic for workflows, coordinators and bundles,
+specify in the following comma-separated format: {jobtype1}={some_string1}, {jobtype2}={some_string2}
+where job type can be WORKFLOW, COORDINATOR or BUNDLE.
+Following example defines topic for workflow job, workflow action, coordinator job, coordinator action,
+bundle job and bundle action
+WORKFLOW=workflow,
+COORDINATOR=coordinator,
+BUNDLE=bundle
+    For jobs with no defined topic, default topic will be ${username}
+&lt;/description&gt;
+&lt;/property&gt;
+&lt;property&gt;
+    &lt;name&gt;oozie.service.JMSTopicService.topic.prefix&lt;/name&gt;
+    &lt;value&gt;FALCON.&lt;/value&gt;
+    &lt;description&gt;
+        This can be used to append a prefix to the topic in oozie.service.JMSTopicService.topic.name. For eg: oozie.
+    &lt;/description&gt;
+&lt;/property&gt;
+</code></pre><p>操作说明</p>
+<p>将$FALCON_HOME/oozie/conf/oozie-site.xml 的配置项内容添加到$OOZIE_HOME/conf/oozie-site.xml 中，其中将oozie 的jms消息连接项oozie.jms.producer.connection.properties里面的通讯地址改为oozie运行的节点，即主机-1。</p>
+<h3 id="3-3添加Falcon-jar包至oozie库文件"><a href="#3-3添加Falcon-jar包至oozie库文件" class="headerlink" title="3.3添加Falcon jar包至oozie库文件"></a>3.3添加Falcon jar包至oozie库文件</h3><p>操作机器</p>
+<p>在集群 namenode 节点 主机-1 上使用 hdfs 用户</p>
+<p>操作指令</p>
+<pre><code>cd /var/local/hadoop/oozie-4.2.0    
+cp /var/local/hadoop/falcon-0.9/oozie/libext/*.jar libext/
+</code></pre><p>将falcon在oozie目录下的扩展jar包拷贝至$OOZIE_HOME/libext文件夹下</p>
+<pre><code>bin/oozie-stop.sh
+bin/oozie-setup.sh prepare-war
+bin/oozie-start.sh
+</code></pre><p>重新部署并启动oozie</p>
+<h3 id="3-4Falcon-client配置"><a href="#3-4Falcon-client配置" class="headerlink" title="3.4Falcon client配置"></a>3.4Falcon client配置</h3><p>操作机器</p>
+<p>在集群 namenode 节点 主机-1 上使用 hdfs 用户</p>
+<p>操作指令<br>    cd /var/local/hadoop/falcon-0.9</p>
+<pre><code>vim conf/client.properties
+</code></pre><p>修改client.properties文件中falcon.url的值，将其改为</p>
+<pre><code>falcon.url=https://{主机-1}:{port}/
+</code></pre><p>操作说明</p>
+<p>falcon.url指定了falcon server的ip地址，在本例中为主机-1的ip地址,port为falcon启动时配置的端口号，默认为15443.</p>
+<h3 id="3-5修改Falcon配置文件"><a href="#3-5修改Falcon配置文件" class="headerlink" title="3.5修改Falcon配置文件"></a>3.5修改Falcon配置文件</h3><p>操作机器</p>
+<p>在集群 namenode 节点 主机-1 上使用 hdfs 用户</p>
+<p>操作指令</p>
+<pre><code>cd /var/local/hadoop/falcon-0.9
+vim conf/startup.properties
+</code></pre><p>将*.broker.url的值改动如下</p>
+<pre><code>*.broker.url=tcp/主机-1:61616
+</code></pre><p>操作说明</p>
+<p>*.broker.url为Falcon自带activemq消息发送地址，即Falcon运行所在的节点机器，在本例中为主机-1的ip地址。</p>
+<h3 id="3-6配置Falcon环境变量"><a href="#3-6配置Falcon环境变量" class="headerlink" title="3.6配置Falcon环境变量"></a>3.6配置Falcon环境变量</h3><p>操作机器：</p>
+<p>在主机-1，主机-2，主机-3上，使用hdfs用户，任意目录下</p>
+<p>操作命令：</p>
+<pre><code>sudo vim /etc/profile
+</code></pre><p>#主机-1,主机-2,主机-3在文件末尾，添加如下内容：</p>
+<pre><code>export FALCON_HOME=/var/local/hadoop/falcon-0.9
+export PATH=$PATH:$HADOOP_HOME/bin:$FALCON_HOME/bin
+</code></pre><h3 id="3-7刷新环境变量"><a href="#3-7刷新环境变量" class="headerlink" title="3.7刷新环境变量"></a>3.7刷新环境变量</h3><p>操作机器：</p>
+<p>在主机-1,主机-2,主机-3上，使用当前终端，任意目录下</p>
+<p>操作命令：</p>
+<pre><code>source /etc/profile
+</code></pre><h3 id="3-8创建Falcon-client"><a href="#3-8创建Falcon-client" class="headerlink" title="3.8创建Falcon client"></a>3.8创建Falcon client</h3><p>操作机器</p>
+<p>在集群 namenode 节点 主机-1 上使用 root用户</p>
+<p>操作指令</p>
+<pre><code>useradd -U -m falcon-dashboard -G users
+groups falcon-dashboard
+</code></pre><p>显示falcon-dashboard : falcon-dashboard users则创建成功</p>
+<pre><code>scp -r /var/local/hadoop/falcon-0.9 主机@主机-client:/home/主机/
+</code></pre><p>将falcon发送至client端</p>
+<p>操作说明</p>
+<p>传到client上需要输入client端主机用户的密码</p>
+<h3 id="3-9启动Falcon"><a href="#3-9启动Falcon" class="headerlink" title="3.9启动Falcon"></a>3.9启动Falcon</h3><p>操作机器</p>
+<p>在集群 namenode 节点 主机-1 上使用 hdfs 用户</p>
+<p>操作指令</p>
+<pre><code>cd /var/local/hadoop/falcon-0.9
+
+bin/falcon-start
+</code></pre><p>启动Falcon server</p>
+<pre><code>jps
+</code></pre><p>显示java进程，如果列表中有Falconserver则启动成功</p>
+<p>操作说明</p>
+<p>用户可以在client端通过浏览器输入<a href="https://主机-1:15443进入falcon" target="_blank" rel="external">https://主机-1:15443进入falcon</a> web端控制台。其中注意falcon server使用https协议，如果输入地址为http则显示出错。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/personnal/wechat-reward-image.jpg" alt="FangHeart WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/personnal/alipay-reward-image.jpg" alt="FangHeart Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/大数据/" rel="tag"># 大数据</a>
+          
+            <a href="/tags/大数据安全与治理/" rel="tag"># 大数据安全与治理</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/28/java基础08、多态、抽象、接口/" rel="next" title="java基础08、多态、抽象、接口">
+                <i class="fa fa-chevron-left"></i> java基础08、多态、抽象、接口
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/29/java语言基础09、包、import、四种权限、匿名内部类/" rel="prev" title="java语言基础09、包、import、四种权限、匿名内部类">
+                java语言基础09、包、import、四种权限、匿名内部类 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/personnal/author.jpg"
+               alt="FangHeart" />
+          <p class="site-author-name" itemprop="name">FangHeart</p>
+           
+              <p class="site-description motion-element" itemprop="description">不忘初心，方得始终。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fangheart" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2013845927/" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/fangheart" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fangheart@fangheart.win" target="_blank" title="邮箱">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  邮箱
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://haroldliu.weebly.com" title="HaroldLiuChi" target="_blank">HaroldLiuChi</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://guangyugao.weebly.com/" title="GaoGuangYu" target="_blank">GaoGuangYu</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wenjiewang.top" title="WenJieWang" target="_blank">WenJieWang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/it_dx" title="DuanXiong" target="_blank">DuanXiong</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dongxicheng.org/recommend/" title="DongXiCheng" target="_blank">DongXiCheng</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Hadoop配置项的修改"><span class="nav-number">1.</span> <span class="nav-text">1. Hadoop配置项的修改</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-修改yarn-site-xml"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 修改yarn-site.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-添加公平策略fair-scheduler-xml"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 添加公平策略fair-scheduler.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-编译和部署Oozie-4-2-0"><span class="nav-number">2.</span> <span class="nav-text">2. 编译和部署Oozie-4.2.0</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-编译oozie"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 编译oozie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2修改hdfs配置"><span class="nav-number">2.2.</span> <span class="nav-text">2.2修改hdfs配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3添加Oozie-lib扩展包"><span class="nav-number">2.3.</span> <span class="nav-text">2.3添加Oozie lib扩展包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4添加Oozie配置项"><span class="nav-number">2.4.</span> <span class="nav-text">2.4添加Oozie配置项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5添加mysql用户"><span class="nav-number">2.5.</span> <span class="nav-text">2.5添加mysql用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6配置Oozie环境变量"><span class="nav-number">2.6.</span> <span class="nav-text">2.6配置Oozie环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7刷新环境变量"><span class="nav-number">2.7.</span> <span class="nav-text">2.7刷新环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8部署oozie"><span class="nav-number">2.8.</span> <span class="nav-text">2.8部署oozie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-9启动并测试oozie"><span class="nav-number">2.9.</span> <span class="nav-text">2.9启动并测试oozie</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-编译和部署Falcon"><span class="nav-number">3.</span> <span class="nav-text">3. 编译和部署Falcon</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1编译falcon"><span class="nav-number">3.1.</span> <span class="nav-text">3.1编译falcon</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-修改oozie配置项"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 修改oozie配置项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3添加Falcon-jar包至oozie库文件"><span class="nav-number">3.3.</span> <span class="nav-text">3.3添加Falcon jar包至oozie库文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4Falcon-client配置"><span class="nav-number">3.4.</span> <span class="nav-text">3.4Falcon client配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5修改Falcon配置文件"><span class="nav-number">3.5.</span> <span class="nav-text">3.5修改Falcon配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6配置Falcon环境变量"><span class="nav-number">3.6.</span> <span class="nav-text">3.6配置Falcon环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7刷新环境变量"><span class="nav-number">3.7.</span> <span class="nav-text">3.7刷新环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-8创建Falcon-client"><span class="nav-number">3.8.</span> <span class="nav-text">3.8创建Falcon client</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-9启动Falcon"><span class="nav-number">3.9.</span> <span class="nav-text">3.9启动Falcon</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-FangHeart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FangHeart</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      个访问本站的人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "eb7c3e4313a441e99919491234887c0d",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("EFaViLzEeIm1xLj3lRgl6Ktw-gzGzoHsz", "6QrsfTcpIvP6XuQ8mKM70tx9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+
+  
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<!-- 背景动画 -->
+<script type="text/javascript" src="/js/src/particle.js"></script>
+
+</body>
+</html>

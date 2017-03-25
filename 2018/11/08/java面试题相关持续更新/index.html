@@ -1,0 +1,1939 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/personnal/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="变量和常量
+A:案例演示
+面试题:看下面的程序是否有问题，如果有问题，请指出并说明理由。
+byte b1 = 3;
+byte b2 = 4;
+byte b3 = b1 + b2;（报错，可能损失精度）
+从两方面去回答这个题
+b1和b2是两个变量,变量里面存储的值都是变化的,所以在程序运行中JVM是无法判断里面具体的值
+byte类型的变量在进行运算的时候,会自动类型提升为int类型 
+
+
+byte">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java面试题相关持续更新">
+<meta property="og:url" content="http://www.fangheart.top/2018/11/08/java面试题相关持续更新/index.html">
+<meta property="og:site_name" content="FangHeart's blog">
+<meta property="og:description" content="变量和常量
+A:案例演示
+面试题:看下面的程序是否有问题，如果有问题，请指出并说明理由。
+byte b1 = 3;
+byte b2 = 4;
+byte b3 = b1 + b2;（报错，可能损失精度）
+从两方面去回答这个题
+b1和b2是两个变量,变量里面存储的值都是变化的,所以在程序运行中JVM是无法判断里面具体的值
+byte类型的变量在进行运算的时候,会自动类型提升为int类型 
+
+
+byte">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/public/16-11-8/2848068.jpg">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/public/16-11-8/96156740.jpg">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/public/16-11-9/96549066.jpg">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/public/16-11-9/88083539.jpg">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/public/16-11-23/94911052.jpg">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/public/16-11-23/24384281.jpg">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/public/16-11-23/30558704.jpg">
+<meta property="og:updated_time" content="2017-01-04T14:01:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java面试题相关持续更新">
+<meta name="twitter:description" content="变量和常量
+A:案例演示
+面试题:看下面的程序是否有问题，如果有问题，请指出并说明理由。
+byte b1 = 3;
+byte b2 = 4;
+byte b3 = b1 + b2;（报错，可能损失精度）
+从两方面去回答这个题
+b1和b2是两个变量,变量里面存储的值都是变化的,所以在程序运行中JVM是无法判断里面具体的值
+byte类型的变量在进行运算的时候,会自动类型提升为int类型 
+
+
+byte">
+<meta name="twitter:image" content="http://ocef6bnjz.bkt.clouddn.com/public/16-11-8/2848068.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.fangheart.top/2018/11/08/java面试题相关持续更新/"/>
+
+
+
+
+
+  <title> java面试题相关持续更新 | FangHeart's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FangHeart's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">爱生活，爱编码。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.fangheart.top/2018/11/08/java面试题相关持续更新/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FangHeart">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/personnal/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FangHeart's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                java面试题相关持续更新
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-08T17:04:56+08:00">
+                2018-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java基础/" itemprop="url" rel="index">
+                    <span itemprop="name">java基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2018/11/08/java面试题相关持续更新/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/11/08/java面试题相关持续更新/" class="leancloud_visitors" data-flag-title="java面试题相关持续更新">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="变量和常量"><a href="#变量和常量" class="headerlink" title="变量和常量"></a>变量和常量</h2><ul>
+<li>A:案例演示<ul>
+<li>面试题:看下面的程序是否有问题，如果有问题，请指出并说明理由。</li>
+<li>byte b1 = 3;</li>
+<li>byte b2 = 4;</li>
+<li>byte b3 = b1 + b2;（报错，可能损失精度）<ul>
+<li>从两方面去回答这个题</li>
+<li>b1和b2是两个变量,变量里面存储的值都是变化的,所以在程序运行中JVM是无法判断里面具体的值</li>
+<li>byte类型的变量在进行运算的时候,会自动类型提升为int类型 </li>
+</ul>
+</li>
+<li>byte b4 = 3 + 4;（可以正常运行无错误）<ul>
+<li>3和4都是常量,java有常量优化机制,就是在编译的的时候直接把3和4的结果赋值给b4了<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>A:案例演示</p>
+<ul>
+<li>请分别计算出a,b,c的值?</li>
+<li><pre><code>int a = 10;
+int b = 10;
+int c = 10;
+
+a = b++;        a=10,b=11        
+c = --a;        a=9,c=9    
+b = ++a;        a=10,b=10
+a = c--;        a=9,c=8    
+所以最后结果a=9,b=10,c=8
+</code></pre></li>
+</ul>
+</li>
+<li><p>B:案例演示</p>
+<ul>
+<li><p>请分别计算出x,y的值?</p>
+<pre><code>int x = 4;
+int y = (x++)+(++x)+(x*10);
+         4 + 6 + 60
+结果x=6，y=70
+</code></pre></li>
+</ul>
+</li>
+<li>C:面试题<ul>
+<li>byte b = 10; 正常</li>
+<li>b++;           正常（与下对比正常因为，运算符会有自动强转）</li>
+<li>b = b + 1;   报错，可能损失精度</li>
+<li>问哪句会报错,为什么 </li>
+</ul>
+</li>
+<li>D位运算符<pre><code>* 请自己实现两个整数变量的交换（不定义第三方变量）
+</code></pre><ul>
+<li>例子<br><img src="http://ocef6bnjz.bkt.clouddn.com/public/16-11-8/2848068.jpg" alt=""><h2 id="逻辑运算符-amp-amp-和-amp-的区别"><a href="#逻辑运算符-amp-amp-和-amp-的区别" class="headerlink" title="逻辑运算符&amp;&amp;和&amp;的区别"></a>逻辑运算符&amp;&amp;和&amp;的区别</h2></li>
+</ul>
+</li>
+<li>A:案例演示<ul>
+<li>&amp;&amp;和&amp;的区别?<ul>
+<li>a:最终结果一样。</li>
+<li>b:&amp;&amp;具有短路效果。左边是false，右边不执行。</li>
+<li>&amp;是无论左边是false还是true,右边都会执行</li>
+<li>例子<br><img src="http://ocef6bnjz.bkt.clouddn.com/public/16-11-8/96156740.jpg" alt=""><h2 id="赋值符"><a href="#赋值符" class="headerlink" title="赋值符"></a>赋值符</h2></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>A:案例演示<ul>
+<li>面试题:看下面的程序是否有问题，如果有问题，请指出并说明理由。</li>
+<li>short s=1;s = s+1;  //报错可能损失精度，因为也要提升为int计算，结果也是int</li>
+<li>short s=1;s+=1;     //正常不报错，s+ 和++一样也会自动加强转符号</li>
+</ul>
+</li>
+</ul>
+<h2 id="选择结构switch语句"><a href="#选择结构switch语句" class="headerlink" title="选择结构switch语句"></a>选择结构switch语句</h2><ul>
+<li>A:switch语句的格式</li>
+<li>if放的是条件表达式</li>
+<li>switch可以接受</li>
+<li>1.基本数据类型可以接受:byte，short,char,int(也就是可以转为int计算的比int精度高的不可以)</li>
+<li>2.引用数据表达式可以接受枚举（JDK1.5） 、String(1.7)</li>
+<li>B:面试题<ul>
+<li>byte可以作为switch的表达式吗? 可以</li>
+<li>long可以作为switch的表达式吗?不可以</li>
+<li>String可以作为switch的表达式吗?JDK1.7以后版本可以</li>
+</ul>
+</li>
+<li>C:注意事项<ul>
+<li>a:case后面只能是常量，不能是变量，而且，多个case后面的值不能出现相同的</li>
+<li>b:default可以省略吗?<ul>
+<li>可以省略，但是不建议，因为它的作用是对不正确的情况给出提示。</li>
+<li>特殊情况：<ul>
+<li>case就可以把值固定。</li>
+<li>如只有A,B,C,D4个选项</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>c:break可以省略吗?<ul>
+<li>最后一个可以省略,其他最好不要省略</li>
+<li>否则会出现一个现象：case穿透。</li>
+<li>最终建议不要省略</li>
+</ul>
+</li>
+<li>d:default一定要在最后吗?<ul>
+<li>不是，可以在任意位置。但是建议在最后。</li>
+</ul>
+</li>
+<li>e:switch语句的结束条件<ul>
+<li>a:遇到break就结束了</li>
+<li>b:执行到switch的右大括号就结束了</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>D:两个例子</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">* A:看程序写结果：</div><div class="line">* </div><div class="line">		int x = 2;</div><div class="line">		int y = 3;</div><div class="line">		switch(x)&#123;</div><div class="line">			default:</div><div class="line">				y++;</div><div class="line">				break;</div><div class="line">			case 3:</div><div class="line">				y++;</div><div class="line">			case 4:</div><div class="line">				y++;</div><div class="line">		&#125;</div><div class="line">		System.out.println(&quot;y=&quot;+y);    4  </div><div class="line">	</div><div class="line">* B:看程序写结果：</div><div class="line">* </div><div class="line">		int x = 2;</div><div class="line">		int y = 3;</div><div class="line">		switch(x)&#123;</div><div class="line">			default:</div><div class="line">				y++;</div><div class="line">			case 3:</div><div class="line">				y++;</div><div class="line">			case 4:</div><div class="line">				y++;</div><div class="line">		&#125;</div><div class="line">		System.out.println(&quot;y=&quot;+y);   6</div></pre></td></tr></table></figure>
+</li>
+<li><p>E:switch和if各自使用场景</p>
+<ul>
+<li>A:总结switch语句和if语句的各自使用场景</li>
+</ul>
+</li>
+<li>switch建议判断固定值的时候用</li>
+<li>if建议判断区间或范围的时候用</li>
+</ul>
+<h2 id="循环相关"><a href="#循环相关" class="headerlink" title="循环相关"></a>循环相关</h2><pre><code> j=1;
+while(j&lt;999);{
+
+ }
+</code></pre><ul>
+<li>注意while条件后面加分号，大括号内的语句就无法执行了。</li>
+<li>A:案例演示<ul>
+<li>三种循环语句的区别:</li>
+<li>do…while循环至少执行一次循环体。</li>
+<li>而for,while循环必须先判断条件是否成立，然后决定是否执行循环体语句。</li>
+</ul>
+</li>
+<li>B:案例演示<ul>
+<li>for循环和while循环的区别：<ul>
+<li>A:如果你想在循环结束后，继续使用控制条件的那个变量，用while循环，否则用for循环。不知道用谁就用for循环。因为变量及早的从内存中消失，可以提高内存的使用效率。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>C:死循环</li>
+<li>(循环结构注意事项之死循环)</li>
+<li>A:一定要注意控制条件语句控制的那个变量的问题，不要弄丢了，否则就容易死循环。</li>
+<li>B:两种最简单的死循环格式<ul>
+<li>while(true){…}</li>
+<li>for(;;){…}</li>
+</ul>
+</li>
+<li>D:break、continue<ul>
+<li>break跳出循环</li>
+<li>continue终止本次循环继续下次循环</li>
+</ul>
+</li>
+<li>E:break,continue综合练习题</li>
+<li><pre><code>for(int x=1; x&lt;=10; x++) {
+    if(x%3==0) {
+        //在此处填写代码
+    }
+    System.out.println(“Java基础班”);
+}
+
+我想在控制台输出2次:“Java基础班“
+我想在控制台输出7次:“Java基础班“
+我想在控制台输出13次:“Java基础班“    
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">	for(int x=1; x&lt;=10; x++) &#123;</div><div class="line">	if(x%3==0) &#123;</div><div class="line">		//break;						//我想在控制台输出2次:“Java基础班“</div><div class="line">		//continue;						//我想在控制台输出7次:“Java基础班“</div><div class="line">		System.out.println(&quot;Java基础&quot;);//我想在控制台输出13次:“Java基础班“	</div><div class="line">	&#125;</div><div class="line">	System.out.println(&quot;Java基础&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre></li>
+</ul>
+<h2 id="控制跳转语句return语句"><a href="#控制跳转语句return语句" class="headerlink" title="(控制跳转语句return语句)"></a>(控制跳转语句return语句)</h2><ul>
+<li>A:return的作用<ul>
+<li>返回</li>
+<li>其实它的作用不是结束循环的，而是结束方法的。</li>
+</ul>
+</li>
+<li>B:案例演示<ul>
+<li>return和break以及continue的区别?</li>
+<li>return是结束方法</li>
+<li>break是跳出循环</li>
+<li>continue是终止本次循环继续下次循环<h2 id="标号"><a href="#标号" class="headerlink" title="标号"></a>标号</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//mark 标记</div><div class="line">outer: for (int i = 1;i &lt;= 10 ;i++ ) &#123;		//outer就是标号,只要是合法的标识符即可</div><div class="line">	System.out.println(&quot;i = &quot; + i);</div><div class="line">	inner: for (int j = 1;j &lt;= 10 ;j++ ) &#123;</div><div class="line">		System.out.println(&quot;j = &quot; + j);</div><div class="line">		break outer;//跳出整个大循环，如果不加跳出一个</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">	</div><div class="line">System.out.println(&quot;大家好&quot;);</div><div class="line">http://www.heima.com</div><div class="line">//注意上一行也无错误为标号后面为单行注释</div><div class="line">System.out.println(&quot;才是真的好&quot;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p><img src="http://ocef6bnjz.bkt.clouddn.com/public/16-11-9/96549066.jpg" alt=""></p>
+<ul>
+<li>输出结果为<br><img src="http://ocef6bnjz.bkt.clouddn.com/public/16-11-9/88083539.jpg" alt=""></li>
+<li>[代表几维数组，I代表int类型@固定后面为16进制地址</li>
+<li></li>
+<li><p>A:二维数组格式1</p>
+<pre><code>int[][] arr = new int[3][2];
+</code></pre></li>
+<li>A:二维数组格式2<ul>
+<li>int[][] arr = new int[3][]; </li>
+<li>arr[0] = new int[3];</li>
+<li>arr[1] = new int[5];</li>
+</ul>
+</li>
+<li><p>B:注意事项</p>
+<ul>
+<li>a:以下格式也可以表示二维数组<ul>
+<li>1:数据类型 数组名[][] = new 数据类型[m][n];</li>
+<li>2:数据类型[] 数组名[] = new 数据类型[m][n];</li>
+</ul>
+</li>
+<li>b:注意下面定义的区别</li>
+<li><pre><code>int x;
+int y;
+int x,y;
+
+int[] x;
+int[] y[];
+
+int[] x,y[];    x是一维数组,y是二维数组
+</code></pre><h2 id="Java中的内存分配以及栈和堆的区别"><a href="#Java中的内存分配以及栈和堆的区别" class="headerlink" title="Java中的内存分配以及栈和堆的区别"></a>Java中的内存分配以及栈和堆的区别</h2></li>
+</ul>
+</li>
+<li>A:栈(掌握)<ul>
+<li>存储局部变量（引用） 例 int[] arr =new int[3];  arr（引用）在栈，int数组在堆</li>
+<li>还有方法</li>
+</ul>
+</li>
+<li>B:堆(掌握)<ul>
+<li>存储new出来的数组或对象 </li>
+</ul>
+</li>
+<li>C:方法区<ul>
+<li>面向对象部分讲解，简单来说代码区 </li>
+</ul>
+</li>
+<li>D:本地方法区<ul>
+<li>和系统相关 </li>
+</ul>
+</li>
+<li>E:寄存器<ul>
+<li>给CPU使用<h2 id="Java中的参数传递"><a href="#Java中的参数传递" class="headerlink" title="Java中的参数传递"></a>Java中的参数传递</h2></li>
+</ul>
+</li>
+<li>/*<br>基本数据类型的值传递,不改变原值,因为调用后就会弹栈,局部变量随之消失<br>引用数据类型的值传递,改变原值,因为即使方法弹栈,但是堆内存数组对象还在,可以通过地址继续访问</li>
+</ul>
+<p>Java中到底是传值还是传址<br>1,既是传值,也是传地址,基本数据类型传递的值,引用数据类型传递的地址<br>2,java中只有传值,因为地址值也是值(出去面试都说这种,支持者是高司令(java之父))</p>
+<h2 id="面向对象中的一些概念"><a href="#面向对象中的一些概念" class="headerlink" title="面向对象中的一些概念"></a>面向对象中的一些概念</h2><h3 id="1-面向对象创建一个对象的步骤"><a href="#1-面向对象创建一个对象的步骤" class="headerlink" title="1.面向对象创建一个对象的步骤"></a>1.面向对象创建一个对象的步骤</h3><ul>
+<li>A:<ul>
+<li>Student s = new Student();</li>
+<li>1,Student.class加载进内存</li>
+<li>2,栈中声明一个Student类型引用s</li>
+<li>3,在堆内存创建对象,</li>
+<li>4,给对象中属性默认初始化值</li>
+<li>5,属性进行显示初始化</li>
+<li>6,构造方法进栈,对对象中的属性赋值,构造方法弹栈</li>
+<li>7,将对象的地址值赋值给s<br>07.10_面向对象(static关键字的特点)(掌握)</li>
+</ul>
+</li>
+<li>A:static关键字的特点<ul>
+<li>a:随着类的加载而加载</li>
+<li>b:优先于对象存在</li>
+<li>c:被类的所有对象共享<ul>
+<li>举例：咱们班级的学生应该共用同一个班级编号。</li>
+<li>其实这个特点也是在告诉我们什么时候使用静态?<ul>
+<li>如果某个成员变量是被所有对象共享的，那么它就应该定义为静态的。</li>
+</ul>
+</li>
+<li>举例：<ul>
+<li>饮水机(用静态修饰)</li>
+<li>水杯(不能用静态修饰)</li>
+<li>共性用静态,特性用非静态</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>d:可以通过类名调用<ul>
+<li>其实它本身也可以通过对象名调用。</li>
+<li>推荐使用类名调用。</li>
+<li>静态修饰的内容一般我们称其为：与类相关的，类成员</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>B:一个类中都是静态方法<ul>
+<li>如果一个类中方法都是静态的，那要多做一步，创建静态构造函数，目的不让其他类创建本类对象</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-static的注意事项"><a href="#2-static的注意事项" class="headerlink" title="2.static的注意事项"></a>2.static的注意事项</h3><ul>
+<li>A:static的注意事项<ul>
+<li>a:在静态方法中是没有this关键字的<ul>
+<li>如何理解呢?<ul>
+<li>静态是随着类的加载而加载，this是随着对象的创建而存在。</li>
+<li>静态比对象先存在。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>b:静态方法只能访问静态的成员变量和静态的成员方法<ul>
+<li>静态方法：<ul>
+<li>成员变量：只能访问静态变量</li>
+<li>成员方法：只能访问静态成员方法</li>
+</ul>
+</li>
+<li>非静态方法：<ul>
+<li>成员变量：可以是静态的，也可以是非静态的</li>
+<li>成员方法：可是是静态的成员方法，也可以是非静态的成员方法。</li>
+</ul>
+</li>
+<li>简单记：<ul>
+<li>静态只能访问静态。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-静态变量和成员变量的区别"><a href="#3-静态变量和成员变量的区别" class="headerlink" title="3.静态变量和成员变量的区别"></a>3.静态变量和成员变量的区别</h3><ul>
+<li>静态变量也叫类变量  成员变量也叫对象变量</li>
+<li>A:所属不同<ul>
+<li>静态变量属于类，所以也称为为类变量</li>
+<li>成员变量属于对象，所以也称为实例变量(对象变量)</li>
+</ul>
+</li>
+<li>B:内存中位置不同<ul>
+<li>静态变量存储于方法区的静态区</li>
+<li>成员变量存储于堆内存</li>
+</ul>
+</li>
+<li>C:内存出现时间不同<ul>
+<li>静态变量随着类的加载而加载，随着类的消失而消失</li>
+<li>成员变量随着对象的创建而存在，随着对象的消失而消失</li>
+</ul>
+</li>
+<li>D:调用不同<ul>
+<li>静态变量可以通过类名调用，也可以通过对象调用</li>
+<li>成员变量只能通过对 象名调用<h3 id="4-代码块相关"><a href="#4-代码块相关" class="headerlink" title="4.代码块相关"></a>4.代码块相关</h3></li>
+<li>A:代码块概述</li>
+<li>在Java中，使用{}括起来的代码被称为代码块。</li>
+</ul>
+</li>
+<li>B:代码块分类<ul>
+<li>根据其位置和声明的不同，可以分为局部代码块，构造代码块，静态代码块，同步代码块(多线程讲解)。</li>
+</ul>
+</li>
+<li>C:常见代码块的应用<ul>
+<li>a:局部代码块 <ul>
+<li>在方法中出现；限定变量生命周期，及早释放，提高内存利用率</li>
+</ul>
+</li>
+<li>b:构造代码块 (初始化块)<ul>
+<li>在类中方法外出现；多个构造方法方法中相同的代码存放到一起，每次调用构造都执行，并且在构造方法前执行</li>
+</ul>
+</li>
+<li>c:静态代码块 <ul>
+<li>在类中方法外出现，并加上static修饰；用于给类进行初始化，在加载的时候就执行，优先于main方法，并且只执行一次。</li>
+<li>一般用于加载驱动</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>A:看程序写结果</li>
+<li><pre><code>class Student {
+    static {
+        System.out.println(&quot;Student 静态代码块&quot;);
+    }
+
+    {
+        System.out.println(&quot;Student 构造代码块&quot;);
+    }
+
+    public Student() {
+        System.out.println(&quot;Student 构造方法&quot;);
+    }
+}
+
+class Demo2_Student {
+    static {
+        System.out.println(&quot;Demo2_Student静态代码块&quot;);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(&quot;我是main方法&quot;);
+
+        Student s1 = new Student();
+        Student s2 = new Student();
+    }
+}
+</code></pre><h2 id="继承相关"><a href="#继承相关" class="headerlink" title="继承相关"></a>继承相关</h2><h3 id="1-继承的好处和弊端"><a href="#1-继承的好处和弊端" class="headerlink" title="1.继承的好处和弊端"></a>1.继承的好处和弊端</h3></li>
+<li>A:继承的好处<ul>
+<li>a:提高了代码的复用性</li>
+<li>b:提高了代码的维护性</li>
+<li>c:让类与类之间产生了关系，是多态的前提</li>
+</ul>
+</li>
+<li><p>B:继承的弊端</p>
+<ul>
+<li><p>类的耦合性增强了。</p>
+</li>
+<li><p>开发的原则：高内聚，低耦合。</p>
+</li>
+<li>耦合：类与类的关系</li>
+<li>内聚：就是自己完成某件事情的能力</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-Java中类的继承特点"><a href="#2-Java中类的继承特点" class="headerlink" title="2.Java中类的继承特点"></a>2.Java中类的继承特点</h3><ul>
+<li>A:Java中类的继承特点<ul>
+<li>a:Java只支持单继承，不支持多继承。(一个儿子只能有一个爹)<ul>
+<li>有些语言是支持多继承，格式：extends 类1,类2,…</li>
+</ul>
+</li>
+<li>b:Java支持多层继承(继承体系)</li>
+</ul>
+</li>
+<li>B:案例演示<ul>
+<li>Java中类的继承特点<ul>
+<li>如果想用这个体系的所有功能用最底层的类创建对象</li>
+<li>如果想看这个体系的共性功能,看最顶层的类 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-继承的注意事项和什么时候使用继承"><a href="#3-继承的注意事项和什么时候使用继承" class="headerlink" title="3.继承的注意事项和什么时候使用继承"></a>3.继承的注意事项和什么时候使用继承</h3><ul>
+<li>A:继承的注意事项<ul>
+<li>a:子类只能继承父类所有非私有的成员(成员方法和成员变量)</li>
+<li>b:子类不能继承父类的构造方法，但是可以通过super(马上讲)关键字去访问父类构造方法。</li>
+<li>c:不要为了部分功能而去继承</li>
+<li>项目经理 姓名 工号 工资 奖金</li>
+<li>程序员    姓名 工号 工资</li>
+</ul>
+</li>
+<li><p>B:什么时候使用继承</p>
+<ul>
+<li><p>继承其实体现的是一种关系：”is a”。<br>  Person</p>
+<pre><code>Student
+Teacher
+</code></pre><p>  水果</p>
+<pre><code>苹果
+香蕉
+橘子
+</code></pre><p>采用假设法。<br>  如果有两个类A,B。只有他们符合A是B的一种，或者B是A的一种，就可以考虑使用继承。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-this和super的区别和应用"><a href="#4-this和super的区别和应用" class="headerlink" title="4.this和super的区别和应用"></a>4.this和super的区别和应用</h3><ul>
+<li>A:this和super都代表什么<ul>
+<li>this:代表当前对象的引用,谁来调用我,我就代表谁</li>
+<li>super:代表当前对象父类的引用</li>
+</ul>
+</li>
+<li>B:this和super的使用区别<ul>
+<li>a:调用成员变量<ul>
+<li>this.成员变量 调用本类的成员变量,也可以调用父类的成员变量</li>
+<li>super.成员变量 调用父类的成员变量</li>
+</ul>
+</li>
+<li>b:调用构造方法<ul>
+<li>this(…)    调用本类的构造方法</li>
+<li>super(…)    调用父类的构造方法</li>
+</ul>
+</li>
+<li>c:调用成员方法<ul>
+<li>this.成员方法 调用本类的成员方法,也可以调用父类的方法</li>
+<li>super.成员方法 调用父类的成员方法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-继承中构造方法的关系"><a href="#5-继承中构造方法的关系" class="headerlink" title="5.继承中构造方法的关系"></a>5.继承中构造方法的关系</h3><ul>
+<li>A:案例演示<ul>
+<li>子类中所有的构造方法默认都会访问父类中空参数的构造方法</li>
+</ul>
+</li>
+<li><p>B:为什么呢?</p>
+<ul>
+<li>因为子类会继承父类中的数据，可能还会使用父类的数据。</li>
+<li><p>所以，子类初始化之前，一定要先完成父类数据的初始化。</p>
+</li>
+<li><p>其实：</p>
+<ul>
+<li>每一个构造方法的第一条语句默认都是：super() Object类最顶层的父类。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-继承中构造方法的注意事项"><a href="#6-继承中构造方法的注意事项" class="headerlink" title="6.继承中构造方法的注意事项"></a>6.继承中构造方法的注意事项</h3><ul>
+<li>A:案例演示<ul>
+<li>父类没有无参构造方法,子类怎么办?</li>
+<li>super解决</li>
+<li>this解决</li>
+</ul>
+</li>
+<li>B:注意事项<ul>
+<li>super(…)或者this(….)必须出现在构造方法的第一条语句上</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-继承中的面试题"><a href="#7-继承中的面试题" class="headerlink" title="7.继承中的面试题"></a>7.继承中的面试题</h3><ul>
+<li>A:案例演示</li>
+<li><p>看程序写结果1<br>class Fu{<br>  public int num = 10;<br>  public Fu(){</p>
+<pre><code>System.out.println(&quot;fu&quot;);
+</code></pre><p>  }<br>}<br>class Zi extends Fu{<br>  public int num = 20;<br>  public Zi(){</p>
+<pre><code>System.out.println(&quot;zi&quot;);
+</code></pre><p>  }<br>  public void show(){</p>
+<pre><code>int num = 30;
+System.out.println(num);
+System.out.println(this.num);
+System.out.println(super.num);
+</code></pre><p>  }<br>}<br>class Test1_Extends {<br>  public static void main(String[] args) {</p>
+<pre><code>Zi z = new Zi();
+z.show();
+</code></pre><p>  }<br>}<br><img src="http://ocef6bnjz.bkt.clouddn.com/public/16-11-23/94911052.jpg" alt=""></p>
+<p>看程序写结果2<br>class Fu {<br>  static {</p>
+<pre><code>System.out.println(&quot;静态代码块Fu&quot;);
+</code></pre><p>  }</p>
+<p>  {</p>
+<pre><code>System.out.println(&quot;构造代码块Fu&quot;);
+</code></pre><p>  }</p>
+<p>  public Fu() {</p>
+<pre><code>System.out.println(&quot;构造方法Fu&quot;);
+</code></pre><p>  }<br>}</p>
+<p>class Zi extends Fu {<br>  static {</p>
+<pre><code>System.out.println(&quot;静态代码块Zi&quot;);
+</code></pre><p>  }</p>
+<p>  {</p>
+<pre><code>System.out.println(&quot;构造代码块Zi&quot;);
+</code></pre><p>  }</p>
+<p>  public Zi() {</p>
+<pre><code>System.out.println(&quot;构造方法Zi&quot;);
+</code></pre><p>  }<br>}</p>
+<p>Zi z = new Zi(); 请执行结果。<br><img src="http://ocef6bnjz.bkt.clouddn.com/public/16-11-23/24384281.jpg" alt=""><br><img src="http://ocef6bnjz.bkt.clouddn.com/public/16-11-23/30558704.jpg" alt=""></p>
+</li>
+</ul>
+<h3 id="8-方法重写概述及其应用"><a href="#8-方法重写概述及其应用" class="headerlink" title="8.方法重写概述及其应用"></a>8.方法重写概述及其应用</h3><ul>
+<li>A:什么是方法重写<ul>
+<li>重写:子父类出现了一模一样的方法(注意:返回值类型可以是子父类,这个我们学完面向对象讲) </li>
+</ul>
+</li>
+<li>B:方法重写的应用：<ul>
+<li>当子类需要父类的功能，而功能主体子类有自己特有内容时，可以重写父类中的方法。这样，即沿袭了父类的功能，又定义了子类特有的内容。</li>
+</ul>
+</li>
+<li>C:案例演示<ul>
+<li>a:定义一个手机类。</li>
+</ul>
+</li>
+</ul>
+<h3 id="9-方法重写的注意事项"><a href="#9-方法重写的注意事项" class="headerlink" title="9.方法重写的注意事项"></a>9.方法重写的注意事项</h3><ul>
+<li><p>A:方法重写注意事项</p>
+<ul>
+<li>a:父类中私有方法不能被重写<ul>
+<li>因为父类私有方法子类根本就无法继承</li>
+</ul>
+</li>
+<li>b:子类重写父类方法时，访问权限不能更低<ul>
+<li>最好就一致</li>
+</ul>
+</li>
+<li><p>c:父类静态方法，子类也必须通过静态方法进行重写</p>
+<ul>
+<li>其实这个算不上方法重写，但是现象确实如此，至于为什么算不上方法重写，多态中我会讲解(静态只能覆盖静态)</li>
+</ul>
+</li>
+<li><p>子类重写父类方法的时候，最好声明一模一样。</p>
+</li>
+</ul>
+</li>
+<li>B:案例演示<ul>
+<li>方法重写注意事项</li>
+</ul>
+</li>
+</ul>
+<h3 id="10-方法重写的面试题"><a href="#10-方法重写的面试题" class="headerlink" title="10. 方法重写的面试题"></a>10. 方法重写的面试题</h3><ul>
+<li><p>A:方法重写的面试题</p>
+<ul>
+<li>Override和Overload的区别?Overload能改变返回值类型吗?</li>
+<li>overload可以改变返回值类型,只看参数列表</li>
+<li><p>方法重写：子类中出现了和父类中方法声明一模一样的方法。与返回值类型有关,返回值是一致(或者是子父类)的</p>
+</li>
+<li><p>方法重载：本类中出现的方法名一样，参数列表不同的方法。与返回值类型无关。</p>
+</li>
+<li><p>子类对象调用方法的时候：</p>
+<ul>
+<li>先找子类本身，再</li>
+<li>找父类。<h2 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h2></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>A:final概述</li>
+<li><p>B:final修饰特点</p>
+<ul>
+<li>修饰类，类不能被继承</li>
+<li>修饰变量，变量就变成了常量，只能被赋值一次 一半与public公用如 public static int a;</li>
+<li><p>修饰方法，方法不能被重写</p>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><pre><code>class Fu {
+    public void show() {
+        System.out.println(&quot;fu show&quot;);
+    }
+}
+
+class Zi extends Fu {
+    public void show() {
+        System.out.println(&quot;zi show&quot;);
+    }
+
+    public void method() {
+        System.out.println(&quot;zi method&quot;);
+    }
+}
+
+class Test1Demo {
+    public static void main(String[] args) {
+        Fu f = new Zi();
+        f.method();//这句有问题不能调用子类特有的方法
+        f.show();
+    }
+}
+</code></pre></li>
+</ul>
+</li>
+<li><p>B:看下面程序是否有问题，如果没有，说出结果</p>
+</li>
+<li><pre><code>class A {
+    public void show() {
+        show2();
+    }
+    public void show2() {
+        System.out.println(&quot;我&quot;);
+    }
+}
+class B extends A {
+    public void show() {
+        show2();
+    }
+    public void show2() {
+        System.out.println(&quot;爱&quot;);
+    }
+}
+class C extends B {
+    public void show() {
+        super.show();
+    }
+    public void show2() {
+        System.out.println(&quot;你&quot;);
+    }
+}
+public class Test2DuoTai {
+    public static void main(String[] args) {
+        A a = new B();
+        a.show();
+
+        B b = new C();
+        b.show();
+    }
+}
+</code></pre><p>  *输出爱你，因为show方法可以继承下来，第二个因为调用父类show,而show方法调用show2调用的还是子类的show2,所以输出的是你。</p>
+</li>
+</ul>
+<h2 id="抽象相关"><a href="#抽象相关" class="headerlink" title="抽象相关"></a>抽象相关</h2><ul>
+<li>A:面试题1<ul>
+<li>一个抽象类如果没有抽象方法，可不可以定义为抽象类?如果可以，有什么意义?<ul>
+<li>可以</li>
+<li>这么做目的只有一个,就是不让其他类创建本类对象,交给子类完成</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>B:面试题2<ul>
+<li>abstract不能和哪些关键字共存<ul>
+<li>abstract和static不能共存<ul>
+<li>因为被abstract修饰的方法没有方法体</li>
+<li>被static修饰的可以用类名.调用，但是类名.调用抽象方法是没有意义的</li>
+</ul>
+</li>
+<li>abstract和final不能共存<br>  *被abstract修饰的强制子类重写而被final修饰的不让重写</li>
+<li>abstract和private<br>  *被abstract修饰的是为了让子类看见而private不让子类看见<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><h3 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h3><pre><code>本类     同一个包下(子类和无关类)    不同包下(子类)    不同包下(无关类)
+</code></pre>private     Y<br>默认            Y        Y<br>protected    Y        Y                            Y<br>public        Y        Y                            Y                Y<h3 id="面向对象-成员内部类的面试题"><a href="#面向对象-成员内部类的面试题" class="headerlink" title="面向对象(成员内部类的面试题"></a>面向对象(成员内部类的面试题</h3></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>A:面试题</li>
+<li><pre><code>要求：使用已知的变量，在控制台输出30，20，10。
+
+class Outer {
+    public int num = 10;
+    class Inner {
+        public int num = 20;
+        public void show() {
+            int num = 30;
+            System.out.println(?); num
+            System.out.println(??); this.num
+            System.out.println(???); Outer.this.num
+        }
+    }
+}
+class InnerClassTest {
+    public static void main(String[] args) {
+        Outer.Inner oi = new Outer().new Inner();
+        oi.show();
+    }    
+}
+</code></pre></li>
+<li>B ==号和equals方法的区别</li>
+<li>==是一个比较运算符号,既可以比较基本数据类型,也可以比较引用数据类型,基本数据类型比较的是值,引用数据类型比较的是地址值</li>
+<li>equals方法是一个方法,只能比较引用数据类型,所有的对象都会继承Object类中的方法,如果没有重写Object类中的equals方法,equals方法和==号比较引用数据类型无区别,重写后的equals方法比较的是对象中的属性</li>
+</ul>
+<h2 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h2><ul>
+<li><p>1.判断定义为String类型的s1和s2是否相等</p>
+<pre><code>String s1 = &quot;abc&quot;;
+String s2 = &quot;abc&quot;;
+System.out.println(s1 == s2);   //true 虽然比较的是引用对象，但是String放在常量池里，所以是一样的
+System.out.println(s1.equals(s2)); //true
+</code></pre></li>
+<li><p>2.下面这句话在内存中创建了几个对象?</p>
+<p>  String s1 = new String(“abc”);<br>  //创建了2个，一个是在常量池创建‘“abc”这个对象，另一个是在堆里创建</p>
+</li>
+<li><p>3.判断定义为String类型的s1和s2是否相等</p>
+<p>  String s1 = new String(“abc”);<br>  String s2 = “abc”;<br>  System.out.println(s1 == s2); ?  //false 第一个s1是在堆内存中，s2是在常量池中<br>  System.out.println(s1.equals(s2)); ?  //true</p>
+</li>
+<li><p>4.判断定义为String类型的s1和s2是否相等</p>
+<p>  String s1 = “a” + “b” + “c”;<br>  String s2 = “abc”;<br>  System.out.println(s1 == s2); ?      //true,java中有常量优化机制所以等同于上述1题，指向同一个常量值“abc”<br>  System.out.println(s1.equals(s2)); ? //true</p>
+</li>
+<li><p>5.判断定义为String类型的s1和s2是否相等</p>
+<p>  String s1 = “ab”;<br>  String s2 = “abc”;<br>  String s3 = s1 + “c”;<br>  System.out.println(s3 == s2);   //false 注意s3=s1+”c”;其中s1是变量，并不是常量，由其和“+”符号相连得到的字符串不在常量池，而是在堆内转换的<br>  System.out.println(s3.equals(s2)); ? //true</p>
+</li>
+<li><p>6.String,StringBuffer,StringBuilder的区别</p>
+<ul>
+<li>StringBuffer和StringBuilder的区别</li>
+<li>StringBuffer是jdk1.0版本的,是线程安全的,效率低</li>
+<li><p>StringBuilder是jdk1.5版本的,是线程不安全的,效率高</p>
+</li>
+<li><p>String和StringBuffer,StringBuilder的区别</p>
+</li>
+<li>String是一个不可变的字符序列</li>
+<li>StringBuffer,StringBuilder是可变的字符序列</li>
+</ul>
+</li>
+</ul>
+<h2 id="Integer"><a href="#Integer" class="headerlink" title="Integer"></a>Integer</h2><ul>
+<li><pre><code>看程序写结果
+
+Integer i1 = new Integer(97);
+Integer i2 = new Integer(97);
+System.out.println(i1 == i2);       //false
+System.out.println(i1.equals(i2));  //true        
+System.out.println(&quot;-----------&quot;);
+
+Integer i3 = new Integer(197);
+Integer i4 = new Integer(197);
+System.out.println(i3 == i4);      //false
+System.out.println(i3.equals(i4)); //true
+System.out.println(&quot;-----------&quot;);
+
+Integer i5 = 127; //-128-127都可以
+Integer i6 = 127;
+System.out.println(i5 == i6);      //true
+System.out.println(i5.equals(i6)); //true
+System.out.println(&quot;-----------&quot;);
+
+Integer i7 = 128;   大于等于128
+Integer i8 = 128;
+System.out.println(i7 == i8);      //false
+System.out.println(i7.equals(i8)); //true
+
+* 上述两个“==”判断结果不同，因为JDK5新特性，有自动装箱机制，
+* -128-127是byte的取值范围，如果在这个范围就不会创建新的对象
+* 但是超过这个范围内就会创建对象了
+</code></pre></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/personnal/wechat-reward-image.jpg" alt="FangHeart WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/personnal/alipay-reward-image.jpg" alt="FangHeart Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java基础/" rel="tag"># java基础</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/14/8皇后/" rel="next" title="8皇后">
+                <i class="fa fa-chevron-left"></i> 8皇后
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/personnal/author.jpg"
+               alt="FangHeart" />
+          <p class="site-author-name" itemprop="name">FangHeart</p>
+           
+              <p class="site-description motion-element" itemprop="description">不忘初心，方得始终。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fangheart" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2013845927/" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/fangheart" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fangheart@fangheart.win" target="_blank" title="邮箱">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  邮箱
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://haroldliu.weebly.com" title="HaroldLiuChi" target="_blank">HaroldLiuChi</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://guangyugao.weebly.com/" title="GaoGuangYu" target="_blank">GaoGuangYu</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wenjiewang.top" title="WenJieWang" target="_blank">WenJieWang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/it_dx" title="DuanXiong" target="_blank">DuanXiong</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dongxicheng.org/recommend/" title="DongXiCheng" target="_blank">DongXiCheng</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量和常量"><span class="nav-number">1.</span> <span class="nav-text">变量和常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符"><span class="nav-number">2.</span> <span class="nav-text">运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑运算符-amp-amp-和-amp-的区别"><span class="nav-number">3.</span> <span class="nav-text">逻辑运算符&&和&的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#赋值符"><span class="nav-number">4.</span> <span class="nav-text">赋值符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择结构switch语句"><span class="nav-number">5.</span> <span class="nav-text">选择结构switch语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环相关"><span class="nav-number">6.</span> <span class="nav-text">循环相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制跳转语句return语句"><span class="nav-number">7.</span> <span class="nav-text">(控制跳转语句return语句)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标号"><span class="nav-number">8.</span> <span class="nav-text">标号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">9.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中的内存分配以及栈和堆的区别"><span class="nav-number">10.</span> <span class="nav-text">Java中的内存分配以及栈和堆的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中的参数传递"><span class="nav-number">11.</span> <span class="nav-text">Java中的参数传递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象中的一些概念"><span class="nav-number">12.</span> <span class="nav-text">面向对象中的一些概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-面向对象创建一个对象的步骤"><span class="nav-number">12.1.</span> <span class="nav-text">1.面向对象创建一个对象的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-static的注意事项"><span class="nav-number">12.2.</span> <span class="nav-text">2.static的注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-静态变量和成员变量的区别"><span class="nav-number">12.3.</span> <span class="nav-text">3.静态变量和成员变量的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-代码块相关"><span class="nav-number">12.4.</span> <span class="nav-text">4.代码块相关</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承相关"><span class="nav-number">13.</span> <span class="nav-text">继承相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-继承的好处和弊端"><span class="nav-number">13.1.</span> <span class="nav-text">1.继承的好处和弊端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Java中类的继承特点"><span class="nav-number">13.2.</span> <span class="nav-text">2.Java中类的继承特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-继承的注意事项和什么时候使用继承"><span class="nav-number">13.3.</span> <span class="nav-text">3.继承的注意事项和什么时候使用继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-this和super的区别和应用"><span class="nav-number">13.4.</span> <span class="nav-text">4.this和super的区别和应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-继承中构造方法的关系"><span class="nav-number">13.5.</span> <span class="nav-text">5.继承中构造方法的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-继承中构造方法的注意事项"><span class="nav-number">13.6.</span> <span class="nav-text">6.继承中构造方法的注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-继承中的面试题"><span class="nav-number">13.7.</span> <span class="nav-text">7.继承中的面试题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-方法重写概述及其应用"><span class="nav-number">13.8.</span> <span class="nav-text">8.方法重写概述及其应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-方法重写的注意事项"><span class="nav-number">13.9.</span> <span class="nav-text">9.方法重写的注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-方法重写的面试题"><span class="nav-number">13.10.</span> <span class="nav-text">10. 方法重写的面试题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#final关键字"><span class="nav-number">14.</span> <span class="nav-text">final关键字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态"><span class="nav-number">15.</span> <span class="nav-text">多态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象相关"><span class="nav-number">16.</span> <span class="nav-text">抽象相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象"><span class="nav-number">17.</span> <span class="nav-text">面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#权限"><span class="nav-number">17.1.</span> <span class="nav-text">权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象-成员内部类的面试题"><span class="nav-number">17.2.</span> <span class="nav-text">面向对象(成员内部类的面试题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String类"><span class="nav-number">18.</span> <span class="nav-text">String类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Integer"><span class="nav-number">19.</span> <span class="nav-text">Integer</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-FangHeart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FangHeart</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      个访问本站的人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "eb7c3e4313a441e99919491234887c0d",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("EFaViLzEeIm1xLj3lRgl6Ktw-gzGzoHsz", "6QrsfTcpIvP6XuQ8mKM70tx9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+
+  
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<!-- 背景动画 -->
+<script type="text/javascript" src="/js/src/particle.js"></script>
+
+</body>
+</html>

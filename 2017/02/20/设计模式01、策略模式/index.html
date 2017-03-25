@@ -1,0 +1,1241 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="设计模式," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/personnal/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="设计模式原则1. 封装变化
+2.多用组合少用继承（01）【使用组合建立系统具有很大的弹性，不禁可以讲算法族封装成类，更可以“在运行时动态的改变行为”，只要组合的行为对象符合正确的接口标准即可】
+3.针对接口编程，不针对实现编程（01）【一种理解即使真实的针对interface的编程，也可理解成利用多态针对超类进行编程，根据具体的情况执行真正的行为，不会绑死在超类上，针对超类进行编程可以更明确的说成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="http://www.fangheart.top/2017/02/20/设计模式01、策略模式/index.html">
+<meta property="og:site_name" content="FangHeart's blog">
+<meta property="og:description" content="设计模式原则1. 封装变化
+2.多用组合少用继承（01）【使用组合建立系统具有很大的弹性，不禁可以讲算法族封装成类，更可以“在运行时动态的改变行为”，只要组合的行为对象符合正确的接口标准即可】
+3.针对接口编程，不针对实现编程（01）【一种理解即使真实的针对interface的编程，也可理解成利用多态针对超类进行编程，根据具体的情况执行真正的行为，不会绑死在超类上，针对超类进行编程可以更明确的说成">
+<meta property="og:updated_time" content="2017-02-23T08:58:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式">
+<meta name="twitter:description" content="设计模式原则1. 封装变化
+2.多用组合少用继承（01）【使用组合建立系统具有很大的弹性，不禁可以讲算法族封装成类，更可以“在运行时动态的改变行为”，只要组合的行为对象符合正确的接口标准即可】
+3.针对接口编程，不针对实现编程（01）【一种理解即使真实的针对interface的编程，也可理解成利用多态针对超类进行编程，根据具体的情况执行真正的行为，不会绑死在超类上，针对超类进行编程可以更明确的说成">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.fangheart.top/2017/02/20/设计模式01、策略模式/"/>
+
+
+
+
+
+  <title> 设计模式 | FangHeart's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FangHeart's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">爱生活，爱编码。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.fangheart.top/2017/02/20/设计模式01、策略模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FangHeart">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/personnal/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FangHeart's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                设计模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-20T09:33:29+08:00">
+                2017-02-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/02/20/设计模式01、策略模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/02/20/设计模式01、策略模式/" class="leancloud_visitors" data-flag-title="设计模式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="设计模式原则"><a href="#设计模式原则" class="headerlink" title="设计模式原则"></a>设计模式原则</h2><pre><code>1. 封装变化
+2.多用组合少用继承（01）【使用组合建立系统具有很大的弹性，不禁可以讲算法族封装成类，更可以“在运行时动态的改变行为”，只要组合的行为对象符合正确的接口标准即可】
+3.针对接口编程，不针对实现编程（01）【一种理解即使真实的针对interface的编程，也可理解成利用多态针对超类进行编程，根据具体的情况执行真正的行为，不会绑死在超类上，针对超类进行编程可以更明确的说成变量的声明类型应该是超类型，通常是一个抽象类或者是一个接口，如此只要是具体实现此超类型的类所产生的对象度可以指定给这个变量，也意味着，声明类时不用理会以后执行时的真正对象类型。】    4.为了交互对象之间松耦合设计而努力，即两者可以交互，但不必清楚彼此的细节，并且当改变两种交互对象，或者在其他地方可以复用，对另一种对象无影响。（02）
+5.类应该对扩展开放，对修改关闭。（03）
+6.要依赖抽象，不要依赖于具体类。（04）【代码里减少对具体类的依赖是个好事，还有一个专有名词叫做依赖倒置原则，其中有几个关键点（并非都要遵从）（1）变量不可以持有具体类的引用（2）不要让类派生自己的具体类（3）不要覆盖基类中已经实现的方法】
+7.最少知识原则，只和紧密相关的对象交互。（07）
+8.好莱坞原则，低层组件尽量不调用高层组件【父类】，让高层组件来调用低层。（08）
+</code></pre><h3 id="01、策略模式（Strategy）-对象行为型"><a href="#01、策略模式（Strategy）-对象行为型" class="headerlink" title="01、策略模式（Strategy）[对象行为型]"></a>01、策略模式（Strategy）[对象行为型]</h3><pre><code>策略模式定义了算法族，分别封装起来，让他们各个之间可以相互替换，此模式让算法的变化独立于使用算法的客户之外。
+</code></pre><h3 id="02、观察者模式（Observer）"><a href="#02、观察者模式（Observer）" class="headerlink" title="02、观察者模式（Observer）"></a>02、观察者模式（Observer）</h3><p>观察者模式定义了对象之间的一对多依赖，这样一来，当一个对象改变状态，他的所有依赖者都会受到通知并自动更新。即一个subject对应多个observer.观察者依赖于主题，只要主题状态一有变化，观察者就会被通知，根据通知的风格，观察者可能因此新值而更新。</p>
+<p>javaAPI中内置了观察者者模式，不仅可以发生变化时推送给观察者，还可以观察者自己像主题索取，在java.util中的Observer接口（是类需要继承）与Observable接口（是一个类）。</p>
+<h3 id="03、-装饰者模式（Decorator）"><a href="#03、-装饰者模式（Decorator）" class="headerlink" title="03、 装饰者模式（Decorator）"></a>03、 装饰者模式（Decorator）</h3><pre><code>装饰者模式动态的将责任附加到对象上，若要拓展功能，装饰者提供了比继承更有弹性的替代方案。【目标即使允许类容易扩展，在不修改现有代码的情况下，就可以搭配新的行为，这样设计更具有弹性可以应对改变，可以接受新的功能来应对改变的需求。注意装饰和被装饰者应该是同样的类型的，即拥有同样的超类。】
+</code></pre><h3 id="04、-工厂模式"><a href="#04、-工厂模式" class="headerlink" title="04、 工厂模式"></a>04、 工厂模式</h3><pre><code>工厂方法模式定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到子类。
+* 工厂方法用来出处理对象的创建，并将这样的行为封装在子类中，这样客户程序中关于超类的代码就和子类对象创建代码解耦了。
+* 所有工厂模式都用来封装对象的创建。工厂方法模式（Factory Method Pattern）通过让子类决定该创建的对象是什么，来达到将对象创建的过程封装的目的。
+#### 抽象工厂模式提供一个接口，用于创建相关或依赖对象的家族，而不要明确指定具体类。
+####工厂方法与抽象工厂的区别
+    * 工厂方法运用的是类的继承，而抽象方法是对象的组合
+    * 工厂方法创建对象需要扩展一个类，并且覆盖他的工厂方法，通过子类来创建对象，客户只需要知道所使用的的抽象类型就可以，由子类来决定具体的类型，只负责将客户从具体类型中解耦。而抽象工厂是创建一个产品家族的抽象类型，这个类型的子类定义了产品被产生的方法。所以要使用这个工厂，必须实例化它。
+    *    总结：当需要创建产品家族或者想要制造相关产品集合起来时，就使用抽象工厂。当想将客户代码从实例化的具体类中解耦或者目前还不知道将来需要实例化哪些具体类时，就用工厂方法。
+</code></pre><h3 id="05、-单件模式（Singleton-pattern）"><a href="#05、-单件模式（Singleton-pattern）" class="headerlink" title="05、 单件模式（Singleton pattern）"></a>05、 单件模式（Singleton pattern）</h3><pre><code>确保一个类只有一个实例，并提供一个全局访问点。原理即是构造函数私有化，如果想使用到实例对象，那么通过调用类的静态方法getInstance来实现。那么久可以向全局变量一样简单的访问，但是还有它的优点单件可以延迟实例化，并且具有一般类的方法和变量【用来管理共享资源如数据库的连接或者线程池】
+    代码示例
+
+    // NOTE: This is not thread safe!
+
+    public class Singleton {
+        private static Singleton uniqueInstance;//静态私有变量
+
+        // other useful instance variables here
+
+        private Singleton() {}//私有构造函数
+
+        public static Singleton getInstance() {
+            if (uniqueInstance == null) {
+                uniqueInstance = new Singleton();//通过类内方法调用私有构造函数产生实例
+            }
+            return uniqueInstance;
+        }
+
+        // other useful methods here
+    }
+
+    但上面的代码如果是多线程的可能还存在一些问题，因为多线程可能是不安全的，因为我们需要保证在多线程模式下可以正常工作，不要产生多个uniqueInstance静态实例化对象。所以又有了如下几种考虑。
+
+    public class Singleton {
+        private static Singleton uniqueInstance;//静态私有变量
+
+        // other useful instance variables here
+
+        private Singleton() {}//私有构造函数
+
+        public static synchronized Singleton getInstance() {//方法加同步修饰
+            if (uniqueInstance == null) {
+                uniqueInstance = new Singleton();//通过类内方法调用私有构造函数产生实例
+            }
+            return uniqueInstance;
+        }
+
+        // other useful methods here
+    }
+    上述这种写法每次调用都要需要同步这个方法，而实际我门只需要第一次执行的时候才需要此方法，那么性能就有点低了，如果不考虑性能，可以接受getInstance的额外负担，那么久可以使用synchronized同步。
+
+    如果你非常急切的需要创建单件实例，而又不想延迟实例化那么可以看下如下做法。
+    public class Singleton {
+                private static Singleton uniqueInstance = new Singleton();//直接创建静态私有变量单件实例
+
+                // other useful instance variables here
+
+                private Singleton() {}//私有构造函数
+
+                public static Singleton getInstance() {
+                    return uniqueInstance;
+                }
+
+                // other useful methods here
+            }
+    利用如上方法，我们依赖JVM在加载这个类的时候马上创建此唯一单件实例，这样任何线程访问unniqueInstance静态变量之前，一定会创建此实例。
+
+    其实还有更高端的办法是运用双重检查加锁，原理是首先检查是否实例已经创建，如果尚未创建，才进行同步。只有第一次会同步，这也真是我们所期盼的。
+
+    public class Singleton {
+        private volatile static Singleton uniqueInstance;//volatile关键词确保当uniqueInstance变量被初始化成实例时候，多个线程能正确的处理uniqueInstance。
+
+        // other useful instance variables here
+
+        private Singleton() {}//私有构造函数
+
+        public static Singleton getInstance() {
+            if (uniqueInstance == null) {//检查实例如果不存在就进入同步区块
+            synchronized（Singleton.class）{
+            if (uniqueInstance == null){//进入同步块后再检查一次
+                uniqueInstance = new Singleton();//只有第一次才彻底执行这里的代码
+                }
+            }
+            }
+            return uniqueInstance;
+        }
+
+        // other useful methods here
+    }
+</code></pre><h3 id="06-命令模式（Comand）封装调用"><a href="#06-命令模式（Comand）封装调用" class="headerlink" title="06.命令模式（Comand）封装调用"></a>06.命令模式（Comand）封装调用</h3><pre><code>命令模式将请求封装成对象，以便使用不同的请求、队列或者日志来参数化其他对象。命令模式也可以支持撤销的操作。【命令模式可以将动作的请求者从动作的执行者对象中解耦；在被解耦的两者之间是通命令进行沟通的。命令对象封装了接收者和一个或一组动作；调用者通过调用命令对象的execute()发出请求，这会使接收者的动作被调用；调用者可以接受命令当做参数，甚至在运行时动态进行；命令可以支持撤销，做法是一个undo()来与excute相反执行；命令也可以用来实现日志事务系统】。
+</code></pre><h3 id="07-1-适配器模式（adaper-pattern）"><a href="#07-1-适配器模式（adaper-pattern）" class="headerlink" title="07-1.适配器模式（adaper-pattern）"></a>07-1.适配器模式（adaper-pattern）</h3><pre><code>适配器模式将一个类的接口，转换成客户期望的另一个接口。适配器让原本接口不兼容的类可以合作无间。
+</code></pre><h3 id="07-2-外观模式-Facede-Pattern"><a href="#07-2-外观模式-Facede-Pattern" class="headerlink" title="07-2.外观模式(Facede-Pattern)"></a>07-2.外观模式(Facede-Pattern)</h3><pre><code>外观模式提供了一个统一的接口，用来访问子系统中的一群接口，外观定义了一个高层接口，让子系统更容易使用。
+适配器模式与外观模式都可以包装许多类，但他们的区别在于适配器的意图是改变接口符合客户的期望，而外观模式的意图是提供子系统的一个简化接口（不禁简化接口，也将客户从组件的子系统中解耦）。【当需要使用一个现有的类而其接口并部分符合你的需求时，就需要使用适配器；当需要简化并统一一个很大的接口或者一群复杂的借口时，使用外观；适配器改变接口以符合客户的期望；外观将客户从一个复杂的子系统中解耦；实现一个适配器的复杂程度视目标接口的大小与复杂度决定；实现一个外观需要将子系统组合进外观，然后将工作委托给子系统执行；适配器有两种形式对象适配器和类适配器，类适配器需要用到多重继承；适配器将一个对象包装起来以改变其接口，装饰者是将一个对象包装起来以增加新的行为和责任，外观将一群对象包装起来以简化其接口。】
+</code></pre><h3 id="08-模板方法模式（templateMethod）"><a href="#08-模板方法模式（templateMethod）" class="headerlink" title="08. 模板方法模式（templateMethod）"></a>08. 模板方法模式（templateMethod）</h3><pre><code>模板方法模式在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法的某些步骤。【模板方法模式为我们提供了一种代码复用的重要技巧；模板方法的抽象类可以定义具体的方法、抽象方法和钩子。抽象方法由子类来实现；钩子是一种方法，他在抽象类中不做任何事，或者做默认的事情，子类可以选择要不要去覆盖它；为了防止子类改变模板方法中的算法，可以把模板方法定义为final;好莱坞原则，应该讲决策权放在高层模块中，以便决定如何以及何时调用低层模块;策略模式和模板方法都是封装算法，但是一个用于组合，一个用于继承。工厂方法可以看做成模板方法的一个特殊版本。】
+</code></pre><h3 id="09-迭代器与组合模式（Iterator）"><a href="#09-迭代器与组合模式（Iterator）" class="headerlink" title="09.迭代器与组合模式（Iterator）"></a>09.迭代器与组合模式（Iterator）</h3>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/personnal/wechat-reward-image.jpg" alt="FangHeart WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/personnal/alipay-reward-image.jpg" alt="FangHeart Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/14/java语言基础12、正则表达式pattern、match、math、random、System、Date、Calendar等/" rel="next" title="正则表达式pattern、match、math、random、System、Date、Calendar等">
+                <i class="fa fa-chevron-left"></i> 正则表达式pattern、match、math、random、System、Date、Calendar等
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/01/字符串相关算法/" rel="prev" title="字符串相关算法">
+                字符串相关算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/personnal/author.jpg"
+               alt="FangHeart" />
+          <p class="site-author-name" itemprop="name">FangHeart</p>
+           
+              <p class="site-description motion-element" itemprop="description">不忘初心，方得始终。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fangheart" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2013845927/" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/fangheart" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fangheart@fangheart.win" target="_blank" title="邮箱">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  邮箱
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://haroldliu.weebly.com" title="HaroldLiuChi" target="_blank">HaroldLiuChi</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://guangyugao.weebly.com/" title="GaoGuangYu" target="_blank">GaoGuangYu</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wenjiewang.top" title="WenJieWang" target="_blank">WenJieWang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/it_dx" title="DuanXiong" target="_blank">DuanXiong</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dongxicheng.org/recommend/" title="DongXiCheng" target="_blank">DongXiCheng</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式原则"><span class="nav-number">1.</span> <span class="nav-text">设计模式原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#01、策略模式（Strategy）-对象行为型"><span class="nav-number">1.1.</span> <span class="nav-text">01、策略模式（Strategy）[对象行为型]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#02、观察者模式（Observer）"><span class="nav-number">1.2.</span> <span class="nav-text">02、观察者模式（Observer）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#03、-装饰者模式（Decorator）"><span class="nav-number">1.3.</span> <span class="nav-text">03、 装饰者模式（Decorator）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#04、-工厂模式"><span class="nav-number">1.4.</span> <span class="nav-text">04、 工厂模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#05、-单件模式（Singleton-pattern）"><span class="nav-number">1.5.</span> <span class="nav-text">05、 单件模式（Singleton pattern）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#06-命令模式（Comand）封装调用"><span class="nav-number">1.6.</span> <span class="nav-text">06.命令模式（Comand）封装调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#07-1-适配器模式（adaper-pattern）"><span class="nav-number">1.7.</span> <span class="nav-text">07-1.适配器模式（adaper-pattern）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#07-2-外观模式-Facede-Pattern"><span class="nav-number">1.8.</span> <span class="nav-text">07-2.外观模式(Facede-Pattern)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#08-模板方法模式（templateMethod）"><span class="nav-number">1.9.</span> <span class="nav-text">08. 模板方法模式（templateMethod）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#09-迭代器与组合模式（Iterator）"><span class="nav-number">1.10.</span> <span class="nav-text">09.迭代器与组合模式（Iterator）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-FangHeart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FangHeart</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      个访问本站的人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "eb7c3e4313a441e99919491234887c0d",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("EFaViLzEeIm1xLj3lRgl6Ktw-gzGzoHsz", "6QrsfTcpIvP6XuQ8mKM70tx9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+
+  
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<!-- 背景动画 -->
+<script type="text/javascript" src="/js/src/particle.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1646 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/personnal/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="01 (逻辑运算符的基本用法)(掌握)
+A:逻辑运算符有哪些
+&amp;amp;,|,^,!
+&amp;amp;&amp;amp;,|| 
+
+
+B:案例演示
+逻辑运算符的基本用法
+
+注意事项：
+
+a:逻辑运算符一般用于连接boolean类型的表达式或者值。
+b:表达式：就是用运算符把常量或者变量连接起来的符合java语法的式子。
+算术表达式：a + b
+比较表达式：a == b(条件表达式)
+
+
+
+
+C:结论：
+&amp;amp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java语言基础02、逻辑运算符、位运算符、三元运算符、键盘录入、if、switch">
+<meta property="og:url" content="http://www.fangheart.top/2016/11/08/java语言基础02、逻辑运算符、位运算符、三元运算符、键盘录入、if、switch/index.html">
+<meta property="og:site_name" content="FangHeart's blog">
+<meta property="og:description" content="01 (逻辑运算符的基本用法)(掌握)
+A:逻辑运算符有哪些
+&amp;amp;,|,^,!
+&amp;amp;&amp;amp;,|| 
+
+
+B:案例演示
+逻辑运算符的基本用法
+
+注意事项：
+
+a:逻辑运算符一般用于连接boolean类型的表达式或者值。
+b:表达式：就是用运算符把常量或者变量连接起来的符合java语法的式子。
+算术表达式：a + b
+比较表达式：a == b(条件表达式)
+
+
+
+
+C:结论：
+&amp;amp">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/public/16-11-8/96156740.jpg">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/public/16-11-8/2848068.jpg">
+<meta property="og:updated_time" content="2016-11-08T15:50:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java语言基础02、逻辑运算符、位运算符、三元运算符、键盘录入、if、switch">
+<meta name="twitter:description" content="01 (逻辑运算符的基本用法)(掌握)
+A:逻辑运算符有哪些
+&amp;amp;,|,^,!
+&amp;amp;&amp;amp;,|| 
+
+
+B:案例演示
+逻辑运算符的基本用法
+
+注意事项：
+
+a:逻辑运算符一般用于连接boolean类型的表达式或者值。
+b:表达式：就是用运算符把常量或者变量连接起来的符合java语法的式子。
+算术表达式：a + b
+比较表达式：a == b(条件表达式)
+
+
+
+
+C:结论：
+&amp;amp">
+<meta name="twitter:image" content="http://ocef6bnjz.bkt.clouddn.com/public/16-11-8/96156740.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.fangheart.top/2016/11/08/java语言基础02、逻辑运算符、位运算符、三元运算符、键盘录入、if、switch/"/>
+
+
+
+
+
+  <title> java语言基础02、逻辑运算符、位运算符、三元运算符、键盘录入、if、switch | FangHeart's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FangHeart's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">爱生活，爱编码。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.fangheart.top/2016/11/08/java语言基础02、逻辑运算符、位运算符、三元运算符、键盘录入、if、switch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FangHeart">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/personnal/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FangHeart's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                java语言基础02、逻辑运算符、位运算符、三元运算符、键盘录入、if、switch
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-08T21:24:19+08:00">
+                2016-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java基础/" itemprop="url" rel="index">
+                    <span itemprop="name">java基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2016/11/08/java语言基础02、逻辑运算符、位运算符、三元运算符、键盘录入、if、switch/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/11/08/java语言基础02、逻辑运算符、位运算符、三元运算符、键盘录入、if、switch/" class="leancloud_visitors" data-flag-title="java语言基础02、逻辑运算符、位运算符、三元运算符、键盘录入、if、switch">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="01-逻辑运算符的基本用法-掌握"><a href="#01-逻辑运算符的基本用法-掌握" class="headerlink" title="01 (逻辑运算符的基本用法)(掌握)"></a>01 (逻辑运算符的基本用法)(掌握)</h3><ul>
+<li>A:逻辑运算符有哪些<ul>
+<li>&amp;,|,^,!</li>
+<li>&amp;&amp;,|| </li>
+</ul>
+</li>
+<li>B:案例演示</li>
+<li><p>逻辑运算符的基本用法</p>
+</li>
+<li><p>注意事项：</p>
+<ul>
+<li>a:逻辑运算符一般用于连接boolean类型的表达式或者值。</li>
+<li>b:表达式：就是用运算符把常量或者变量连接起来的符合java语法的式子。<ul>
+<li>算术表达式：a + b</li>
+<li>比较表达式：a == b(条件表达式)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>C:结论：</li>
+<li>&amp;逻辑与:有false则false。</li>
+<li>|逻辑或:有true则true。</li>
+<li>^逻辑异或:相同为false，不同为true。</li>
+<li>!逻辑非:非false则true，非true则false。<ul>
+<li>特点：偶数个不改变本身。</li>
+</ul>
+</li>
+</ul>
+<h3 id="02-逻辑运算符-amp-amp-和-amp-的区别-掌握"><a href="#02-逻辑运算符-amp-amp-和-amp-的区别-掌握" class="headerlink" title="02 (逻辑运算符&amp;&amp;和&amp;的区别)(掌握)"></a>02 (逻辑运算符&amp;&amp;和&amp;的区别)(掌握)</h3><ul>
+<li>A:案例演示<ul>
+<li>&amp;&amp;和&amp;的区别?<ul>
+<li>a:最终结果一样。</li>
+<li>b:&amp;&amp;具有短路效果。左边是false，右边不执行。</li>
+<li>&amp;是无论左边是false还是true,右边都会执行</li>
+<li>例子<br><img src="http://ocef6bnjz.bkt.clouddn.com/public/16-11-8/96156740.jpg" alt=""></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>B:同理||和|的区别<ul>
+<li>原理同上，左边为真则右边不执行</li>
+</ul>
+</li>
+<li>C:开发中常用谁?<ul>
+<li>&amp;&amp;,||,!</li>
+</ul>
+</li>
+</ul>
+<h3 id="03-位运算符的基本用法1-了解"><a href="#03-位运算符的基本用法1-了解" class="headerlink" title="03 (位运算符的基本用法1)(了解)"></a>03 (位运算符的基本用法1)(了解)</h3><ul>
+<li>A:位运算符有哪些<ul>
+<li>&amp;,|,^,~ ,&gt;&gt;,&gt;&gt;&gt;,&lt;&lt;</li>
+</ul>
+</li>
+<li><p>B:案例演示</p>
+<ul>
+<li><p>位运算符的基本用法1</p>
+</li>
+<li><p>&amp;,|,^,~ 的用法</p>
+</li>
+<li>&amp;:有0则0</li>
+<li>|:有1则1</li>
+<li>^:相同则0，不同则1</li>
+<li>~:按位取反</li>
+</ul>
+</li>
+</ul>
+<h3 id="04-位异或运算符的特点及面试题-掌握"><a href="#04-位异或运算符的特点及面试题-掌握" class="headerlink" title="04 (位异或运算符的特点及面试题)(掌握)"></a>04 (位异或运算符的特点及面试题)(掌握)</h3><ul>
+<li><p>A:案例演示 </p>
+<ul>
+<li><p>位异或运算符的特点</p>
+</li>
+<li><p>^的特点：一个数据对另一个数据位异或两次，该数本身不变。如5^5^10=5，5^10^10=10</p>
+</li>
+</ul>
+</li>
+<li><p>B:面试题：</p>
+<ul>
+<li>请自己实现两个整数变量的交换（不定义第三方变量）</li>
+<li>例子<br>*<img src="http://ocef6bnjz.bkt.clouddn.com/public/16-11-8/2848068.jpg" alt=""></li>
+</ul>
+</li>
+</ul>
+<h3 id="05-位运算符的基本用法2及面试题-了解"><a href="#05-位运算符的基本用法2及面试题-了解" class="headerlink" title="05 (位运算符的基本用法2及面试题)(了解)"></a>05 (位运算符的基本用法2及面试题)(了解)</h3><ul>
+<li>A:案例演示 &gt;&gt;,&gt;&gt;&gt;,&lt;&lt;的用法:<ul>
+<li>&lt;&lt;:左移    左边最高位丢弃，右边补齐0</li>
+<li><blockquote>
+<blockquote>
+<p>:右移    最高位是0，左边补齐0;最高为是1，左边补齐1</p>
+</blockquote>
+</blockquote>
+</li>
+<li><blockquote>
+<blockquote>
+<blockquote>
+<p>:无符号右移 无论最高位是0还是1，左边补齐0</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+<li>最有效率的算出2 * 8的结果 2 &lt;&lt; 3因为操作二进制数最快</li>
+</ul>
+</li>
+</ul>
+<h3 id="06-三元运算符的基本用法-掌握"><a href="#06-三元运算符的基本用法-掌握" class="headerlink" title="06 (三元运算符的基本用法)(掌握)"></a>06 (三元运算符的基本用法)(掌握)</h3><ul>
+<li>A:三元运算符的格式</li>
+<li>(关系表达式) ? 表达式1 : 表达式2;</li>
+<li>B:三元运算符的执行流程 </li>
+<li>C:案例演示<ul>
+<li>获取两个数中的最大值</li>
+</ul>
+</li>
+</ul>
+<h3 id="07-三元运算符的练习-掌握"><a href="#07-三元运算符的练习-掌握" class="headerlink" title="07 (三元运算符的练习)(掌握)"></a>07 (三元运算符的练习)(掌握)</h3><ul>
+<li>A:案例演示<ul>
+<li>比较两个整数是否相同</li>
+</ul>
+</li>
+<li>B:案例演示<ul>
+<li>获取三个整数中的最大值<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line">		* A:案例演示</div><div class="line">			* 比较两个整数是否相同</div><div class="line">		* B:案例演示</div><div class="line">			* 获取三个整数中的最大值</div><div class="line">		*/</div><div class="line"></div><div class="line">		//比较两个整数是否相同</div><div class="line"></div><div class="line">		/*int x = 10;</div><div class="line">		int y = 10;</div><div class="line"></div><div class="line">		//boolean b = (x == y) ? true : false;</div><div class="line">		boolean b = (x == y);</div><div class="line">		System.out.println(&quot;b = &quot; +  b);*/</div><div class="line"></div><div class="line">		//获取三个整数中的最大值</div><div class="line">		int a = 10;</div><div class="line">		int b = 20;</div><div class="line">		int c = 30;</div><div class="line"></div><div class="line">		//先比较任意两个数的值,找出这两个数中的最大值</div><div class="line">		int temp = (a &gt; b) ? a : b;</div><div class="line">		//用前两个数的最大值与第三个数比较,获取最大值</div><div class="line">		int max = (temp &gt; c) ? temp : c;</div><div class="line">		System.out.println(&quot;max =&quot; + max);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="08-键盘录入的基本格式讲解-掌握"><a href="#08-键盘录入的基本格式讲解-掌握" class="headerlink" title="08 (键盘录入的基本格式讲解)(掌握)"></a>08 (键盘录入的基本格式讲解)(掌握)</h3><ul>
+<li>A:为什么要使用键盘录入数据<ul>
+<li>a:为了让程序的数据更符合开发的数据</li>
+<li>b:让程序更灵活一下</li>
+</ul>
+</li>
+<li>B:如何实现键盘录入呢?<ul>
+<li>先照格式来。</li>
+<li>a:导包<ul>
+<li>格式：<ul>
+<li>import java.util.Scanner; </li>
+</ul>
+</li>
+<li>位置：<ul>
+<li>在class上面。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>b:创建键盘录入对象<ul>
+<li>格式：<ul>
+<li>Scanner sc = new Scanner(System.in);</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>c:通过对象获取数据    <ul>
+<li>格式：<ul>
+<li>int x = sc.nextInt();</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>C:案例演示<ul>
+<li>键盘录入1个整数，并输出到控制台。</li>
+<li>键盘录入2个整数，并输出到控制台。</li>
+</ul>
+</li>
+</ul>
+<h3 id="09-键盘录入的练习1-掌握"><a href="#09-键盘录入的练习1-掌握" class="headerlink" title="09 (键盘录入的练习1)(掌握)"></a>09 (键盘录入的练习1)(掌握)</h3><ul>
+<li>A:案例演示<ul>
+<li>键盘录入练习：键盘录入两个数据，并对这两个数据求和，输出其结果</li>
+</ul>
+</li>
+<li>B:案例演示<ul>
+<li>键盘录入练习：键盘录入两个数据，获取这两个数据中的最大值</li>
+</ul>
+</li>
+</ul>
+<h3 id="10-键盘录入的练习2-掌握"><a href="#10-键盘录入的练习2-掌握" class="headerlink" title="10 (键盘录入的练习2)(掌握)"></a>10 (键盘录入的练习2)(掌握)</h3><ul>
+<li>A:案例演示<ul>
+<li>键盘录入练习：键盘录入两个数据，比较这两个数据是否相等</li>
+</ul>
+</li>
+<li>B:案例演示<ul>
+<li>键盘录入练习：键盘录入三个数据，获取这三个数据中的最大值</li>
+</ul>
+</li>
+</ul>
+<h3 id="11-顺序结构语句-了解"><a href="#11-顺序结构语句-了解" class="headerlink" title="11 (顺序结构语句)(了解)"></a>11 (顺序结构语句)(了解)</h3><ul>
+<li>A:什么是流程控制语句<ul>
+<li>流程控制语句：可以控制程序的执行流程。</li>
+</ul>
+</li>
+<li>B:流程控制语句的分类<ul>
+<li>顺序结构</li>
+<li>选择结构</li>
+<li>循环结构</li>
+</ul>
+</li>
+<li>C:顺序结构执行流程：<ul>
+<li>从上往下，依次执行。</li>
+</ul>
+</li>
+<li>D:案例演示<ul>
+<li>输出几句话看效果即可</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-选择结构if语句格式1及其使用-掌握"><a href="#12-选择结构if语句格式1及其使用-掌握" class="headerlink" title="12 (选择结构if语句格式1及其使用)(掌握)"></a>12 (选择结构if语句格式1及其使用)(掌握)</h3><ul>
+<li>A:选择结构的分类<ul>
+<li>if语句</li>
+<li>switch语句</li>
+</ul>
+</li>
+<li>B:if语句有几种格式<ul>
+<li>格式1</li>
+<li>格式2</li>
+<li>格式3</li>
+</ul>
+</li>
+<li>C:if语句的格式1</li>
+<li><pre><code>if(比较表达式) {
+    语句体;
+}
+</code></pre></li>
+<li>D:执行流程：<ul>
+<li>先计算比较表达式的值，看其返回值是true还是false。</li>
+<li>如果是true，就执行语句体；</li>
+<li>如果是false，就不执行语句体；</li>
+</ul>
+</li>
+</ul>
+<h3 id="13-选择结构if语句注意事项-掌握"><a href="#13-选择结构if语句注意事项-掌握" class="headerlink" title="13 (选择结构if语句注意事项)(掌握)"></a>13 (选择结构if语句注意事项)(掌握)</h3><ul>
+<li>A:案例演示<ul>
+<li>a:比较表达式无论简单还是复杂，结果必须是boolean类型</li>
+<li>b:if语句控制的语句体如果是一条语句，大括号可以省略；<ul>
+<li>如果是多条语句，就不能省略。建议永远不要省略。</li>
+</ul>
+</li>
+<li>c:一般来说：有左大括号就没有分号，有分号就没有左大括号</li>
+</ul>
+</li>
+</ul>
+<h3 id="14-选择结构if语句格式2及其使用-掌握"><a href="#14-选择结构if语句格式2及其使用-掌握" class="headerlink" title="14 (选择结构if语句格式2及其使用)(掌握)"></a>14 (选择结构if语句格式2及其使用)(掌握)</h3><ul>
+<li>A:if语句的格式2</li>
+<li><pre><code>if(比较表达式) {
+    语句体1;
+}else {
+    语句体2;
+}
+</code></pre></li>
+<li>B:执行流程：<ul>
+<li>首先计算比较表达式的值，看其返回值是true还是false。</li>
+<li>如果是true，就执行语句体1；</li>
+<li>如果是false，就执行语句体2；</li>
+</ul>
+</li>
+<li><p>C:案例演示</p>
+<ul>
+<li>a:获取两个数据中较大的值</li>
+<li><p>b:判断一个数据是奇数还是偶数,并输出是奇数还是偶数</p>
+</li>
+<li><p>注意事项：else后面是没有比较表达式的，只有if后面有。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="15-if语句的格式2和三元的相互转换问题-掌握"><a href="#15-if语句的格式2和三元的相互转换问题-掌握" class="headerlink" title="15 (if语句的格式2和三元的相互转换问题)(掌握)"></a>15 (if语句的格式2和三元的相互转换问题)(掌握)</h3><ul>
+<li>A:案例演示<ul>
+<li>if语句和三元运算符完成同一个效果</li>
+</ul>
+</li>
+<li><p>B:案例演示</p>
+<ul>
+<li><p>if语句和三元运算符的区别</p>
+</li>
+<li><p>三元运算符实现的，都可以采用if语句实现。反之不成立。</p>
+</li>
+<li><p>什么时候if语句实现不能用三元改进呢?</p>
+<ul>
+<li>当if语句控制的操作是一个输出语句的时候就不能。</li>
+<li>为什么呢?因为三元运算符是一个运算符，运算符操作完毕就应该有一个结果，而不是一个输出。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="16-选择结构if语句格式3及其使用-掌握"><a href="#16-选择结构if语句格式3及其使用-掌握" class="headerlink" title="16 (选择结构if语句格式3及其使用)(掌握)"></a>16 (选择结构if语句格式3及其使用)(掌握)</h3><ul>
+<li>A:if语句的格式3：</li>
+<li><pre><code>if(比较表达式1) {
+    语句体1;
+}else if(比较表达式2) {
+    语句体2;
+}else if(比较表达式3) {
+    语句体3;
+}
+...
+else {
+    语句体n+1;
+}
+</code></pre></li>
+<li><p>B:执行流程：</p>
+<ul>
+<li>首先计算比较表达式1看其返回值是true还是false，</li>
+<li>如果是true，就执行语句体1，if语句结束。</li>
+<li><p>如果是false，接着计算比较表达式2看其返回值是true还是false，</p>
+</li>
+<li><p>如果是true，就执行语句体2，if语句结束。</p>
+</li>
+<li><p>如果是false，接着计算比较表达式3看其返回值是true还是false，</p>
+</li>
+<li><p>如果都是false，就执行语句体n+1。</p>
+</li>
+</ul>
+</li>
+<li>C:注意事项:最后一个else可以省略,但是建议不要省略,可以对范围外的错误值提示 </li>
+</ul>
+<h3 id="17-选择结构if语句格式3练习-掌握"><a href="#17-选择结构if语句格式3练习-掌握" class="headerlink" title="17 (选择结构if语句格式3练习)(掌握)"></a>17 (选择结构if语句格式3练习)(掌握)</h3><ul>
+<li>A:练习1</li>
+<li><pre><code>需求：键盘录入一个成绩，判断并输出成绩的等级。
+90-100 优
+80-89  良
+70-79  中
+60-69  及
+0-59   差
+</code></pre></li>
+<li><p>B:练习2</p>
+<ul>
+<li><p>需求：</p>
+<ul>
+<li><p>键盘录入x的值，计算出y的并输出。</p>
+</li>
+<li><p>x&gt;=3    y = 2 * x + 1;</p>
+</li>
+<li>-1&lt;x&lt;3    y = 2 * x;</li>
+<li>x&lt;=-1    y = 2 * x - 1;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="18-选择结构if语句的嵌套使用-掌握"><a href="#18-选择结构if语句的嵌套使用-掌握" class="headerlink" title="18 (选择结构if语句的嵌套使用)(掌握)"></a>18 (选择结构if语句的嵌套使用)(掌握)</h3><ul>
+<li>A:案例演示<ul>
+<li>需求：获取三个数据中的最大值</li>
+<li>if语句的嵌套使用。</li>
+</ul>
+</li>
+</ul>
+<h3 id="19-选择结构switch语句的格式及其解释-掌握"><a href="#19-选择结构switch语句的格式及其解释-掌握" class="headerlink" title="19 (选择结构switch语句的格式及其解释)(掌握)"></a>19 (选择结构switch语句的格式及其解释)(掌握)</h3><ul>
+<li>A:switch语句的格式</li>
+<li>if放的是条件表达式</li>
+<li>switch可以接受</li>
+<li>1.基本数据类型可以接受:byte，short,char,int(也就是可以转为int计算的比int精度高的不可以)</li>
+<li>2.引用数据表达式可以接受枚举（JDK1.5） 、String(1.7)</li>
+<li><pre><code>switch(表达式) {
+      case 值1：
+        语句体1;
+        break;
+        case 值2：
+        语句体2;
+        break;
+        …
+        default：    
+        语句体n+1;
+        break;
+}
+</code></pre></li>
+<li><p>B:switch语句的格式解释</p>
+</li>
+<li>C:面试题<ul>
+<li>byte可以作为switch的表达式吗?</li>
+<li>long可以作为switch的表达式吗?</li>
+<li>String可以作为switch的表达式吗?</li>
+</ul>
+</li>
+<li>C:执行流程<ul>
+<li>先计算表达式的值</li>
+<li>然后和case后面的匹配，如果有就执行对应的语句，否则执行default控制的语句</li>
+</ul>
+</li>
+</ul>
+<h3 id="20-选择结构switch语句的练习-掌握"><a href="#20-选择结构switch语句的练习-掌握" class="headerlink" title="20 (选择结构switch语句的练习)(掌握)"></a>20 (选择结构switch语句的练习)(掌握)</h3><ul>
+<li>A:整数(给定一个值,输出对应星期几)</li>
+</ul>
+<h3 id="21-选择结构switch语句的注意事项-掌握"><a href="#21-选择结构switch语句的注意事项-掌握" class="headerlink" title="21 (选择结构switch语句的注意事项)(掌握)"></a>21 (选择结构switch语句的注意事项)(掌握)</h3><ul>
+<li>A:案例演示<ul>
+<li>a:case后面只能是常量，不能是变量，而且，多个case后面的值不能出现相同的</li>
+<li>b:default可以省略吗?<ul>
+<li>可以省略，但是不建议，因为它的作用是对不正确的情况给出提示。</li>
+<li>特殊情况：<ul>
+<li>case就可以把值固定。</li>
+<li>A,B,C,D</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>c:break可以省略吗?<ul>
+<li>最后一个可以省略,其他最好不要省略</li>
+<li>会出现一个现象：case穿透。</li>
+<li>最终我们建议不要省略</li>
+</ul>
+</li>
+<li>d:default一定要在最后吗?<ul>
+<li>不是，可以在任意位置。但是建议在最后。</li>
+</ul>
+</li>
+<li>e:switch语句的结束条件<ul>
+<li>a:遇到break就结束了</li>
+<li>b:执行到switch的右大括号就结束了</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-选择结构switch语句练习-掌握"><a href="#22-选择结构switch语句练习-掌握" class="headerlink" title="22 (选择结构switch语句练习)(掌握)"></a>22 (选择结构switch语句练习)(掌握)</h3><ul>
+<li>A:看程序写结果：</li>
+<li><pre><code>int x = 2;
+int y = 3;
+switch(x){
+    default:
+        y++;
+        break;
+    case 3:
+        y++;
+    case 4:
+        y++;
+}
+System.out.println(&quot;y=&quot;+y);  4
+</code></pre></li>
+<li><p>B:看程序写结果：</p>
+</li>
+<li><pre><code>int x = 2;
+int y = 3;
+switch(x){
+    default:
+        y++;
+    case 3:
+        y++;
+    case 4:
+        y++;
+}
+System.out.println(&quot;y=&quot;+y); 6
+</code></pre></li>
+</ul>
+<h3 id="23-选择结构if语句和switch语句的区别-掌握"><a href="#23-选择结构if语句和switch语句的区别-掌握" class="headerlink" title="23 (选择结构if语句和switch语句的区别)(掌握)"></a>23 (选择结构if语句和switch语句的区别)(掌握)</h3><ul>
+<li>A:总结switch语句和if语句的各自使用场景</li>
+<li>switch建议判断固定值的时候用</li>
+<li>if建议判断区间或范围的时候用</li>
+<li>B:案例演示<ul>
+<li>分别用switch语句和if语句实现下列需求：<ul>
+<li>键盘录入月份，输出对应的季节</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/personnal/wechat-reward-image.jpg" alt="FangHeart WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/personnal/alipay-reward-image.jpg" alt="FangHeart Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java基础/" rel="tag"># java基础</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/08/java语言基础01、常量、进制及转换、数据类型及转换、运算符、赋值符/" rel="next" title="java语言基础01、常量、进制及转换、数据类型及转换、运算符、赋值符">
+                <i class="fa fa-chevron-left"></i> java语言基础01、常量、进制及转换、数据类型及转换、运算符、赋值符
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/08/java基础03、循环语句、控制跳转语句、方法、方法重载/" rel="prev" title="java基础03、循环语句、控制跳转语句、方法、方法重载">
+                java基础03、循环语句、控制跳转语句、方法、方法重载 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/personnal/author.jpg"
+               alt="FangHeart" />
+          <p class="site-author-name" itemprop="name">FangHeart</p>
+           
+              <p class="site-description motion-element" itemprop="description">不忘初心，方得始终。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fangheart" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2013845927/" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/fangheart" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fangheart@fangheart.win" target="_blank" title="邮箱">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  邮箱
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://haroldliu.weebly.com" title="HaroldLiuChi" target="_blank">HaroldLiuChi</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://guangyugao.weebly.com/" title="GaoGuangYu" target="_blank">GaoGuangYu</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wenjiewang.top" title="WenJieWang" target="_blank">WenJieWang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/it_dx" title="DuanXiong" target="_blank">DuanXiong</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dongxicheng.org/recommend/" title="DongXiCheng" target="_blank">DongXiCheng</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#01-逻辑运算符的基本用法-掌握"><span class="nav-number">1.</span> <span class="nav-text">01 (逻辑运算符的基本用法)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#02-逻辑运算符-amp-amp-和-amp-的区别-掌握"><span class="nav-number">2.</span> <span class="nav-text">02 (逻辑运算符&&和&的区别)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#03-位运算符的基本用法1-了解"><span class="nav-number">3.</span> <span class="nav-text">03 (位运算符的基本用法1)(了解)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#04-位异或运算符的特点及面试题-掌握"><span class="nav-number">4.</span> <span class="nav-text">04 (位异或运算符的特点及面试题)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#05-位运算符的基本用法2及面试题-了解"><span class="nav-number">5.</span> <span class="nav-text">05 (位运算符的基本用法2及面试题)(了解)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#06-三元运算符的基本用法-掌握"><span class="nav-number">6.</span> <span class="nav-text">06 (三元运算符的基本用法)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#07-三元运算符的练习-掌握"><span class="nav-number">7.</span> <span class="nav-text">07 (三元运算符的练习)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#08-键盘录入的基本格式讲解-掌握"><span class="nav-number">8.</span> <span class="nav-text">08 (键盘录入的基本格式讲解)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#09-键盘录入的练习1-掌握"><span class="nav-number">9.</span> <span class="nav-text">09 (键盘录入的练习1)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-键盘录入的练习2-掌握"><span class="nav-number">10.</span> <span class="nav-text">10 (键盘录入的练习2)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-顺序结构语句-了解"><span class="nav-number">11.</span> <span class="nav-text">11 (顺序结构语句)(了解)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-选择结构if语句格式1及其使用-掌握"><span class="nav-number">12.</span> <span class="nav-text">12 (选择结构if语句格式1及其使用)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-选择结构if语句注意事项-掌握"><span class="nav-number">13.</span> <span class="nav-text">13 (选择结构if语句注意事项)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-选择结构if语句格式2及其使用-掌握"><span class="nav-number">14.</span> <span class="nav-text">14 (选择结构if语句格式2及其使用)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-if语句的格式2和三元的相互转换问题-掌握"><span class="nav-number">15.</span> <span class="nav-text">15 (if语句的格式2和三元的相互转换问题)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-选择结构if语句格式3及其使用-掌握"><span class="nav-number">16.</span> <span class="nav-text">16 (选择结构if语句格式3及其使用)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-选择结构if语句格式3练习-掌握"><span class="nav-number">17.</span> <span class="nav-text">17 (选择结构if语句格式3练习)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-选择结构if语句的嵌套使用-掌握"><span class="nav-number">18.</span> <span class="nav-text">18 (选择结构if语句的嵌套使用)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-选择结构switch语句的格式及其解释-掌握"><span class="nav-number">19.</span> <span class="nav-text">19 (选择结构switch语句的格式及其解释)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-选择结构switch语句的练习-掌握"><span class="nav-number">20.</span> <span class="nav-text">20 (选择结构switch语句的练习)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-选择结构switch语句的注意事项-掌握"><span class="nav-number">21.</span> <span class="nav-text">21 (选择结构switch语句的注意事项)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-选择结构switch语句练习-掌握"><span class="nav-number">22.</span> <span class="nav-text">22 (选择结构switch语句练习)(掌握)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-选择结构if语句和switch语句的区别-掌握"><span class="nav-number">23.</span> <span class="nav-text">23 (选择结构if语句和switch语句的区别)(掌握)</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-FangHeart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FangHeart</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      个访问本站的人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "eb7c3e4313a441e99919491234887c0d",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("EFaViLzEeIm1xLj3lRgl6Ktw-gzGzoHsz", "6QrsfTcpIvP6XuQ8mKM70tx9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+
+  
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<!-- 背景动画 -->
+<script type="text/javascript" src="/js/src/particle.js"></script>
+
+</body>
+</html>

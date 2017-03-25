@@ -1,0 +1,1154 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="算法," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/personnal/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="寻找数组中最小值与最大值。方法一：维持2个变量min与max，每次取一个元素分别与两个变量比较，最后通过一次数组遍历找到最大值与最小值，虽然时间复杂度是O（n）但是比较次数是2.方法二：维持2个变量min和max,每次取相邻的两个数，较大者和max比，较小者和min比，以这样的方式找到最大值与最小值，时间复杂度为O（n/2）=O(n),但是比较次数为1.5N方法三：分治法。方法二代码如下：1234">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组相关算法">
+<meta property="og:url" content="http://www.fangheart.top/2017/03/07/数组相关算法/index.html">
+<meta property="og:site_name" content="FangHeart's blog">
+<meta property="og:description" content="寻找数组中最小值与最大值。方法一：维持2个变量min与max，每次取一个元素分别与两个变量比较，最后通过一次数组遍历找到最大值与最小值，虽然时间复杂度是O（n）但是比较次数是2.方法二：维持2个变量min和max,每次取相邻的两个数，较大者和max比，较小者和min比，以这样的方式找到最大值与最小值，时间复杂度为O（n/2）=O(n),但是比较次数为1.5N方法三：分治法。方法二代码如下：1234">
+<meta property="og:updated_time" content="2017-03-08T12:20:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数组相关算法">
+<meta name="twitter:description" content="寻找数组中最小值与最大值。方法一：维持2个变量min与max，每次取一个元素分别与两个变量比较，最后通过一次数组遍历找到最大值与最小值，虽然时间复杂度是O（n）但是比较次数是2.方法二：维持2个变量min和max,每次取相邻的两个数，较大者和max比，较小者和min比，以这样的方式找到最大值与最小值，时间复杂度为O（n/2）=O(n),但是比较次数为1.5N方法三：分治法。方法二代码如下：1234">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.fangheart.top/2017/03/07/数组相关算法/"/>
+
+
+
+
+
+  <title> 数组相关算法 | FangHeart's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FangHeart's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">爱生活，爱编码。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.fangheart.top/2017/03/07/数组相关算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FangHeart">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/personnal/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FangHeart's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                数组相关算法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-07T15:38:22+08:00">
+                2017-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/03/07/数组相关算法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/07/数组相关算法/" class="leancloud_visitors" data-flag-title="数组相关算法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="寻找数组中最小值与最大值。"><a href="#寻找数组中最小值与最大值。" class="headerlink" title="寻找数组中最小值与最大值。"></a>寻找数组中最小值与最大值。</h3><p>方法一：维持2个变量min与max，每次取一个元素分别与两个变量比较，最后通过一次数组遍历找到最大值与最小值，虽然时间复杂度是O（n）但是比较次数是2.<br>方法二：维持2个变量min和max,每次取相邻的两个数，较大者和max比，较小者和min比，以这样的方式找到最大值与最小值，时间复杂度为O（n/2）=O(n),但是比较次数为1.5N<br>方法三：分治法。<br>方法二代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">public class MaxAndMin &#123;</div><div class="line">    static int max;</div><div class="line">    static int min;</div><div class="line"></div><div class="line">    public static void getMaxAndMin(int[] a)&#123;</div><div class="line">        max = a[0];</div><div class="line">        min = a[0];</div><div class="line">        int n = a.length;</div><div class="line">        for (int i = 1; i &lt; n-1; i=i+2) &#123;</div><div class="line">            if(i+1&gt;n)&#123;</div><div class="line">                if (a[i]&gt;max)</div><div class="line">                    max = a[i];</div><div class="line">                if (a[i]&lt;min)</div><div class="line">                    min = a[i];</div><div class="line">            &#125;</div><div class="line">            if (a[i]&gt;a[i+1])&#123;</div><div class="line">                if (a[i]&gt;max)</div><div class="line">                    max = a[i];</div><div class="line">                if (a[i+1]&lt;min)</div><div class="line">                    min = a[i+1];</div><div class="line">            &#125;</div><div class="line">            if (a[i]&lt;a[i+1])&#123;</div><div class="line">                if (a[i+1]&gt;max)</div><div class="line">                    max = a[i+1];</div><div class="line">                if(a[i]&lt;min)</div><div class="line">                    min = a[i];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int[] a = &#123;7,3,19,40,4,7,1&#125;;</div><div class="line">        getMaxAndMin(a);</div><div class="line">        System.out.println(&quot;Max=&quot; + max);</div><div class="line">        System.out.println(&quot;Min=&quot; + min);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="找出数组中第二大的数"><a href="#找出数组中第二大的数" class="headerlink" title="找出数组中第二大的数"></a>找出数组中第二大的数</h3><p>方法一：可以用快排将里面的数进行排序，时间复杂度O(nlogn)，然后根据下标遍历数组，时间复杂度O(n),所以总的时间复杂度为O(nlogn)。<br>方法二：可用两个变量分别记录最大值与第二大值，若出现新变量比最大值大那么第二大值记录原最大值，最大值记录新变量，如果比最大变量小，那么直接与第二大变量比较大小，这样遍历一遍数组就可以得到第二大数。<br>方法二代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">public class SecondMax &#123;</div><div class="line">    public static int findSecMax(int[] data)&#123;</div><div class="line">        int count = data.length;</div><div class="line">        int max_Number = data[0];</div><div class="line">        int sec_Number = Integer.MIN_VALUE;</div><div class="line"></div><div class="line">        for (int i = 1 ; i &lt; count; i++) &#123;</div><div class="line">            if (data[i]&gt;max_Number)</div><div class="line">            &#123;</div><div class="line">                sec_Number = max_Number;</div><div class="line">                max_Number = data[i];</div><div class="line">            &#125;else &#123;</div><div class="line">                if (data[i]&gt;sec_Number)&#123;</div><div class="line">                    sec_Number = data[i];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return sec_Number;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int[] arry = &#123;7,3,19,40,4,7,1,2&#125;;</div><div class="line">        System.out.println(findSecMax(arry));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="如何求最大子数组之和"><a href="#如何求最大子数组之和" class="headerlink" title="如何求最大子数组之和"></a>如何求最大子数组之和</h3><p>方法一：暴力法，时间复杂度O(n^2)代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class MaxSubArray &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int[] a = &#123;1,-2,4,8,-4,7,-1,5&#125;;</div><div class="line">        System.out.println(maxSubArrayMethod1(a));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">     private static int maxSubArrayMethod1(int[] a) &#123;</div><div class="line">        int size = a.length;</div><div class="line">        int max_sum = 0;</div><div class="line">        for (int i = 0; i &lt; size; i++) &#123;</div><div class="line">            int sum = 0;</div><div class="line">            for (int j = i; j &lt; size; j++) &#123;</div><div class="line">                sum += a[j];</div><div class="line">                if (sum&gt;max_sum)&#123;</div><div class="line">                    max_sum = sum;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return max_sum;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>方法二：动态规划法思路如下：<br>1.最大子数组包含arr[n-1],即是以数组最后一个元素arr[n-1]结尾。<br>2.arr[n-1]自己单独构成最大数组。<br>3.最大数组不包含arr[n-1]，那么求arr[1,…,n-1]的最大子字符串可以转换为求arr[1,…,n-2]的最大子字符串。<br>通过以上可以的出结论，架设已经计算出（arr[0],…,arr[i-1]）最大的一段数组和为ALL[i-1]，同时也计算出（arr[0],…,arr[i-1]）中包含arr[i-1]的最大的一段数组和为End[i-1]。则可以得出如下关系ALL[i-1] = max {arr[i-1],End[i-1],arr[i-2]}。利用这个公式和动态规划的思想可以得出如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">public class MaxSubArray &#123;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        int[] a = &#123;1, -2, 4, 8, -4, 7, -1, -5 &#125;;</div><div class="line">        System.out.println(maxSubArrayMethod2(a));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static int max(int m, int n) &#123;</div><div class="line">        return m &gt; n ? m : n;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static int maxSubArrayMethod2(int[] a) &#123;</div><div class="line">        int n = a.length;</div><div class="line">        int End[] = new int[n];</div><div class="line">        int All[] = new int[n];</div><div class="line">        End[n - 1] = a[n - 1];</div><div class="line">        All[n - 1] = a[n - 1];</div><div class="line">        End[0] = All[0] = a[0];</div><div class="line">        for (int i = 1; i &lt; n; i++) &#123;</div><div class="line">            End[i] = max(End[i - 1]+a[i], a[i]);</div><div class="line">            All[i] = max(End[i], All[i - 1]);</div><div class="line">        &#125;</div><div class="line">        return All[n - 1];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上文的动态规划方法可以优化因为每次只用到End[i-1]与All[i-1]而不是整个数组中的值，所以可以定义两个变量来保存End[i-1]与All[i-1]的值，并且可以反复利用，这样就可以保证在时间复杂度为O(n)的同时降低空间复杂度。<br>只要nEnd=max(nEnd+arr[i],arr[i]);  nAll=max(nEnd,nALL);  替换上文的如上代码即可。</p>
+<p>知道子数组的最大和之后，如何确定最大子数组的位置？为了得到最大的子数组，从公式End[i]=max(End(i-1)+a[i],a[i])的分析可以看出，当End[i-1]<0的时候，end[i]=a[i],其中end[i]表示包含a[i]的子数组和，如果某一个值是的end[i-1]<0,那么就从a[i]位置重新开始编号。 <figure="" class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">public class MaxSubArrayIndex &#123;</div><div class="line">    private static int begin = 0;</div><div class="line">    private static int end = 0;</div><div class="line"></div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int[] a = &#123;1,-2,4,8,-4,7,-1,-5&#125;;</div><div class="line">        System.out.println(&quot;max=&quot; + maxSubway(a));</div><div class="line">        System.out.println(&quot;begin=&quot; + begin + &quot; end=&quot; + end);</div><div class="line">    &#125;</div><div class="line">    public static int maxSubway(int a[] )&#123;</div><div class="line">        int maxSum = Integer.MIN_VALUE;//子数组的最大值</div><div class="line">        int nSum = 0;//包含子数组最后一位的最大值</div><div class="line">        int nStart = 0;</div><div class="line"></div><div class="line">        for (int i = 0; i &lt; a.length; i++) &#123;</div><div class="line">            if (nSum&lt;0)&#123;</div><div class="line">                nSum = a[i];</div><div class="line">                nStart = i;</div><div class="line">            &#125;else &#123;</div><div class="line">                nSum += a[i];</div><div class="line">            &#125;</div><div class="line">            if (nSum &gt; maxSum)&#123;</div><div class="line">                maxSum = nSum;</div><div class="line">                begin = nStart;</div><div class="line">                end = i;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return maxSum;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></0的时候，end[i]=a[i],其中end[i]表示包含a[i]的子数组和，如果某一个值是的end[i-1]<0,那么就从a[i]位置重新开始编号。></p>
+<h3 id="如何找到数组中重复最多的元素"><a href="#如何找到数组中重复最多的元素" class="headerlink" title="如何找到数组中重复最多的元素"></a>如何找到数组中重复最多的元素</h3><p>对于数组{1,1,2,2,4,4,4,4,5,5,6,6,6},元素1出现的次数为2，元素2出现次数为2，元素4出现次数为4,5出现次数2,6出现次数3。找出数组中出现重复次数最多的数。<br>上述问题中，程序的输出应该为元素4。<br>方法一：空间换时间。定义一个数组int count[MAX]先都初始化为0，然后每次遇到a[i]，那么cout[a[i]]++。之后找到count中值最大的，即是要找的数值。<br>方法二：使用Map映射表。Map中第一个字记录值为关键字，第二个字记录出现次数。<br>方法二代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">public class MostFrequentInArray &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int a[] = &#123;1,1,2,2,4,4,4,4,5,5,6,6,6&#125;;</div><div class="line">        int max_frequent = findMostFrequent(a);</div><div class="line">        System.out.println(max_frequent);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static int findMostFrequent(int[] a) &#123;</div><div class="line">        int result = 0;</div><div class="line">        int n = a.length;</div><div class="line"></div><div class="line">        if(0==n)</div><div class="line">            return Integer.MAX_VALUE;</div><div class="line">        //记录给个元素出现的次数</div><div class="line">        Map&lt;Integer,Integer&gt; m = new HashMap&lt;Integer, Integer&gt;();</div><div class="line">        for (int i = 0; i &lt; n; i++) &#123;</div><div class="line">            if (m.containsKey(a[i]))&#123;</div><div class="line">                m.put(a[i],m.get(a[i])+1);</div><div class="line">            &#125;else &#123;</div><div class="line">                m.put(a[i],1);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        //找出出现次数最多的元素</div><div class="line">        int most = 0;</div><div class="line">        Iterator iterator = m.entrySet().iterator();</div><div class="line">        while (iterator.hasNext())&#123;</div><div class="line">            Map.Entry entry = (Map.Entry)iterator.next();</div><div class="line">            int key = (Integer)entry.getKey();</div><div class="line">            int val = (Integer)entry.getValue();</div><div class="line"></div><div class="line">            if (val&gt;most)&#123;</div><div class="line">                result = key;</div><div class="line">                most = val;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return result;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="如何求数组中两两相加等于20的组合种类"><a href="#如何求数组中两两相加等于20的组合种类" class="headerlink" title="如何求数组中两两相加等于20的组合种类"></a>如何求数组中两两相加等于20的组合种类</h3><p>给定一个数组{1,7,17,2,6,3,14}，这个数组中满足条件的有两组 17+3=20,6+14=20。<br>方法一：蛮力法用双重循环遍历数组来判断两个数之和是否是20。时间复杂度为O(n^2)。<br>方法二：排序法先对数组进行排序，可以用堆排序或者快速排序，时间复杂度O(nlogn)，然后对数组从前到后和从后向前遍历，假设从前向后遍历的下标为begin，从后往前的下标为end，如果arr[begin]+arr[end]<20，那么如果存在两个数的和为20，那么这两个数一定在[begin+1,end]之间，当满足arr[begin]+arr[end]>20时，如果存在两个数的和为20，那么这两个数一定在[begin,end-1]之间，这个过程时间复杂度为O(n),因此整个算法的时间复杂度为O(nlogn)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public class FindSum &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int arr[] = &#123;1,7,17,2,6,3,14&#125;;</div><div class="line">        find(arr,20);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static void find(int[] arr,int sum) &#123;</div><div class="line">        Arrays.sort(arr);</div><div class="line">        int begin = 0;</div><div class="line">        int end = arr.length - 1;</div><div class="line">        while (begin&lt;end)&#123;</div><div class="line">            if(arr[begin]+arr[end]&lt;sum)</div><div class="line">                begin++;</div><div class="line">            else if(arr[begin]+arr[end]&gt;sum)</div><div class="line">                end--;</div><div class="line">            else &#123;</div><div class="line">                System.out.println(arr[begin] + &quot; &quot; + arr[end]);</div><div class="line">                begin++;</div><div class="line">                end--;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></20，那么如果存在两个数的和为20，那么这两个数一定在[begin+1,end]之间，当满足arr[begin]+arr[end]></p>
+<h3 id="如何把一个数组循环右移k位"><a href="#如何把一个数组循环右移k位" class="headerlink" title="如何把一个数组循环右移k位"></a>如何把一个数组循环右移k位</h3><p>假设要把数组序列12345678右移2位变为78123456。比较移位前后数组序列的形式，不难看出，其中两段的序列是不变的，即78和123456。可以把这两段看做整体，右移k位就是把数组两部分交换一下，鉴于此，可以设计这样一种算法，步骤如下：<br>1.逆序数组子序列123456，数组序列的形式变为65432178。<br>2.逆序数组子序列78，数组序列的形式变为65432187。<br>3.全部逆序，数组序列的形式变为78123456。<br>该算法进行了3次逆序操作，因此时间复杂度为O(n)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">public class ShiftK &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int arr[] = &#123;1,2,3,4,5,6,7,8&#125;;</div><div class="line">        shift_k(arr,2);</div><div class="line">        for (int i = 0; i &lt; arr.length; i++) &#123;</div><div class="line">            System.out.println(arr[i] + &quot; &quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static void shift_k(int[] a, int k) &#123;</div><div class="line">        int n = a.length;</div><div class="line">        k = k % n;</div><div class="line">        reverse(a,n-k,n-1);</div><div class="line">        reverse(a,0,n-k-1);</div><div class="line">        reverse(a,0,n-1);</div><div class="line">    &#125;</div><div class="line">    public static void reverse(int[] a,int b,int e)&#123;</div><div class="line">        for (;b&lt;e;b++,e--)&#123;</div><div class="line">            int temp = a[e];</div><div class="line">            a[e] = a[b];</div><div class="line">            a[b] = temp;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="找出数组中第K个最小的数"><a href="#找出数组中第K个最小的数" class="headerlink" title="找出数组中第K个最小的数"></a>找出数组中第K个最小的数</h3><p>给定一个无序的数组，从一个数组中找出第K个最小的数。对于给力定数组序列{1,5,2,6,8,0,6}，其中第4小的数为5.<br>方法一：最简单的方法是对数组进行排序，排序后的数组中第k-1个位置的数字即为数组的第k个最小的数，最好的时间复杂度为O(nlogn)。<br>方法二：剪枝法，运用快排的思想选定一个数tmp=a[n-1]作为枢纽，把比它都小的数放在它的左边，把比它大的数放在它的右边，然后判断tmp的位置。如果他的位置是k-1，那么他就是第K小的数。如果它的位置小于k-1，那么说明k元素一定在数组的右边，采用递归方法在数组的右半边继续查找，否则在左半部分，采用递归在左半部分数组中继续查找。时间复杂度比上一个要小。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">public class GetKMin &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int a[] = &#123;1,5,2,6,8,0,6&#125;;</div><div class="line">        int k_min = getKMinNumber(a,4);</div><div class="line">        System.out.print(k_min);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static int quickSort(int a[],int low,int high,int k)&#123;</div><div class="line">        int i,j;</div><div class="line">        int tmp;</div><div class="line">        i = low+1;</div><div class="line">        j = high;</div><div class="line">        tmp = a[i];</div><div class="line"></div><div class="line">        while (i&lt;j)&#123;</div><div class="line">            while(i&lt;j &amp;&amp; a[j]&gt;tmp)</div><div class="line">                j--;</div><div class="line">            while (i&lt;j &amp;&amp; a[i]&lt;tmp)</div><div class="line">                i++;</div><div class="line">            if(i&lt;j)&#123;</div><div class="line">                int t = a[i];</div><div class="line">                a[i] = a[j];</div><div class="line">                a[j] = t;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        a[low] = a[i];</div><div class="line">        a[i] = tmp;</div><div class="line">        if(i+1==k)</div><div class="line">            return tmp;</div><div class="line">        else if(i+1&gt;k)</div><div class="line">            return quickSort(a,low,i-1,k);</div><div class="line">        else</div><div class="line">            return quickSort(a,i+1,high,k);</div><div class="line">    &#125;</div><div class="line">    private static int getKMinNumber(int[] a, int i) &#123;</div><div class="line">        return quickSort(a,0,a.length-1,i);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="如何找出数组中只出现一次的数字"><a href="#如何找出数组中只出现一次的数字" class="headerlink" title="如何找出数组中只出现一次的数字"></a>如何找出数组中只出现一次的数字</h3><p>一个整型数组里除了一个数字之外，其他数字都出现两次，找出这个只出现1次的数字。要求时间复杂度为O(n)，空间复杂度O（1）。<br>如果没有时间复杂度的要求那么可以将数组进行排序，时间复杂度O(nlogn)，然后从第一个数开始遍历，比较相邻的两个数，从而找到这个只出现一次的数字，这种方法复杂度最快为O(nlogn)。由于时间复杂度与空间复杂度的限制，该方法不可取，因此需要一种更高效的方式。题目强调只有一个数字出现1次，其他数字出现了2次，首先想到的是异或运算，因为异或运算的定义，任何一个数字异或它自己都等于0，所以从头到尾一次异或数组中的每一个数字，那些出现两个的都会抵消掉。最终的结果刚好是只出现一次的数。<br>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public class FindNotDouble &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int arr[] = &#123;1,2,3,2,4,3,5,4,1&#125;;</div><div class="line">        int num = findNotDoubleNum(arr);</div><div class="line">        System.out.print(num);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static int findNotDoubleNum(int[] arr) &#123;</div><div class="line">        int n = arr.length;</div><div class="line">        int result = arr[0];</div><div class="line"></div><div class="line">        for (int i = 1; i &lt; arr.length; i++) &#123;</div><div class="line">            result ^= arr[i];</div><div class="line">        &#125;</div><div class="line">        return result;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上述异或运算的方法只适用于其他数字出现的次数为偶数的情况，如果其他数字出现次数为奇数，上述方法不再适用。如果数组中所有数都出现n次，那么这个数组中的所有数对应的二进制数中各个位上的1出现的个数均可以被n整除。所以对于本题，架设a只出现一次，那么去除a,后其他所有数字对应的二进制数的每个位置上1的个数为n的倍数。所以对数组中的所有数组对应二进制数中各个位置上的1的个数对3取余数，就可以得到出现1次的这个数的二进制表示。从而找到这个数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">public class FindOnce &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int arr[] = &#123;1,2,1,2,4,2,4,4,1,3&#125;;</div><div class="line">        int num = findOnceNum(arr, 3);</div><div class="line">        System.out.println(num);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static int findOnceNum(int[] arr, int appearTimes) &#123;</div><div class="line">        int n = arr.length;</div><div class="line">        int []bitCount = new int[32];//int类型的4个字节最多32位</div><div class="line">        //计算数组中所有数组对应的二进制数各个位置上出现1的次数。</div><div class="line">        for (int j = 0; j &lt; n; j++) &#123;</div><div class="line">            for (int k = 0; k &lt; 32; k++) &#123;</div><div class="line">                bitCount[k] += ((arr[j]&gt;&gt;k)&amp;1);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        //若某位上的结果不能被整除，则肯定目标数字在这一位上为1</div><div class="line">        int appearOne=0;</div><div class="line">        for (int j = 0; j &lt; 32; j++) &#123;</div><div class="line">            if (bitCount[j]% appearTimes !=0)&#123;</div><div class="line">                appearOne += (1&lt;&lt;j);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return appearOne;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="用递归方式求一个整形数组的最大元素"><a href="#用递归方式求一个整形数组的最大元素" class="headerlink" title="用递归方式求一个整形数组的最大元素"></a>用递归方式求一个整形数组的最大元素</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class MaxNum &#123;</div><div class="line">    public static int max(int a,int b)&#123;</div><div class="line">        return  (a&gt;b) ? a: b;</div><div class="line">    &#125;</div><div class="line">    public static int getMaxNum(int [] a,int begin)&#123;</div><div class="line">        int n = a.length;</div><div class="line">        if(1==n)&#123;</div><div class="line">            return a[begin];</div><div class="line">        &#125;else&#123;</div><div class="line">            if (begin&lt;=n-2)</div><div class="line">                return max(a[begin],getMaxNum(a,begin+1));</div><div class="line">            else</div><div class="line">                return 0;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int [] a = &#123;0,16,2,3,4,5,10,7,8,9&#125;;</div><div class="line">        System.out.println(getMaxNum(a,0));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="求一个数组数对之差的最大值"><a href="#求一个数组数对之差的最大值" class="headerlink" title="求一个数组数对之差的最大值"></a>求一个数组数对之差的最大值</h3><p>数组中的一个数字减去他右边子数组的中的一个数字可以得到一个差值，求所有可能的差值中的最大值。例如数组{1，4，17，3，2，9}中，最大差值为17-2=15。<br>方法一：蛮力法。双重循环遍历数组找到所有可能的差值然后找到差值中最大的值。<br>方法二：二分法。思想如下:把数组分为两个子数组，那么最大的差值只有3种可能<br>1.最大的差值对应的被减数和减数都在左子数组中，假设最大的差值为leftMax。<br>2.被减数和减数都在右子数组中，假设最大的差值为rightMax。<br>3.被减数是在左子数组中的最大值，减数是右子数组中的最小值，假设差值为mixMax。<br>那么由上文就可以知道最大的差值为这三个差值的最大值即max(leftMax,rightMax,mixMax)。<br>方法三：动态规划。思路如下：给以给定数组a,申请额外的数组diff和max，diff[i]是以数组中第i个数组为减数时，当前数组所有数对之差的最大值(也就是前i+1个数组成的子数组中最大的差值)，max[i]为前i+1个数的最大值。假设已经得到diff[i]，diff[i+1]的值有两种可能，diff[i]或者max[i]-diff[i]。由上面的所有分析可以得到的计算表达式diff[i+1]=max(diff[i],max[i-1]-a[i]); max[i+1]=max(max[i],a[i+1])<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">public class MaxSub &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int [] a = &#123;1,4,17,3,2,9&#125;;</div><div class="line">        System.out.println(getMax(a));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static int max(int m,int n)&#123;</div><div class="line">        return m &gt; n ? m : n;</div><div class="line">    &#125;</div><div class="line">    private static int getMax(int[] a) &#123;</div><div class="line">        int n = a.length;</div><div class="line">        if(a==null)</div><div class="line">            return Integer.MIN_VALUE;</div><div class="line">        if(n&lt;=1)</div><div class="line">            return Integer.MIN_VALUE;</div><div class="line">        int[] diff = new int[n];</div><div class="line">        int[] max = new int[n];</div><div class="line"></div><div class="line">        diff[0] = 0;</div><div class="line">        max[0] = 0;</div><div class="line">        for (int i = 1; i &lt; n ; i++) &#123;</div><div class="line">            diff[i] = max(diff[i-1],max[i-1] - a[i]);</div><div class="line">            max[i] = max(max[i-1],a[i]);</div><div class="line">        &#125;</div><div class="line">        return diff[n-1];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上文还可以优化因为无需diff与max数组只是两个变量来保存前i+1个数的最大差值，和最大值即可。</p>
+<h3 id="求数组中绝对值最小的数"><a href="#求数组中绝对值最小的数" class="headerlink" title="求数组中绝对值最小的数"></a>求数组中绝对值最小的数</h3><p>有一个升序排列的数组，数组中可能有正数、负数或者为0.求数组中元素的绝对值最小的数，例如，数组{-10，-5，-2，7，15，50}，绝对值最小的是-2。<br>绝对值最小可以分为三种情况考虑：<br>1.数组从第一个元素开始就是非负数，那么绝对值最小的数肯定是数组的第一个元素。<br>2.数组的最后一个元素为负数，那么绝对值最小的数一定是数组中的最后一个元素。<br>3.数组中既有整数又有负数，那么久需要找到正数与负数的分界点，如果分界点为0，那么0就是绝对值最小的数，如果分界点不为0，那么就要看分界点左右两个正负数的绝对值来比较大小了。<br>那么确定分界点最简单的方法就是顺序遍历数组，找出第一个非负数，时间复杂度最坏情况为O(n)。<br>二分法解决这个比较契合，主要思想如下：<br>1.取数组的中间位置的值a[mid]<br>2.如果a[mid]=0，那么这个数就是绝对值最小的值<br>3.a[mid]&gt;0，如果a[mid-1]<0，那么就比较a[mid]与a[mid-1]的绝对值。如果a[mid-1]=0,那么它就是要找的数，否则在数组的左半部分继续查找（正负数的分界点在左半部分）。 4.a[mid]<0，如果a[mid+1]="">0,那么通过比较a[mid]与a[mid+1]就可以。如果a[mid+1]=0,那就是我们要找的值，否则接着在数组的右半部分继续查找（正负数的分界点在右半部分）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line">public class MinAbs &#123;</div><div class="line">    public static void main (String[] args)&#123;</div><div class="line">        int a1[] = &#123;-10,-5,-2,7,15,50&#125;;</div><div class="line">        int a2[] = &#123;2,4,6,8,27&#125;;</div><div class="line">        int a3[] = &#123;-13,-9,-7,-3&#125;;</div><div class="line"></div><div class="line">        int value = getMinAbsValue(a1);</div><div class="line">        System.out.println(value);</div><div class="line"></div><div class="line">        value = getMinAbsValue(a2);</div><div class="line">        System.out.println(value);</div><div class="line"></div><div class="line">        value = getMinAbsValue(a3);</div><div class="line">        System.out.println(value);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    public static int min(int m,int n)&#123;</div><div class="line">        return m &lt; n ? m :n;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static int getMinAbsValue(int[] a) &#123;</div><div class="line">        int n = a.length;</div><div class="line">        //如果数组中没有负数</div><div class="line">        if (a[0]&gt;=0)</div><div class="line">            return a[0];</div><div class="line">        //数组中没有正数</div><div class="line">        if (a[n-1]&lt;=0)</div><div class="line">            return a[n-1];</div><div class="line"></div><div class="line">        int mid = 0;</div><div class="line">        int begin = 0;</div><div class="line">        int end = n-1;</div><div class="line">        int abs_min = 0;</div><div class="line">        //既有正数又有负数</div><div class="line"></div><div class="line">        while(true)&#123;</div><div class="line">            mid = begin + (end-begin)/2;</div><div class="line">            //如果值等于0，直接返回</div><div class="line">            if(a[mid]==0)&#123;</div><div class="line">                return a[mid];</div><div class="line">            &#125;else if(a[mid]&gt;0)&#123;</div><div class="line">                //继续在数组左半部分找</div><div class="line">                if(a[mid-1]&gt;0)</div><div class="line">                    end = mid -1;</div><div class="line">                else if(a[mid-1]==0)</div><div class="line">                    return 0;</div><div class="line"></div><div class="line">                //找到正负数分界点</div><div class="line">                else</div><div class="line">                    break;</div><div class="line">            &#125;else&#123;//如果值小于0在数组的右半部分查找</div><div class="line">                //数组右半部分查找</div><div class="line">                if(a[mid+1]&lt;0)</div><div class="line">                    begin = begin +1;</div><div class="line">                else if(a[mid+1]==0)</div><div class="line">                    return 0;</div><div class="line">                //找到正负分界点</div><div class="line">                else</div><div class="line">                    break;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        //获取了正负分界点</div><div class="line">        if(a[mid]&gt;0)&#123;</div><div class="line">            if(a[mid]&lt;Math.abs(a[mid-1]))</div><div class="line">                abs_min =a[mid];</div><div class="line">            else</div><div class="line">                abs_min = a[mid-1];</div><div class="line">        &#125;else &#123;</div><div class="line">            if (Math.abs(a[mid])&lt;a[mid+1])</div><div class="line">                abs_min = a[mid];</div><div class="line">            else</div><div class="line">                abs_min = a[mid+1];</div><div class="line">        &#125;</div><div class="line">        return abs_min;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></0，那么就比较a[mid]与a[mid-1]的绝对值。如果a[mid-1]=0,那么它就是要找的数，否则在数组的左半部分继续查找（正负数的分界点在左半部分）。></p>
+<h3 id="求数组中两个元素的最小距离"><a href="#求数组中两个元素的最小距离" class="headerlink" title="求数组中两个元素的最小距离"></a>求数组中两个元素的最小距离</h3><p>给定一个数组，数组中包含有重复的元素，给出两个数n1,n2,求这两个数字在数组中所出现位置的最小距离，例如数组{4,5,6,4,7,4,6,4,7,8,5,6,4,3,10,8}中，4和8的最小距离为2。<br>实现思路如下：遍历数组，会遇到以下两种情况。<br>1.当遇到n1时候，记录下n1值对应的数组小标的位置n1_index，通过求n1_index与上次遍历n2的下标n2_index的差，可以求出最近一次遍历到的n1与n2的距离。<br>2.当遇到n2时候，记录下n2值对应的数组小标的位置n2_index，通过求n2_index与上次遍历n1的下标n1_index的差，可以求出最近一次遍历到的n1与n2的距离。<br>定义一个min_dist变量记录n1与n2的最小距离，在以上两种情况下，每次求出n1与n2的距离后与min_dist相比，求出最小值。这样只需要一次遍历就可以求出最小距离。时间复杂度为O(n)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">public class minDistancce &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int a[] = &#123;4,5,6,4,7,4,6,4,7,8,5,6,4,3,10,8&#125;;</div><div class="line">        System.out.println(minDistancceNum(a,4,8));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static int min (int a, int b)&#123;</div><div class="line">        return a &lt; b ? a : b;</div><div class="line">    &#125;</div><div class="line">    private static int minDistancceNum(int[] a, int n1, int n2) &#123;</div><div class="line">        int n = a.length;</div><div class="line">        int n1_index = -1;</div><div class="line">        int n2_index = -1;</div><div class="line"></div><div class="line">        int min_dist = Integer.MAX_VALUE;</div><div class="line"></div><div class="line">        for (int i = 0; i &lt; n; i++) &#123;</div><div class="line">            if(a[i]==n1)&#123;</div><div class="line">                n1_index = i;</div><div class="line">                if(n2_index &gt; 0)&#123;</div><div class="line">                    min_dist = min(Math.abs(min_dist),Math.abs(n1_index-n2_index));</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            if(a[i]==n2)&#123;</div><div class="line">                n2_index = i;</div><div class="line">                if (n1_index&gt;0)&#123;</div><div class="line">                    min_dist = min(Math.abs(min_dist),Math.abs(n2_index-n1_index));</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return min_dist;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="指定数字在数组中第一次出现的位置"><a href="#指定数字在数组中第一次出现的位置" class="headerlink" title="指定数字在数组中第一次出现的位置"></a>指定数字在数组中第一次出现的位置</h3><p>给定数组a={3,4,5,6,5,6,7,8,9,8}，这个数组相邻元素之差都为1。给定数字9，他在数组中第一次出现的位置下标为8.<br>方法一：蛮力法 ，那么就是顺序遍历数组，和指定数字比较，如果两个数相等，那么返回下标。<br>方法二：跳跃搜索法 。例如需要查找9，数组相邻元素之差都为1，第一个元素为3，也就是元素9最早出现的位置是(9-3=6) 0+6=6(数组下标位置)，如果该位置不是，那么一定仍比9小，用相同的方法继续搜索。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class FindIndex &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int a[] = &#123;3,4,5,6,5,6,7,8,9,8&#125;;</div><div class="line">        System.out.println(findIndex(a,9));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static int findIndex(int[] a, int t) &#123;</div><div class="line">        int n = a.length;</div><div class="line">        int i = 0;</div><div class="line">        while (i &lt; n)&#123;</div><div class="line">            if (t==a[i])&#123;</div><div class="line">                return i;</div><div class="line">            &#125;else &#123;</div><div class="line">                i = i + Math.abs(t-a[i]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return -1;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="对数组的两个子有序段进行合并"><a href="#对数组的两个子有序段进行合并" class="headerlink" title="对数组的两个子有序段进行合并"></a>对数组的两个子有序段进行合并</h3><p>数组啊a[0,mid-1]和a[mid+1,n-1]是各自有序的，对数组a[0,n-1]的两个子有序段进行合并，得到a[0,n-1]整体有序。要求空间复杂度为O(1)。假设数组a={1,5,6,7,9,2,4,8,10,13,14},mid=5,a[0]~a[4]是有序的，a[5]~a[10]是有序的，合并后的数组为{1,2,4,5,6,7,8,9,10,13,14}<br>由于限定空间复杂度为O(1)所以不能使用归并方法，最容易想到的就是插入排序方法。这种方法的时间复杂度为O(n^2),空间复杂度为O(1)但是此种排序方法并没有用到条件数组a[0,mid-1],a[mid,n-1]都是各自有序的条件。所以有如下思路：<br>首先遍历数组中下标0~mid-1的元素，将遍历的元素的值与a[mid]比较，当遍历到a<a href="0&lt;=i&lt;=mid-1">i</a>时，如果满足a[mid]<a[i]，那么交换a[i]与a[mid]，接着找到交换后的a[mid]在a[mid,num-1]中的具体位置（在a[mid,num-1]中进行插入排序），实现方法为：遍历a[mid~num-2]，如果啊a[mid+1]<a[mid],交换他们的位置。 <figure="" class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">public class TwoToOne &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int a[] = &#123;1,5,6,7,9,2,4,8,10,13,14&#125;;</div><div class="line">        sort(a,5);</div><div class="line">        for (int i = 0; i &lt; a.length; i++) &#123;</div><div class="line">            System.out.print(a[i] + &quot; &quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static void sort(int[] a, int mid) &#123;</div><div class="line">        int temp;</div><div class="line">        for (int j = 0; j &lt; mid-1; j++) &#123;</div><div class="line">            if(a[mid] &lt; a[j])&#123;</div><div class="line">                temp = a[mid];</div><div class="line">                a[mid] = a[j];</div><div class="line">                a[j] = temp;</div><div class="line">                findRightPlaceForMid(a,mid);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static void findRightPlaceForMid(int[] a, int mid) &#123;</div><div class="line">        int n = a.length;</div><div class="line">        int tmp;</div><div class="line">        for (int i = mid; i &lt; n-1; i++) &#123;</div><div class="line">            if(a[i+1]&lt;a[i])&#123;</div><div class="line">                tmp = a[i+1];</div><div class="line">                a[i+1] = a[i];</div><div class="line">                a[i] = tmp;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></a[i]，那么交换a[i]与a[mid]，接着找到交换后的a[mid]在a[mid,num-1]中的具体位置（在a[mid,num-1]中进行插入排序），实现方法为：遍历a[mid~num-2]，如果啊a[mid+1]<a[mid],交换他们的位置。></p>
+<h3 id="计算两个有序整型数组的交集"><a href="#计算两个有序整型数组的交集" class="headerlink" title="计算两个有序整型数组的交集"></a>计算两个有序整型数组的交集</h3><p>假设有两个含有n个元素的有序非姜旭的整型数组a和b，其中a={0,1,2,3,4},b={1,3,5,7,9}，那么他们的交集为{1,3}。<br>可以使用方法两路归并法。设两个数组分别为array1[n1]和array[n2]。分别以i,j从头开始遍历两个数组。在遍历的过程中若当前遍历位置的array1[i]与array2[j]相等，则此数为两个数组的交集，记录下来，并且继续向后遍历array1和array2，若array1[i]大于arrary2[j],<br>则继续向后遍历array2，若array1[i]小于array2[j],则需要继续向后遍历array1，知道一个数组结束遍历即停止。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">public class FindMixed &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int a[] = &#123;0,1,2,3,4&#125;;</div><div class="line">        int b[] = &#123;1,3,5,7,9&#125;;</div><div class="line"></div><div class="line">        ArrayList&lt;Integer&gt; mix = mixed(a,b);</div><div class="line">        for (int i = 0; i &lt; mix.size(); i++) &#123;</div><div class="line">            System.out.print(mix.get(i) + &quot; &quot;);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static ArrayList&lt;Integer&gt; mixed(int[] a, int[] b) &#123;</div><div class="line">        ArrayList&lt;Integer&gt; mix = new ArrayList&lt;Integer&gt;();</div><div class="line">        int i=0,j=0;</div><div class="line">        int n1 = a.length;</div><div class="line">        int n2 = b.length;</div><div class="line">        while (i&lt;n1 &amp;&amp; j&lt;n2)&#123;</div><div class="line">            if (a[i]==b[j])&#123;</div><div class="line">                mix.add(a[i]);</div><div class="line">                i++;</div><div class="line">                j++;</div><div class="line">            &#125;else if(a[i]&gt;b[j])&#123;</div><div class="line">                j++;</div><div class="line">            &#125;else if(a[i]&lt;b[j])&#123;</div><div class="line">                i++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return mix;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="判断一个数组中的数值是否连续相邻"><a href="#判断一个数组中的数值是否连续相邻" class="headerlink" title="判断一个数组中的数值是否连续相邻"></a>判断一个数组中的数值是否连续相邻</h3><p>一个数组序列，元素可能是0~65535中的任意一个数，相同的数值不会重复出现，0是例外，可以反复出现。从该数组中随意去除5个数判断这5个数是否相邻。需要注意一下几点。<br>1.5个数值允许是乱序的例如{8,7,5,0,6}<br>2.0可以通配任何数值例如{8,7,5,0,6}中的0可以通配成9或者4。<br>3.0可以多次出现。<br>4.全0算连续，只有一个非0算连续。<br>如果没有0的存在，要组成联系的数列，最大值和最小值的差值必须是4，存在0的情况下只要最大值和最小值的差值小于4就可以了，所以应该找出数列中非0的最大值和非0的最小值，时间复杂度O(n)如果非0最大-非0最小+1&lt;<5,那么这5个数就是相邻的，否则不相邻。 <figure="" class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">public class FindContinuous &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int a[] = &#123;8,7,5,0,6&#125;;</div><div class="line">        if(isContinuous(a))&#123;</div><div class="line">            System.out.print(&quot;连续&quot;);</div><div class="line">        &#125;else &#123;</div><div class="line">            System.out.print(&quot;不连续&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static boolean isContinuous(int[] a) &#123;</div><div class="line">        int n = a.length;</div><div class="line">        int min = -1 ,max = -1;</div><div class="line">        for (int i = 0; i &lt; n; i++) &#123;</div><div class="line">            if(a[i]!=0)&#123;</div><div class="line">                if (a[i]&lt;min || min==-1)</div><div class="line">                    min = a[i];</div><div class="line">                if(a[i]&gt;max || max==-1)</div><div class="line">                    max = a[i];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        if(max-min&gt;n-1)</div><div class="line">            return false;</div><div class="line">        else</div><div class="line">            return true;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></5,那么这5个数就是相邻的，否则不相邻。></p>
+<h3 id="如何求解数组中反序对的个数"><a href="#如何求解数组中反序对的个数" class="headerlink" title="如何求解数组中反序对的个数"></a>如何求解数组中反序对的个数</h3><p>给定一个数组a，如果a[i]&gt;a<a href="i&lt;j">j</a>,那么a[i]与a[j]就称作为一个反序。例如给定数组{1，5，3，2，6}，共有(5，3)，(5，2)和(3，2)三个反序对。<br>方法一：蛮力法遍历数组元素，如果后面的数比前面的小，那么就是一个反序对。<br>方法二：分治归并法。相当于在归并排序的方法基础上额外使用一个计数器来记录反序对的个数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">public class MergeSort &#123;</div><div class="line">    public static int reverseCount = 0;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int a[] = &#123;1,5,3,2,6&#125;;</div><div class="line">        merge_sort(a,0,a.length-1);</div><div class="line">        System.out.println(reverseCount);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static void merge_sort(int[] a, int begin, int end) &#123;</div><div class="line">        if (begin&lt;end)&#123;</div><div class="line">            int mid = (begin + end)/2;</div><div class="line">            merge_sort(a,begin,mid);</div><div class="line">            merge_sort(a,mid+1,end);</div><div class="line">            merge(a,begin,mid,end);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static void merge(int[] a, int begin, int mid, int end) &#123;</div><div class="line">        int i,j,k,n1,n2;</div><div class="line">        n1 = mid-begin + 1;</div><div class="line">        n2 = end - mid;</div><div class="line"></div><div class="line">        int[] L = new int[n1];</div><div class="line">        int[] R = new int[n2];</div><div class="line">        for (i = 0,k=begin; i &lt; n1; i++,k++) &#123;</div><div class="line">            L[i] = a[k];</div><div class="line">        &#125;</div><div class="line">        for (i = 0,k=mid+1; i &lt; n2; i++,k++) &#123;</div><div class="line">            R[i] = a[k];</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        for(k=begin,i=0,j=0;i&lt;n1&amp;&amp;j&lt;n2;k++)&#123;</div><div class="line">            if(L[i]&lt;R[j])</div><div class="line">                a[k] = L[i++];</div><div class="line">            else &#123;</div><div class="line">                reverseCount += mid - i + 1;</div><div class="line">                a[k] = R[j++];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        if(i &lt;n1)&#123;</div><div class="line">            for(j=i;j&lt;n1;j++,k++)</div><div class="line">                a[k] = L[j];</div><div class="line">        &#125;</div><div class="line">        if (j &lt; n2)&#123;</div><div class="line">            for (i=j;i&lt;n2;i++,k++)</div><div class="line">                a[k] = R[i];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="如何求解最小三元组距离"><a href="#如何求解最小三元组距离" class="headerlink" title="如何求解最小三元组距离"></a>如何求解最小三元组距离</h3><p>已知3个升序整数数组啊a[l]、b[m]、c[n]。请在三个数组中各找一个元素，使得组成的三元组距离最小。三元组距离的定义：假设a[i]、b[j]和c[k]是一个三元组，那么距离Distance=max(|a[i]-b[j]|,|a[i]-c[k]|,|b[j]-c[k]|);<br>方法一：蛮力法三层循环分别遍历三个数组中的元素，分别求出他们的距离，然后在这些值里面找到最小值。<br>方法二：最小距离法。假设当前遍历到这三个数组中的元素分别为ai,bi，ci。并且ai&lt;=bi<ci;此时他们的距离肯定为di=ci-ai。那么接下来可以分如下情况考虑。 1.如果接下来求ai,bi,c[i+1]的距离，由于c[i+1]="">=c[i]，此时他们的距离必定为D[i+1]=c[i+1]-a[i]，由于数组是升序的显然D[i+1]&gt;=D[i]。因此D[i+1]不可能是最小距离。<br>2.如果接下来求ai,b[i+1],ci的距离，由于b[i+1]&gt;=b[i]，如果b[i+1]&lt;=c[i]，那么他们的距离仍为D[i+1]=ci-ai。如果b[i+1]&gt;c[i]，此时D[i+1]=b[i+1]-a[i]，显然D[i+1]&gt;=D[i],因此D[i+1]不可能是最小距离。<br>3.如果接下来求a[i+1]，b[i],c[i]的距离，如果a[i+1]&lt;|c[i]-a[i]|+c[i]，此时他们建的距离为D[i+1]=c[i]-a[i+1]。显然D[i+1]<d[i]，因此d[i+1]可能是最小距离。 综上所述，只需要考虑第三种情况即可，思路如下：从3个数组的第一个元素开始，先求出他们的距离为mindist,接下来找出这三个数中最小数对应的数组，只对这个数组的下标往后移一个位置，接着求3个数组中当前元素的距离，若比mindist小，则把当前距离赋值给mindist，以此类推，直到遍历完其中一个数组。因为此种方法只需要对三个数字分别遍历一次，因此时间复杂度为o(l+m+n)。="" <figure="" class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">public class MinDistance &#123;</div><div class="line">    public static void main(String[] args)&#123;</div><div class="line">        int a[] = &#123;3,4,5,7&#125;;</div><div class="line">        int b[] = &#123;10,12,14,16,17&#125;;</div><div class="line">        int c[] = &#123;20,21,23,24,37,30&#125;;</div><div class="line"></div><div class="line">        System.out.println(minDistancceNumber(a,b,c));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static int min(int a,int b,int c)&#123;</div><div class="line">        int min = a &lt; b ? a : b;</div><div class="line">        min = min &lt; c ? min : c;</div><div class="line">        return min;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static int max(int a,int b,int c)&#123;</div><div class="line">        int max = a &gt; b ? a : b;</div><div class="line">        max = max &gt; c ? max : c;</div><div class="line">        return max;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private static int minDistancceNumber(int[] a, int[] b, int[] c) &#123;</div><div class="line">        int aLen = a.length;</div><div class="line">        int bLen = b.length;</div><div class="line">        int cLen = c.length;</div><div class="line">        int curDist = 0;</div><div class="line">        int min = 0;</div><div class="line">        int minDist = Integer.MAX_VALUE;</div><div class="line"></div><div class="line">        int i=0;//数组a的下标</div><div class="line">        int j=0;//数组b的下标</div><div class="line">        int k=0;//数组c的下标</div><div class="line"></div><div class="line">        while (true)&#123;</div><div class="line">            curDist = max(Math.abs(a[i]-b[j]),Math.abs(a[i]-c[k]),Math.abs(b[j]-c[k]));</div><div class="line">            if(curDist&lt;minDist)</div><div class="line">                minDist = curDist;</div><div class="line">            //找到当前遍历的3个数组中的最小值</div><div class="line">            min = min(a[i],b[j],c[k]);</div><div class="line">            if (min==a[i])&#123;</div><div class="line">                if (++i&gt;=aLen)</div><div class="line">                    break;</div><div class="line">            &#125;else if(min==b[i])&#123;</div><div class="line">                if (++j&gt;=bLen)&#123;</div><div class="line">                    break;</div><div class="line">                &#125;</div><div class="line">            &#125;else &#123;</div><div class="line">                if (++k&gt;=cLen)</div><div class="line">                    break;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return minDist;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></d[i]，因此d[i+1]可能是最小距离。></ci;此时他们的距离肯定为di=ci-ai。那么接下来可以分如下情况考虑。></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/personnal/wechat-reward-image.jpg" alt="FangHeart WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/personnal/alipay-reward-image.jpg" alt="FangHeart Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/06/树相关算法/" rel="next" title="树相关算法">
+                <i class="fa fa-chevron-left"></i> 树相关算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/14/图的深度优先搜索和广度优先搜索/" rel="prev" title="图的深度优先搜索和广度优先搜索">
+                图的深度优先搜索和广度优先搜索 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/personnal/author.jpg"
+               alt="FangHeart" />
+          <p class="site-author-name" itemprop="name">FangHeart</p>
+           
+              <p class="site-description motion-element" itemprop="description">不忘初心，方得始终。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fangheart" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2013845927/" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/fangheart" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fangheart@fangheart.win" target="_blank" title="邮箱">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  邮箱
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://haroldliu.weebly.com" title="HaroldLiuChi" target="_blank">HaroldLiuChi</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://guangyugao.weebly.com/" title="GaoGuangYu" target="_blank">GaoGuangYu</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wenjiewang.top" title="WenJieWang" target="_blank">WenJieWang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/it_dx" title="DuanXiong" target="_blank">DuanXiong</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dongxicheng.org/recommend/" title="DongXiCheng" target="_blank">DongXiCheng</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#寻找数组中最小值与最大值。"><span class="nav-number">1.</span> <span class="nav-text">寻找数组中最小值与最大值。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#找出数组中第二大的数"><span class="nav-number">2.</span> <span class="nav-text">找出数组中第二大的数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何求最大子数组之和"><span class="nav-number">3.</span> <span class="nav-text">如何求最大子数组之和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何找到数组中重复最多的元素"><span class="nav-number">4.</span> <span class="nav-text">如何找到数组中重复最多的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何求数组中两两相加等于20的组合种类"><span class="nav-number">5.</span> <span class="nav-text">如何求数组中两两相加等于20的组合种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何把一个数组循环右移k位"><span class="nav-number">6.</span> <span class="nav-text">如何把一个数组循环右移k位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#找出数组中第K个最小的数"><span class="nav-number">7.</span> <span class="nav-text">找出数组中第K个最小的数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何找出数组中只出现一次的数字"><span class="nav-number">8.</span> <span class="nav-text">如何找出数组中只出现一次的数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用递归方式求一个整形数组的最大元素"><span class="nav-number">9.</span> <span class="nav-text">用递归方式求一个整形数组的最大元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求一个数组数对之差的最大值"><span class="nav-number">10.</span> <span class="nav-text">求一个数组数对之差的最大值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求数组中绝对值最小的数"><span class="nav-number">11.</span> <span class="nav-text">求数组中绝对值最小的数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求数组中两个元素的最小距离"><span class="nav-number">12.</span> <span class="nav-text">求数组中两个元素的最小距离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定数字在数组中第一次出现的位置"><span class="nav-number">13.</span> <span class="nav-text">指定数字在数组中第一次出现的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对数组的两个子有序段进行合并"><span class="nav-number">14.</span> <span class="nav-text">对数组的两个子有序段进行合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算两个有序整型数组的交集"><span class="nav-number">15.</span> <span class="nav-text">计算两个有序整型数组的交集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断一个数组中的数值是否连续相邻"><span class="nav-number">16.</span> <span class="nav-text">判断一个数组中的数值是否连续相邻</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何求解数组中反序对的个数"><span class="nav-number">17.</span> <span class="nav-text">如何求解数组中反序对的个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何求解最小三元组距离"><span class="nav-number">18.</span> <span class="nav-text">如何求解最小三元组距离</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-FangHeart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FangHeart</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      个访问本站的人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "eb7c3e4313a441e99919491234887c0d",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("EFaViLzEeIm1xLj3lRgl6Ktw-gzGzoHsz", "6QrsfTcpIvP6XuQ8mKM70tx9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+
+  
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<!-- 背景动画 -->
+<script type="text/javascript" src="/js/src/particle.js"></script>
+
+</body>
+</html>
