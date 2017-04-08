@@ -416,7 +416,8 @@
           
           闲来无事，复习下算法，对各种经典的排序算法进行初步的总结。巩固下基础，同时为将来找工作做下准备，也作为我博客正式发文的开端。
 所有排序默认从小到大。时间复杂度详见总结。
-一、选择排序（Selectionsort)选择排序（Selectionsort）是一种简单直观的排序算法。它的工作原理是每一次从待
+一、选择排序（Selectionsort)选择排序（Selectionsort）是一种简单直观的排序算法。它的工作原理是每一次从待排序的数据元素中选出最小（或最大）的一个元素，存放在序列的起始位置，直到全部待排序的数据元素排完。例如a[] = {112,123,12,23,234,345,435,345,21,2};第一个循环只能将最小的数字2放到第一位，然后第二次循环，12放到第二位。
+1234567891011121314
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -576,7 +577,24 @@
       
         
           
-          MarkDown语法1. 排版1234567891011121314151617**粗体** *斜体* ~~这是一段错误的文本。~~引用:&gt; 引用Leanote官方的话, 为什么要做Leanote, 原因是...有充列表: 1. 支持Vim 2. 支持Emacs无序列表: - 项目1 - 项目
+          MarkDown语法1. 排版1234567891011121314151617**粗体** *斜体* ~~这是一段错误的文本。~~引用:&gt; 引用Leanote官方的话, 为什么要做Leanote, 原因是...有充列表: 1. 支持Vim 2. 支持Emacs无序列表: - 项目1 - 项目2
+上述写法效果如下：粗体 斜体 
+这是一段错误的文本。
+引用:
+
+引用Leanote官方的话, 为什么要做Leanote, 原因是…
+
+有充列表:
+
+支持Vim
+支持Emacs
+
+无序列表:
+
+项目1
+项目2
+
+2. 图片与链接123456789图片:![网络方式](http://ocef6bnj
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -736,7 +754,11 @@
       
         
           
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post1$ hexo new "My New Post"
+More info: Writing
+Run server1$ hexo server
+More in
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -897,7 +919,8 @@
         
           
           hexo new page “名字” 建新的分类页面hexo n “name” 创建新的文章hexo s 开启本地服务hexo clean 删除当前信息hexo g 生成新的信息hexo d 上传到github
-jacman menu 默认没有启用 /tags 和 /categories 页面，如果
+jacman menu 默认没有启用 /tags 和 /categories 页面，如果需要启用请在博客目录下的source文件夹中分别建立tags和categories文件夹每个文件夹中分别包含一个index.md文件。内容为：layout: tags (或categories)
+title: tags (或categories)新建文章内 tags: test或者如下123tags
           ...
           <!--noindex-->
           <div class="post-button text-center">

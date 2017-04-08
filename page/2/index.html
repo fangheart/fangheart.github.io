@@ -414,7 +414,9 @@
       
         
           
-          NodeManager（NM）是YARN中每个节点上的代理，它管理Hadoop集群中单个计算节点，包括与ResourceManger保持通信，监督Container的生命周期管理，监控每个Container的资源使用（内存、CPU等）情况，追踪节点健康状况，管理日志和不同应用程序用到的附属服务（au
+          NodeManager（NM）是YARN中每个节点上的代理，它管理Hadoop集群中单个计算节点，包括与ResourceManger保持通信，监督Container的生命周期管理，监控每个Container的资源使用（内存、CPU等）情况，追踪节点健康状况，管理日志和不同应用程序用到的附属服务（auxiliary service）。
+
+【NodeStatusUpdater】当NM启动时，该组件向RM注册，并发送节点上可用资源。接下来，NM与RM通信，汇报各个Container的状态更新，包括节点上正运行的Container、已完成的Contaner等。此外，RM可能向NodeStatusUpd
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -576,7 +578,9 @@
           
           RM粗略介绍在YARN中，ResourceManager负责集群中所有资源的统一管理和分配，它接收来自各个节点（NodeManager）的资源汇报信息，并把这些信息按照一定的策略分配给各个应用程序（实际上是ApplicationManager）。
 
-RM组成ResourceManager主要由以下几
+RM组成ResourceManager主要由以下几个部分组成：
+用户交互YARN分别针对普通用户，管理员和Web提供了三种对外服务，分别对应ClientRMService、AdminService和WebApp：
+ClientRMServiceClientRMService是为普通用户提供的服务，它会处理来自客户端各种RPC请求，比如提交应用程序、
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -736,7 +740,9 @@ RM组成ResourceManager主要由以下几
       
         
           
-          Container概念引出在学习Hadoop  YARN—Hadoop 2.0新引入的通用资源管理系统过程中，总会遇到Container这一概念，由于中文资料的缺乏，很多人对Container这一概念仍非常的模糊。它与Linux Container是什么关系，它是否能像Linux Container
+          Container概念引出在学习Hadoop  YARN—Hadoop 2.0新引入的通用资源管理系统过程中，总会遇到Container这一概念，由于中文资料的缺乏，很多人对Container这一概念仍非常的模糊。它与Linux Container是什么关系，它是否能像Linux Container那样为任务提供一个隔离环境?它代表计算资源，还是仅仅是一个任务处理进程？本文将尝试介绍Container这一概念。
+hadoop中任务工作流程在学习Container之前，大家应先了解YARN的基本架构、工作流程。比如，大家应该了解一个应用程序的运行过程如下：
+步骤1：用户将应用程序提交到Resou
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -904,7 +910,15 @@ A:StringBuffer类概述
 
 B:StringBuffer和String的区别
 String是一个不可变的字符序列
-StringBuffer是一个可变
+StringBuffer是一个可变的字符序列 
+
+
+
+02_常见对象(StringBuffer类的构造方法)
+A:StringBuffer的构造方法：
+public StringBuffer():无参构造方法
+public StringBuffer(int capacity):指定容量的字符串缓冲区对象
+public StringB
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1070,7 +1084,13 @@ B:Scanner的构造方法原理
 
 Scanner(InputStream source)
 
-System类下有一个静态的字段：public static final InputStream in; 标准的输入流，对
+System类下有一个静态的字段：public static final InputStream in; 标准的输入流，对应着键盘录入。
+
+
+C:一般方法
+
+hasNextXxx() 判断是否还有下一个输入项,其中Xxx可以是Int,Double等。如果需要判断是否包含下一个字符串，则可以省略Xxx
+nextXxx() 获取下一个输入项。Xxx的含义和上个方法中的Xxx相同,默认情况下，Scanner使用空格，回车等作
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1244,7 +1264,14 @@ B:包的概述
 
 方案1：按照功能分
     com.heima.add
-    
+        AddStudent
+        AddTeacher
+    com.heima.delete
+        DeleteStudent
+        DeleteTeacher
+    com.heima.update
+        UpdateStudent
+        
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1406,7 +1433,12 @@ B:包的概述
           
           如今，随着大数据越来越流行，大数据安全治理也变得越来越火热，介绍下其中数据处理框架Apache的顶级项目Falcon。先以安装为开始。
 1. Hadoop配置项的修改1.1 修改yarn-site.xml操作机器
-在主机-1、主机-2、主机-3节点上使用 hdfs 用户， /var/local/ha
+在主机-1、主机-2、主机-3节点上使用 hdfs 用户， /var/local/hadoop/hadoop-2.6.0/etc/hadoop 目录下
+操作指令
+1vim yarn-site.xml
+在标签内修改添加如下内容
+&lt;property&gt;  
+   &lt;name&gt;mapred.jobtracker.taskScheduler&lt;/name&gt;  
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1584,7 +1616,20 @@ C:案例演示
 
 02_面向对象(多态中的成员访问特点之成员变量)
 成员变量
-编译看左边
+编译看左边(父类)，运行看左边(父类)。
+
+
+
+03_面向对象(多态中的成员访问特点之成员方法)
+成员方法
+编译看左边(父类)，运行看右边(子类)。【动态绑定】
+
+
+
+04_面向对象(多态中的成员访问特点之静态成员方法)
+静态方法
+编译看左边(父类)，运行看左边(父类)。
+(静态和类相关，算不上重写，所以，访
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1754,7 +1799,16 @@ B:代码块分类
 
 
 C:常见代码块的应用
-a:局部
+a:局部代码块 
+在方法中出现；限定变量生命周期，及早释放，提高内存利用率
+
+
+b:构造代码块 (初始化块)
+在类中方法外出现；多个构造方法方法中相同的代码存放到一起，每次调用构造都执行，并且在构造方法前执行
+
+
+c:静态代码块 
+在类中方法外出现，并加上static修饰；用于给类进行初始化，在加载的时候就
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1926,7 +1980,16 @@ c:没有具体的返回值return;
 
 
 
-02_面向对象(构造方法的
+02_面向对象(构造方法的重载及注意事项)(掌握)
+A:案例演示
+构造方法的重载
+重载:方法名相同,与返回值类型无关(构造方法没有返回值),只看参数列表
+
+
+B:构造方法注意事项
+a:如果我们没有给出构造方法，系统将自动提供一个无参构造方法。
+b:如果我们给出了构造方法，系统将不再提供默认的无参构造方法。
+注意：这个时候，如
           ...
           <!--noindex-->
           <div class="post-button text-center">
