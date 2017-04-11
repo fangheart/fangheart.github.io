@@ -97,7 +97,7 @@
 <meta property="og:description" content="设计模式原则1. 封装变化
 2.多用组合少用继承（01）【使用组合建立系统具有很大的弹性，不禁可以讲算法族封装成类，更可以“在运行时动态的改变行为”，只要组合的行为对象符合正确的接口标准即可】
 3.针对接口编程，不针对实现编程（01）【一种理解即使真实的针对interface的编程，也可理解成利用多态针对超类进行编程，根据具体的情况执行真正的行为，不会绑死在超类上，针对超类进行编程可以更明确的说成">
-<meta property="og:updated_time" content="2017-02-23T08:58:52.000Z">
+<meta property="og:updated_time" content="2017-04-11T14:34:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式">
 <meta name="twitter:description" content="设计模式原则1. 封装变化
@@ -445,84 +445,21 @@
     *    总结：当需要创建产品家族或者想要制造相关产品集合起来时，就使用抽象工厂。当想将客户代码从实例化的具体类中解耦或者目前还不知道将来需要实例化哪些具体类时，就用工厂方法。
 </code></pre><h3 id="05、-单件模式（Singleton-pattern）"><a href="#05、-单件模式（Singleton-pattern）" class="headerlink" title="05、 单件模式（Singleton pattern）"></a>05、 单件模式（Singleton pattern）</h3><pre><code>确保一个类只有一个实例，并提供一个全局访问点。原理即是构造函数私有化，如果想使用到实例对象，那么通过调用类的静态方法getInstance来实现。那么久可以向全局变量一样简单的访问，但是还有它的优点单件可以延迟实例化，并且具有一般类的方法和变量【用来管理共享资源如数据库的连接或者线程池】
     代码示例
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// <span class="doctag">NOTE:</span> This is not thread safe!</span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Singleton uniqueInstance;<span class="comment">//静态私有变量</span></div><div class="line"> </div><div class="line">	<span class="comment">// other useful instance variables here</span></div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;<span class="comment">//私有构造函数</span></div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (uniqueInstance == <span class="keyword">null</span>) &#123;</div><div class="line">			uniqueInstance = <span class="keyword">new</span> Singleton();<span class="comment">//通过类内方法调用私有构造函数产生实例</span></div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> uniqueInstance;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="comment">// other useful methods here</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-    // NOTE: This is not thread safe!
-
-    public class Singleton {
-        private static Singleton uniqueInstance;//静态私有变量
-
-        // other useful instance variables here
-
-        private Singleton() {}//私有构造函数
-
-        public static Singleton getInstance() {
-            if (uniqueInstance == null) {
-                uniqueInstance = new Singleton();//通过类内方法调用私有构造函数产生实例
-            }
-            return uniqueInstance;
-        }
-
-        // other useful methods here
-    }
 
     但上面的代码如果是多线程的可能还存在一些问题，因为多线程可能是不安全的，因为我们需要保证在多线程模式下可以正常工作，不要产生多个uniqueInstance静态实例化对象。所以又有了如下几种考虑。
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Singleton uniqueInstance;<span class="comment">//静态私有变量</span></div><div class="line"> </div><div class="line">	<span class="comment">// other useful instance variables here</span></div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;<span class="comment">//私有构造函数</span></div><div class="line"> </div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;<span class="comment">//方法加同步修饰</span></div><div class="line">		<span class="keyword">if</span> (uniqueInstance == <span class="keyword">null</span>) &#123;</div><div class="line">			uniqueInstance = <span class="keyword">new</span> Singleton();<span class="comment">//通过类内方法调用私有构造函数产生实例</span></div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> uniqueInstance;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	<span class="comment">// other useful methods here</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-    public class Singleton {
-        private static Singleton uniqueInstance;//静态私有变量
-
-        // other useful instance variables here
-
-        private Singleton() {}//私有构造函数
-
-        public static synchronized Singleton getInstance() {//方法加同步修饰
-            if (uniqueInstance == null) {
-                uniqueInstance = new Singleton();//通过类内方法调用私有构造函数产生实例
-            }
-            return uniqueInstance;
-        }
-
-        // other useful methods here
-    }
     上述这种写法每次调用都要需要同步这个方法，而实际我门只需要第一次执行的时候才需要此方法，那么性能就有点低了，如果不考虑性能，可以接受getInstance的额外负担，那么久可以使用synchronized同步。
 
     如果你非常急切的需要创建单件实例，而又不想延迟实例化那么可以看下如下做法。
-    public class Singleton {
-                private static Singleton uniqueInstance = new Singleton();//直接创建静态私有变量单件实例
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">			<span class="keyword">private</span> <span class="keyword">static</span> Singleton uniqueInstance = <span class="keyword">new</span> Singleton();<span class="comment">//直接创建静态私有变量单件实例</span></div><div class="line">		 </div><div class="line">			<span class="comment">// other useful instance variables here</span></div><div class="line">		 </div><div class="line">			<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;<span class="comment">//私有构造函数</span></div><div class="line">		 </div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">				<span class="keyword">return</span> uniqueInstance;</div><div class="line">			&#125;</div><div class="line">		 </div><div class="line">			<span class="comment">// other useful methods here</span></div><div class="line">		&#125;</div></pre></td></tr></table></figure>
 
-                // other useful instance variables here
-
-                private Singleton() {}//私有构造函数
-
-                public static Singleton getInstance() {
-                    return uniqueInstance;
-                }
-
-                // other useful methods here
-            }
     利用如上方法，我们依赖JVM在加载这个类的时候马上创建此唯一单件实例，这样任何线程访问unniqueInstance静态变量之前，一定会创建此实例。
 
     其实还有更高端的办法是运用双重检查加锁，原理是首先检查是否实例已经创建，如果尚未创建，才进行同步。只有第一次会同步，这也真是我们所期盼的。
-
-    public class Singleton {
-        private volatile static Singleton uniqueInstance;//volatile关键词确保当uniqueInstance变量被初始化成实例时候，多个线程能正确的处理uniqueInstance。
-
-        // other useful instance variables here
-
-        private Singleton() {}//私有构造函数
-
-        public static Singleton getInstance() {
-            if (uniqueInstance == null) {//检查实例如果不存在就进入同步区块
-            synchronized（Singleton.class）{
-            if (uniqueInstance == null){//进入同步块后再检查一次
-                uniqueInstance = new Singleton();//只有第一次才彻底执行这里的代码
-                }
-            }
-            }
-            return uniqueInstance;
-        }
-
-        // other useful methods here
-    }
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class Singleton &#123;</div><div class="line">	private volatile static Singleton uniqueInstance;//volatile关键词确保当uniqueInstance变量被初始化成实例时候，多个线程能正确的处理uniqueInstance。</div><div class="line"> </div><div class="line">	// other useful instance variables here</div><div class="line"> </div><div class="line">	private Singleton() &#123;&#125;//私有构造函数</div><div class="line"> </div><div class="line">	public static Singleton getInstance() &#123;</div><div class="line">		if (uniqueInstance == null) &#123;//检查实例如果不存在就进入同步区块</div><div class="line">		synchronized（Singleton.class）&#123;</div><div class="line">		if (uniqueInstance == null)&#123;//进入同步块后再检查一次</div><div class="line">			uniqueInstance = new Singleton();//只有第一次才彻底执行这里的代码</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		&#125;</div><div class="line">		return uniqueInstance;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	// other useful methods here</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </code></pre><h3 id="06-命令模式（Comand）封装调用"><a href="#06-命令模式（Comand）封装调用" class="headerlink" title="06.命令模式（Comand）封装调用"></a>06.命令模式（Comand）封装调用</h3><pre><code>命令模式将请求封装成对象，以便使用不同的请求、队列或者日志来参数化其他对象。命令模式也可以支持撤销的操作。【命令模式可以将动作的请求者从动作的执行者对象中解耦；在被解耦的两者之间是通命令进行沟通的。命令对象封装了接收者和一个或一组动作；调用者通过调用命令对象的execute()发出请求，这会使接收者的动作被调用；调用者可以接受命令当做参数，甚至在运行时动态进行；命令可以支持撤销，做法是一个undo()来与excute相反执行；命令也可以用来实现日志事务系统】。
 </code></pre><h3 id="07-1-适配器模式（adaper-pattern）"><a href="#07-1-适配器模式（adaper-pattern）" class="headerlink" title="07-1.适配器模式（adaper-pattern）"></a>07-1.适配器模式（adaper-pattern）</h3><pre><code>适配器模式将一个类的接口，转换成客户期望的另一个接口。适配器让原本接口不兼容的类可以合作无间。
 </code></pre><h3 id="07-2-外观模式-Facede-Pattern"><a href="#07-2-外观模式-Facede-Pattern" class="headerlink" title="07-2.外观模式(Facede-Pattern)"></a>07-2.外观模式(Facede-Pattern)</h3><pre><code>外观模式提供了一个统一的接口，用来访问子系统中的一群接口，外观定义了一个高层接口，让子系统更容易使用。
