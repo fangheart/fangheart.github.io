@@ -1,0 +1,1197 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="大数据之路," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/personnal/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="名词DataX异构数据库交换服务产品，从不同数据库数据源中获得数据转换为中间状态，并且可以在目标数据系统中再将中间状态的数据转换为对应的格式写入。TDDL（Taobao distributed Data Layer）分布式数据库访问引擎，通过建立中间状态的逻辑表来整合统一分库分表的访问。IDB 是用于统一管理Mysql、OceanBase、PostgreSQL、Oracle、SQL Server等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数据之路读书笔记（一）">
+<meta property="og:url" content="http://www.fangheart.top/2018/05/26/大数据之路读书笔记（一）/index.html">
+<meta property="og:site_name" content="FangHeart's blog">
+<meta property="og:description" content="名词DataX异构数据库交换服务产品，从不同数据库数据源中获得数据转换为中间状态，并且可以在目标数据系统中再将中间状态的数据转换为对应的格式写入。TDDL（Taobao distributed Data Layer）分布式数据库访问引擎，通过建立中间状态的逻辑表来整合统一分库分表的访问。IDB 是用于统一管理Mysql、OceanBase、PostgreSQL、Oracle、SQL Server等">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/18-5-26/84394852.jpg">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/18-5-27/74967404.jpg">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/18-5-28/82537018.jpg">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/18-5-28/36545144.jpg">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/18-5-28/82961517.jpg">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/18-5-28/82961517.jpg">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/18-5-28/26274798.jpg">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/18-5-28/19879798.jpg">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/18-5-28/93105434.jpg">
+<meta property="og:image" content="http://ocef6bnjz.bkt.clouddn.com/18-5-28/65534950.jpg">
+<meta property="og:updated_time" content="2018-06-19T05:48:31.757Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="大数据之路读书笔记（一）">
+<meta name="twitter:description" content="名词DataX异构数据库交换服务产品，从不同数据库数据源中获得数据转换为中间状态，并且可以在目标数据系统中再将中间状态的数据转换为对应的格式写入。TDDL（Taobao distributed Data Layer）分布式数据库访问引擎，通过建立中间状态的逻辑表来整合统一分库分表的访问。IDB 是用于统一管理Mysql、OceanBase、PostgreSQL、Oracle、SQL Server等">
+<meta name="twitter:image" content="http://ocef6bnjz.bkt.clouddn.com/18-5-26/84394852.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.fangheart.top/2018/05/26/大数据之路读书笔记（一）/"/>
+
+
+
+
+
+  <title> 大数据之路读书笔记（一） | FangHeart's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FangHeart's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">爱生活，爱编码。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://www.fangheart.top/2018/05/26/大数据之路读书笔记（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FangHeart">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/personnal/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FangHeart's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                大数据之路读书笔记（一）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-26T16:46:45+08:00">
+                2018-05-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据之路/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据之路</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2018/05/26/大数据之路读书笔记（一）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/05/26/大数据之路读书笔记（一）/" class="leancloud_visitors" data-flag-title="大数据之路读书笔记（一）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="名词"><a href="#名词" class="headerlink" title="名词"></a>名词</h1><p>DataX异构数据库交换服务产品，从不同数据库数据源中获得数据转换为中间状态，并且可以在目标数据系统中再将中间状态的数据转换为对应的格式写入。<br>TDDL（Taobao distributed Data Layer）分布式数据库访问引擎，通过建立中间状态的逻辑表来整合统一分库分表的访问。<br>IDB 是用于统一管理Mysql、OceanBase、PostgreSQL、Oracle、SQL Server等关系型数据库的平台，它是一种集数据管理、结构管理、诊断优化、实时监控和系统管理于一体的数据管理服务。在对集群数据库表的统一管理服务中，IDB产出了数据库、表、字段各个级别元数据信息，并且提供了元数据接口服务。<br>数据存储及计算云平台(离线计算平台MaxCompute与流式计算平台StreamCompute)和数据整合及管理体系(OneData)<br>pangu 分布式文件系统<br>fuxi 资源调度系统<br>nuwa/ZK NameSpace服务<br>shennong 监控模块<br>统一开发平台<br>D2(在云端)集开发、调度、发布、生产任务调度及大数据运维、数据权限申请以及管理等功能的一站式数据开发平台。<br>SQLSCAN 解决用户编写SQL质量差、性能低、不遵守规范等，总结后形成规则，并通过系统及研发流程保障，事前解决故障隐患，避免事后处理。<br>DQC(Data Quality center数据质量中心)主要关注数据质量，通过配置数据质量校验规则，自动在数据处理任务过程中进行数据质量方面的监控。<br>在彼岸 测试发布平台<br>调度引擎 执行引擎  任务状态机 任务工作流状态机<br>BI 商业智能</p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>大数据的井喷式爆发加大了数据模型、数据研发、数据质量和运维保障工作的难度。</p>
+<p>数据体系主要分为数据采集-》数据计算-》数据服务-》数据应用四大层</p>
+<p><img src="http://ocef6bnjz.bkt.clouddn.com/18-5-26/84394852.jpg" alt=""></p>
+<h3 id="数据采集层"><a href="#数据采集层" class="headerlink" title="数据采集层"></a>数据采集层</h3><p>建立标准的数据采集体系方案，致力全面、高性能、规范的完成海量数据的采集，并传输到大数据平台。</p>
+<p>阿里巴巴技术采集分为两大体系：</p>
+<p>Aplus.js WEB端日志采集技术方案与UserTracker是APP端日志采集技术方案。</p>
+<p>在采集技术基础上，面向各个场景进行埋点规范，满足通用浏览、点击、特殊交互、APP事件、H5及APP里的H5和Native日志数据打通等多种业务场景。</p>
+<p>同时建立一套高性能的、高可靠性的数据传输体系，完成数据从生产业务端到大数据系统的传输。在传输方面，采用TimeTunel(TT)，即包括数据库的增量数据传输，也包括日志数据的传输。TT作为数据传输服务的基础架构，同时还支持实时流计算，也支持各种事件窗口的批量计算。另外也可以通过数据同步工具（DataX和同步中心）直连异构数据库（备库）来持有企业各种事件窗口的数据。</p>
+<h3 id="数据计算层"><a href="#数据计算层" class="headerlink" title="数据计算层"></a>数据计算层</h3><p>数据计算层分包括两大体系。数据存储及计算云平台(离线计算平台MaxCompute与流式计算平台StreamCompute)和数据整合及管理体系(OneData)。即使在这一体系下构建统一、规范、可共享的全域数据体系，避免数据的冗余与重复建设，规避数据烟囱和不一致性，充分发挥在大数据海量、多样性的独特优势。</p>
+<p>从数据的计算频率来讲又可将数据仓库分配两大类，离线数据仓库与实时数据仓库。离线数据仓库是指传统的数据仓库概念，数据计算频率主要以天（包含小时、周、月）为单位。例如每天凌晨处理上一天的数据。但随着业务的发展特别是交易过程的缩短，用户对数据产出的实时性要求逐渐提高，所以急产生了实时数据仓库，例如双11的实时数据直播，即使其一个典型的应用案例。</p>
+<p>阿里数据仓库的数据加工链路的分层：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">操作数据层（Operational Data Store,ODS）</div><div class="line">明细数据层（Data Warehouse Detail,DWD）</div><div class="line">汇总数据层（Data WareHouse Summary,DWS）</div><div class="line">应用数据层（Application Data Store,ADS）</div></pre></td></tr></table></figure>
+<p>通过数据仓库不同层次之间的加工过程实现从数据资产到信息资产的转化，并对整个过程进行有效的元数据管理以及数据质量处理。</p>
+<p>大数据系统中，元数据模型整合及应用也是一个重要的组成部分，主要包含数据源元数据、数据仓库元数据、数据链路元数据、工具类元数据、数据质量类元数据等。元数据应用主要面向数据发现、数据管理等，如用于存储、计算和成本管理。</p>
+<h1 id="数据技术篇"><a href="#数据技术篇" class="headerlink" title="数据技术篇"></a>数据技术篇</h1><h2 id="数据技术篇-1"><a href="#数据技术篇-1" class="headerlink" title="数据技术篇"></a>数据技术篇</h2><h3 id="日志采集"><a href="#日志采集" class="headerlink" title="日志采集"></a>日志采集</h3><h4 id="浏览器日志采集"><a href="#浏览器日志采集" class="headerlink" title="浏览器日志采集"></a>浏览器日志采集</h4><p>主要分为两类<br>（1）即是页面浏览（展现）日志采集。 页面浏览量（PageView，PV),访客数（Unique Visitors,UV）<br>（2）页面交互日志采集</p>
+<h5 id="页面浏览日志采集流程"><a href="#页面浏览日志采集流程" class="headerlink" title="页面浏览日志采集流程"></a>页面浏览日志采集流程</h5><p>采集日志的动作的时机非常关键，需要确保用户已确实打开页面，因此需要在用户接收到服务器的响应数据，并开始正确的解析及渲染过程中进行，因此需要在响应正文的HTML文档内的适当的位置增加一个日志采集节点，当浏览器解析到这个节点时，将自动触发一个特定的HTTP请求到日志采集服务器。</p>
+<p>基本流程：采集-》发送-》收集-》解析</p>
+<p>对于PV和UV的采集是简单，然后多数时候需要进行交互日志的采集，而因业务的不同场景的不同，所需记录的行为类型、行为数据以及数据的结构化程度都是截然不同的，呈现出高度自定义的业务特征，在阿里巴巴中交互日志的采集（即黄金令箭）是以技术服务的形式呈现的，其实是一种开放的基于HTTP协议的日志服务。具体的步骤如下：</p>
+<p><img src="http://ocef6bnjz.bkt.clouddn.com/18-5-27/74967404.jpg" alt=""></p>
+<h5 id="页面日志服务端清洗与预处理"><a href="#页面日志服务端清洗与预处理" class="headerlink" title="页面日志服务端清洗与预处理"></a>页面日志服务端清洗与预处理</h5><p>通常日志到达服务端后进行粗略的解析，但是这样的数据不能直接提供给下游使用，如果时间比较宽松的应用场合下，一般还需要离线预处理。答题因为如下的原因。  </p>
+<pre><code>* 识别流量攻击、网络爬虫和流量作弊（虚假流量）
+* 数据缺项补正
+* 无效数据剔除
+* 日志隔离分发
+</code></pre><p>原始日志经过上述的清洗修正，并结构化变形处理后，Web页面日志的采集流程就算完成，此时日志已经具备了结构化或者半结构化的特征，可以方便的被关系型数据库装载使用。</p>
+<h4 id="H5-amp-Native日志统一"><a href="#H5-amp-Native日志统一" class="headerlink" title="H5&amp;Native日志统一"></a>H5&amp;Native日志统一</h4><p>可以选择将H5日志规范到Native中。H5照常通过埋点通过JS采集即可，Native运用SDK，因为采用SDK可以采集更多的设备相关数据，这在移动端分析中很重要，而是SDK采集的处理日志，会先在本地缓存，而后借机上传，在网络状况不佳的时候延迟上报，保证数据的不丢失。正因为这样的种种优势采用H5日志归到Native中。</p>
+<h4 id="日志典型场景注意事项"><a href="#日志典型场景注意事项" class="headerlink" title="日志典型场景注意事项"></a>日志典型场景注意事项</h4><pre><code>* 日志分流与定制处理：确保各业务之间不应存在明显的影响，爆发热点不应干扰常规业务的日志处理，日志优先级控制以及根据业务特点实现定制处理
+* 采集与计算一体化设计
+</code></pre><h3 id="数据同步"><a href="#数据同步" class="headerlink" title="数据同步"></a>数据同步</h3><p>数据采集需要有日志采集和数据库数据同步两部分。数据同步技术既是不同既不同系统间数据流转，主数据库与备份数据库之间的数据备份，以及主系统与子系统之间的数据更新，属于同类型不同集群数据库之间的数据同步。</p>
+<p>另外还包不同地域、不同数据库类型之间的数据传输交换，比如分布式业务系统与数据仓库之间的数据同步。包含数据从业务系统同步进入数据仓库和数据从数据仓库同步进入数据服务和数据应用两个方面。</p>
+<p>源业务系统的数据类型多种多样，有来源于关系型数据库的结构化数据，如MySQL、Oracle、DB2、SQL Server等。也有来源于非关系型数据库的非结构化数据，如OceanBase、HBase、MongoDB等，这类数据通常存储在数据库表中。</p>
+<p>还有来源于文件系统的结构化或非结构化数据，如阿里云对象存储OSS、文件存储NAS等。</p>
+<p>同步方式可以分为三种：直连同步、数据文件同步和数据库日志解析同步。</p>
+<h4 id="直连同步"><a href="#直连同步" class="headerlink" title="直连同步"></a>直连同步</h4><p>直连同步及时通过定义好的规范接口API基和于动态链接库的方式直接连接业务库，如ODBC/JDBC。</p>
+<p><img src="http://ocef6bnjz.bkt.clouddn.com/18-5-28/82537018.jpg" alt=""></p>
+<p>这种方式配置简单，实现容易，比较适合操作型业务系统的数据同步。但是业务库的直连方式对于源系统的性能影响较大，当执行大批量数据同步时会降低甚至拖垮业务系统的性能。如果业务库采取主备策略，则可以从备库抽取数据，避免对业务系统产生性能影响，但是当数据量较大时，采取此种抽取方式性能较差，不太适合从业务系统到数据仓库系统的同步。</p>
+<h4 id="数据文件同步"><a href="#数据文件同步" class="headerlink" title="数据文件同步"></a>数据文件同步</h4><p>数据文件同步通过约定好的文件编码、大小、格式等，直接从源系统生成数据的文本文件，由专门的文件服务器，如FTP服务器传输到目标系统后，加载到目标数据库系统中。当数据源包含多个异构数据库系统（如MySql、Oracle、SQL Server、DB2等），用这种方式比较简单实用。另外互联网的日志类数据，通常是以文本文件形式存在的，也适合使用数据文件同步方式。</p>
+<p><img src="http://ocef6bnjz.bkt.clouddn.com/18-5-28/36545144.jpg" alt=""></p>
+<p>但是由于通过文件服务器上传、下载可能会造成丢包或错误，为了确保数据文件同步的完整性，通常除了上传数据文件本身外，还会上传一个校验文件，该检验文件记录了数据文件的数据量以及文件大小等检验信息，以供下游目标系统验证数据同步的准确性。另外在源系统生成数据文件的过程中，可以增加压缩和加密功能，传输到目标系统以后，再对数据进行解压缩和解密，这样可以大大提高文件的传输效率和安全性。</p>
+<h4 id="日志解析同步"><a href="#日志解析同步" class="headerlink" title="日志解析同步"></a>日志解析同步</h4><p><img src="http://ocef6bnjz.bkt.clouddn.com/18-5-28/82961517.jpg" alt=""></p>
+<p><img src="http://ocef6bnjz.bkt.clouddn.com/18-5-28/82961517.jpg" alt=""></p>
+<p><img src="http://ocef6bnjz.bkt.clouddn.com/18-5-28/26274798.jpg" alt=""></p>
+<p><img src="http://ocef6bnjz.bkt.clouddn.com/18-5-28/19879798.jpg" alt=""></p>
+<p><img src="http://ocef6bnjz.bkt.clouddn.com/18-5-28/93105434.jpg" alt=""></p>
+<p><img src="http://ocef6bnjz.bkt.clouddn.com/18-5-28/65534950.jpg" alt=""></p>
+<h4 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h4><ul>
+<li>表名设计<br>设计规则 汇总标识+数据域+主维度+时间维度</li>
+</ul>
+<p>例如：dws_trd_slr_dtr   slr卖家主维度+0点截止当日（dtr）进行统计汇总。</p>
+<p>这样做的好处是所有主维度相同的数据都放在同一张物理表中，避免表数量过多难以维护，另外可以从表名上只管的看到存储的是什么数据内容，方便排查问题。</p>
+<ul>
+<li>rowkey设计<br>设计规则： MD5+主维度+维度标识+子维度1+时间维度+子维度2</li>
+</ul>
+<p>例如：卖家ID的MD5前四位+卖家ID+app+一级类目ID+ddd+二级类目ID。</p>
+<p>以MD5的前四位作为rowkey的第一部分，可以把数据散列，让服务器整体负载时均衡的，避免热点问题。在上面例子中，卖家ID是主维度，在查找数据的时候属于必传的，每个统计维度都会生成一个维度标识，以便在rowkey上做区分。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/personnal/wechat-reward-image.jpg" alt="FangHeart WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/personnal/alipay-reward-image.jpg" alt="FangHeart Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/大数据之路/" rel="tag"># 大数据之路</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/28/Java-NIO-AIO/" rel="next" title="Java BIO、NIO、AIO【转载】">
+                <i class="fa fa-chevron-left"></i> Java BIO、NIO、AIO【转载】
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/personnal/author.jpg"
+               alt="FangHeart" />
+          <p class="site-author-name" itemprop="name">FangHeart</p>
+           
+              <p class="site-description motion-element" itemprop="description">不忘初心，方得始终。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/fangheart" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2013845927/" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/fangheart" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:fangheart@fangheart.win" target="_blank" title="邮箱">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  邮箱
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://haroldliu.weebly.com" title="HaroldLiuChi" target="_blank">HaroldLiuChi</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://guangyugao.weebly.com/" title="GaoGuangYu" target="_blank">GaoGuangYu</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wenjiewang.top" title="WenJieWang" target="_blank">WenJieWang</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/it_dx" title="DuanXiong" target="_blank">DuanXiong</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dongxicheng.org/recommend/" title="DongXiCheng" target="_blank">DongXiCheng</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#名词"><span class="nav-number">1.</span> <span class="nav-text">名词</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据采集层"><span class="nav-number">2.0.1.</span> <span class="nav-text">数据采集层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据计算层"><span class="nav-number">2.0.2.</span> <span class="nav-text">数据计算层</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据技术篇"><span class="nav-number">3.</span> <span class="nav-text">数据技术篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据技术篇-1"><span class="nav-number">3.1.</span> <span class="nav-text">数据技术篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#日志采集"><span class="nav-number">3.1.1.</span> <span class="nav-text">日志采集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器日志采集"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">浏览器日志采集</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#页面浏览日志采集流程"><span class="nav-number">3.1.1.1.1.</span> <span class="nav-text">页面浏览日志采集流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#页面日志服务端清洗与预处理"><span class="nav-number">3.1.1.1.2.</span> <span class="nav-text">页面日志服务端清洗与预处理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#H5-amp-Native日志统一"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">H5&Native日志统一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#日志典型场景注意事项"><span class="nav-number">3.1.1.3.</span> <span class="nav-text">日志典型场景注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据同步"><span class="nav-number">3.1.2.</span> <span class="nav-text">数据同步</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直连同步"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">直连同步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据文件同步"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">数据文件同步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#日志解析同步"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">日志解析同步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据存储"><span class="nav-number">3.1.2.4.</span> <span class="nav-text">数据存储</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-FangHeart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FangHeart</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+
+  <span id="busuanzi_container_site_uv">
+  本站访客数22<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量52<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "eb7c3e4313a441e99919491234887c0d",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("EFaViLzEeIm1xLj3lRgl6Ktw-gzGzoHsz", "6QrsfTcpIvP6XuQ8mKM70tx9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+
+  
+
+  <!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<!-- 背景动画 -->
+<script type="text/javascript" src="/js/src/particle.js"></script>
+
+</body>
+</html>
